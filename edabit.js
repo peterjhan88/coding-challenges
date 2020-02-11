@@ -23,11 +23,10 @@ function flip(y) {
 
 function binary(decimal) {
   // https://edabit.com/challenge/3kcrnpHk7krNZdnKK
-  var result = "";
-  debugger;
+  let result = "";
   while (decimal > 1) {
-    result = decimal % 2 + result;
+    result = (decimal % 2) + result;
     decimal = (decimal - decimal % 2) / 2;
   }
-  return result+decimal;
+  return decimal + result;
 }
