@@ -72,7 +72,6 @@ function makeArrayConsecutive2(statues) {
       missing.push(index);
     }
   }
-  console.log(missing);
   return missing.length;
 }
 
@@ -98,11 +97,6 @@ function reverseInParentheses(inputString) {
     return reverseInParentheses(reversed);
   }
 }
-// const input1 = 'foo(bar)baz(blim)'
-// const test1 = reverseInParentheses(input1);
-// const expected1 = 'foorabbazmilb';
-// console.log('reverseInParentheses(inputString) >>>', test1 === expected1);
-
 
 // https://app.codesignal.com/challenge/ddEZp78usMvhQEu3i
 function arrayConversion(inputArray) {
@@ -117,9 +111,6 @@ function arrayConversion(inputArray) {
 
 function areSimilar(a, b) {
   // shown:10/10| hidden:9/10
-  if (a.length !== b.length) {
-    return false;
-  }
   for (var index = 0, maxSwapping = 1; index < a.length && maxSwapping >= 0; index++) {
     if (a[index] !== b[index]) {
       if (maxSwapping === 0) {
@@ -139,10 +130,8 @@ function areSimilar(a, b) {
   return true;
 }
 
-// console.log(areSimilar([1, 2, 3], [2, 1, 3]));
-
 function palindromeRearranging(inputString) {
-  // shown: 10/10 | hidden: 8/10
+  // shown: 10/10 | hidden: 10/10
   // https://app.codesignal.com/arcade/intro/level-4/Xfeo7r9SBSpo3Wico
   /*
   Given a string, find out if its characters can be rearranged to form a palindrome.
@@ -154,16 +143,29 @@ function palindromeRearranging(inputString) {
 
   We can rearrange "aabb" to make "abba", which is a palindrome.
   */
+  // after implementing skip, it passed the hidden test
   if (inputString.length % 2 === 0) {
+    let characterChecked = [];
     for (let index = 0; index < inputString.length; index++) {
-      let re = new RegExp(`${inputString[index]}`, 'g')
+      let currentChar = inputString[index];
+      if( characterChecked.includes(currentChar) ) {
+        continue;
+      }
+      characterChecked.push(currentChar);
+      let re = new RegExp(currentChar, 'g')
       if (inputString.match(re).length % 2 !== 0) {
         return false;
       }
     }
   } else {
     var oddNumberAllowed = 1;
+    let characterChecked = [];
     for (let index = 0; index < inputString.length; index++) {
+      let currentChar = inputString[index];
+      if (characterChecked.includes(currentChar)) {
+        continue;
+      }
+      characterChecked.push(currentChar);
       let re = new RegExp(`${inputString[index]}`, 'g')
       if (inputString.match(re).length % 2 !== 0) {
         oddNumberAllowed--;
@@ -176,11 +178,51 @@ function palindromeRearranging(inputString) {
   return true
 }
 
-// console.log(palindromeRearranging('abba'));
-console.log(palindromeRearranging('abbcabb'));
+function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
+  // https://app.codesignal.com/arcade/intro/level-5/g6dc9KJyxmFjB98dL
+  // 100%
+  if ((yourLeft === friendsLeft || yourLeft === friendsRight) && (yourRight === friendsLeft || yourRight === friendsRight)) {
+    return true;
+  }
+  return false;
+}
 
+function arrayMaximalAdjacentDifference(inputArray) {
+  // https://app.codesignal.com/arcade/intro/level-5/EEJxjQ7oo7C5wAGjE
+  // 100%
+  let currentMax = Math.abs(inputArray[0] - inputArray[1]);
+  for (let index = 2; index < inputArray.length; index++) {
+    let temp = Math.abs(inputArray[index - 1] - inputArray[index]);
+    if (currentMax < temp) {
+      currentMax = temp;
+    }
+  }
+  return currentMax;
+}
 
+function isIPv4Address(inputString) {
+  // https://app.codesignal.com/arcade/intro/level-5/veW5xJednTy4qcjso/solutions
+  // 100%
+  if (inputString.match(/[a-z]/)) {
+    return false;
+  }
+  const ip4 = inputString.split('.');
+  if (ip4.length !== 4) {
+    return false;
+  }
+  for (var index = 0; index < ip4.length; index++) {
+    let currentElem = ip4[index];
+    if (isNaN(parseInt(currentElem, 10)) || parseInt(currentElem, 10) < 0 || parseInt(currentElem, 10) > 255) {
+      return false;
+    }
+  }
+  return true;
+}
 
+function avoidObstacles(inputArray) {
+  // https://app.codesignal.com/arcade/intro/level-5/XC9Q2DhRRKQrfLhb5
+
+}
 
 /* ==========INTERVIEW QUESTION================ */
 function firstDuplicate(a) {
@@ -202,12 +244,6 @@ function firstDuplicate(a) {
   return duplicateObj.target;
 }
 
-// const inputA = [2, 1, 3, 5, 3, 2];
-// const testA = firstDuplicate(inputA);
-// const expectedA = 3;
-
-// console.log('firstDuplicate(a) >>>', testA === expectedA);
-
 /*
 Note: Write a solution that only iterates over the string once and uses O(1)
 additional memory, since this is what you would be asked to do during a real interview.
@@ -227,7 +263,7 @@ function firstNotRepeatingCharacter(str) {
   return '_';
 }
 
-console.log(firstNotRepeatingCharacter('abacabad'));
+// console.log(firstNotRepeatingCharacter('abacabad'));
 
 
 function containsDuplicates(a) {
