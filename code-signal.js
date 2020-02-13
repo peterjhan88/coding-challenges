@@ -181,12 +181,10 @@ function palindromeRearranging(inputString) {
 function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
   // https://app.codesignal.com/arcade/intro/level-5/g6dc9KJyxmFjB98dL
   // 100%
-  function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
-    if ((yourLeft === friendsLeft || yourLeft === friendsRight) && (yourRight === friendsLeft || yourRight === friendsRight)) {
-      return true;
-    }
-    return false;
+  if ((yourLeft === friendsLeft || yourLeft === friendsRight) && (yourRight === friendsLeft || yourRight === friendsRight)) {
+    return true;
   }
+  return false;
 }
 
 function arrayMaximalAdjacentDifference(inputArray) {
