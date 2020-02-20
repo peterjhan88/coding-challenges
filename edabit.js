@@ -451,3 +451,15 @@ function fracRound(frac, n) {
   const answer = numbers[0]/numbers[1];
   return `${frac} rounded to ${n} decimal places is ${answer.toFixed(n)}`;
 }
+
+function distanceToNearestVowel(str) {
+  // https://edabit.com/challenge/b9FBAhxaijR9fzxgo
+  // for detailed instruction, please visit the website
+  let distance = str.split('').map( (char, index, original) => {
+    if(char.match(/[aeiou]/)) {
+      return 0;
+    }
+    // need to work on distance to vowel
+  })
+  return distance;
+}
