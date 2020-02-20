@@ -323,3 +323,120 @@ function rotateImage(a) {
   }
   return rotated;
 }
+
+function sudoku2(grid) {
+  // https://app.codesignal.com/interview-practice/task/SKZ45AF99NpbnvgTn/description
+  // 100%
+
+  const maxIteration = 9;
+  const digits = new RegExp(/[1-9]/,'g');
+
+  const appearTwice = arr => {
+    if(arr) {
+      const inputStr = arr.join('');
+      for (let i = 0; i < inputStr.length; i++) {
+        let re = new RegExp(inputStr[i], 'g');
+        if (inputStr.match(re).length !== 1) {
+          return inputStr;
+        }
+      }
+    }
+    return false;
+  }
+
+  // const printGrid = grid => {
+  //   let forPrint = '';
+  //   for (let i=0; i<9; i++) {
+  //     forPrint +=`${grid[i].join(' ')}\n`;
+  //   }
+  //   console.log(forPrint);
+  // }
+  // printGrid(grid);
+
+  // row-check
+  for (let row = 0; row < maxIteration; row++) {
+    let forRow = grid[row].join('').match(digits)
+    let invalidSudoku = appearTwice(forRow);
+    if (invalidSudoku){
+      console.log(`Fails at Row${row + 1} => ${invalidSudoku}`);
+      return false;
+    }
+  }
+
+  // col-check
+  for (let col = 0; col < maxIteration; col++) {
+    let forCol = [];
+    for (let row = 0; row < maxIteration; row++) {
+      forCol.push(grid[row][col])
+    }
+    let invalidSudoku = appearTwice(forCol.join('').match(digits));
+    if (invalidSudoku) {
+      console.log(`Fails at Col${col+1} => ${invalidSudoku}`);
+      return false;
+    }
+  }
+
+  // sub-square-check
+  let subSquare = [];
+  for (let row = 0; row < maxIteration; row+=3){
+    for (let col = 0; col < maxIteration; col+=3){
+      for(let i=0; i<maxIteration; i++){
+        subSquare.push(grid[Math.floor(i/3)+row][col+i%3]);
+      }
+      console.log(subSquare.join(''));
+      let invalidSudoku = appearTwice(subSquare.join('').match(digits));
+      if (invalidSudoku) {
+        console.log(`Fails at Sub-Square@(${row+1}, ${col+1}) => ${invalidSudoku}`);
+        return false;
+      }
+      subSquare = [];
+    }
+  }
+  return true;
+}
+
+// let tSuT = [
+// [".", ".", ".", "1", "4", ".", ".", "2", "."],
+// [".", ".", "6", ".", ".", ".", ".", ".", "."],
+// [".", ".", ".", ".", ".", ".", ".", ".", "."],
+// [".", ".", "1", ".", ".", ".", ".", ".", "."],
+// [".", "6", "7", ".", ".", ".", ".", ".", "9"],
+// [".", ".", ".", ".", ".", ".", "8", "1", "."],
+// [".", "3", ".", ".", ".", ".", ".", ".", "6"],
+// [".", ".", ".", ".", ".", "7", ".", ".", "."],
+// [".", ".", ".", "5", ".", ".", ".", "7", "."]
+// ];
+
+// let tSuFR = [
+// [".", ".", ".", ".", "2", ".", ".", "9", "."],
+// [".", ".", ".", ".", "6", ".", ".", ".", "."],
+// ["7", "1", ".", ".", "7", "5", ".", ".", "."],
+// [".", "7", ".", ".", ".", ".", ".", ".", "."],
+// [".", ".", ".", ".", "8", "3", ".", ".", "."],
+// [".", ".", "8", ".", ".", "7", ".", "6", "."],
+// [".", ".", ".", ".", ".", "2", ".", ".", "."],
+// [".", "1", ".", "2", ".", ".", ".", ".", "."],
+// [".", "2", ".", ".", "3", ".", ".", ".", "."]
+// ];
+
+// let tSuFC = [
+// [".", ".", "4", ".", ".", ".", "6", "3", "."],
+// [".", ".", ".", ".", ".", ".", ".", ".", "."],
+// ["5", ".", ".", ".", ".", ".", ".", "9", "."],
+// [".", ".", ".", "5", "6", ".", ".", ".", "."],
+// ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
+// [".", ".", ".", "7", ".", ".", ".", ".", "."],
+// [".", ".", ".", "5", ".", ".", ".", ".", "."],
+// [".", ".", ".", ".", ".", ".", ".", ".", "."],
+// [".", ".", ".", ".", ".", ".", ".", ".", "."]];
+
+// let tSuFSS = [
+// [".", "4", ".", ".", ".", ".", ".", ".", "."],
+// [".", ".", "4", ".", ".", ".", ".", ".", "."],
+// [".", ".", ".", "1", ".", ".", "7", ".", "."],
+// [".", ".", ".", ".", ".", ".", ".", ".", "."],
+// [".", ".", ".", "3", ".", ".", ".", "6", "."],
+// [".", ".", ".", ".", ".", "6", ".", "9", "."],
+// [".", ".", ".", ".", "1", ".", ".", ".", "."],
+// [".", ".", ".", ".", ".", ".", "2", ".", "."],
+// [".", ".", ".", "8", ".", ".", ".", ".", "."]]
