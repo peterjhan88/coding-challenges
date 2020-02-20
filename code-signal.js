@@ -307,6 +307,19 @@ function containsDuplicates(a) {
 
 function rotateImage(a) {
   // https://app.codesignal.com/interview-practice/task/5A8jwLGcEpTPyyjTB/description
+  // 100%
 
-
+  const dimension = a.length;
+  if (dimension ===1 ){
+    return a;
+  }
+  let rotated = [];
+  for (let col = 0; col < dimension; col++) {
+    let newRow = [];
+    for (let row = dimension-1; row>-1; row--) {
+      newRow.push(a[row][col]);
+    }
+    rotated.push(newRow);
+  }
+  return rotated;
 }
