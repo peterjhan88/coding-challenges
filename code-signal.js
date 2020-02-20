@@ -221,19 +221,41 @@ function isIPv4Address(inputString) {
 
 function avoidObstacles(inputArray) {
   // https://app.codesignal.com/arcade/intro/level-5/XC9Q2DhRRKQrfLhb5
+  // 100%
 
+  const maxLength = inputArray.length;
+  let jumping = 2;
+  let nextValue = 0;
+  let index = 0;
+  inputArray = inputArray.sort( (a,b) => a-b);
+  const maximumNumber = inputArray[maxLength-1];
+  nextValue += jumping;
+  while (nextValue <= maximumNumber) {
+    let selectedElem = inputArray[index];
+    if (nextValue === selectedElem) {
+      jumping++;
+      nextValue = 0;
+      index = 0;
+    } else if (nextValue > selectedElem) {
+      index++;
+    } else {
+      nextValue += jumping;
+    }
+  }
+  return jumping;
 }
 
 /* ==========INTERVIEW QUESTION================ */
 function firstDuplicate(a) {
+  // https://app.codesignal.com/interview-practice/task/pMvymcahZ8dY4g75q
   // shown:100% | hidden 9/11
-  var duplicateObj = {
+  let duplicateObj = {
     target: -1,
     igIdx: null
   }
-  for (var index = 0; index < a.length; index++) {
-    var currentElem = a[index];
-    var duplicateIndex = a.indexOf(currentElem, index + 1);
+  for (let index = 0; index < a.length; index++) {
+    let currentElem = a[index];
+    let duplicateIndex = a.indexOf(currentElem, index + 1);
     if (duplicateIndex !== -1) {
       if (duplicateObj.igIdx === null || duplicateObj.igIdx > duplicateIndex) {
         duplicateObj.target = currentElem;
@@ -253,11 +275,17 @@ a non - repeating character in it.If there is no such character, return '_'.
 // https://app.codesignal.com/interview-practice/task/uX5iLwhc6L5ckSyNC
 function firstNotRepeatingCharacter(str) {
   // shown: 10/10 | hidden: 6/9
-  for (var index = 0; index < str.length; index++) {
-    var re = new RegExp(str[index], 'g');
-    var matched = str.match(re);
-    if (matched.length===1){
-      return matched[0];
+  // after implementing checking; 100%; (02.20.2019)
+  let charsChecked = [];
+  for (let index = 0; index < str.length; index++) {
+    let selectedElem = str[index];
+    if (!charsChecked.includes(selectedElem)) {
+      charsChecked.push(selectedElem);
+      let re = new RegExp(selectedElem, 'g');
+      let matched = str.match(re);
+      if (matched.length===1){
+        return matched[0];
+      }
     }
   }
   return '_';
@@ -275,4 +303,10 @@ function containsDuplicates(a) {
     }
   }
   return false;
+}
+
+function rotateImage(a) {
+  // https://app.codesignal.com/interview-practice/task/5A8jwLGcEpTPyyjTB/description
+
+
 }
