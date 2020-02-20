@@ -291,9 +291,6 @@ function firstNotRepeatingCharacter(str) {
   return '_';
 }
 
-// console.log(firstNotRepeatingCharacter('abacabad'));
-
-
 function containsDuplicates(a) {
   // https://app.codesignal.com/interview-practice/task/CfknJzPmdbstXhsoJ
   // shown: 10/10; hidden: 7/10; - not fast enough
@@ -344,15 +341,6 @@ function sudoku2(grid) {
     return false;
   }
 
-  // const printGrid = grid => {
-  //   let forPrint = '';
-  //   for (let i=0; i<9; i++) {
-  //     forPrint +=`${grid[i].join(' ')}\n`;
-  //   }
-  //   console.log(forPrint);
-  // }
-  // printGrid(grid);
-
   // row-check
   for (let row = 0; row < maxIteration; row++) {
     let forRow = grid[row].join('').match(digits)
@@ -395,48 +383,22 @@ function sudoku2(grid) {
   return true;
 }
 
-// let tSuT = [
-// [".", ".", ".", "1", "4", ".", ".", "2", "."],
-// [".", ".", "6", ".", ".", ".", ".", ".", "."],
-// [".", ".", ".", ".", ".", ".", ".", ".", "."],
-// [".", ".", "1", ".", ".", ".", ".", ".", "."],
-// [".", "6", "7", ".", ".", ".", ".", ".", "9"],
-// [".", ".", ".", ".", ".", ".", "8", "1", "."],
-// [".", "3", ".", ".", ".", ".", ".", ".", "6"],
-// [".", ".", ".", ".", ".", "7", ".", ".", "."],
-// [".", ".", ".", "5", ".", ".", ".", "7", "."]
-// ];
-
-// let tSuFR = [
-// [".", ".", ".", ".", "2", ".", ".", "9", "."],
-// [".", ".", ".", ".", "6", ".", ".", ".", "."],
-// ["7", "1", ".", ".", "7", "5", ".", ".", "."],
-// [".", "7", ".", ".", ".", ".", ".", ".", "."],
-// [".", ".", ".", ".", "8", "3", ".", ".", "."],
-// [".", ".", "8", ".", ".", "7", ".", "6", "."],
-// [".", ".", ".", ".", ".", "2", ".", ".", "."],
-// [".", "1", ".", "2", ".", ".", ".", ".", "."],
-// [".", "2", ".", ".", "3", ".", ".", ".", "."]
-// ];
-
-// let tSuFC = [
-// [".", ".", "4", ".", ".", ".", "6", "3", "."],
-// [".", ".", ".", ".", ".", ".", ".", ".", "."],
-// ["5", ".", ".", ".", ".", ".", ".", "9", "."],
-// [".", ".", ".", "5", "6", ".", ".", ".", "."],
-// ["4", ".", "3", ".", ".", ".", ".", ".", "1"],
-// [".", ".", ".", "7", ".", ".", ".", ".", "."],
-// [".", ".", ".", "5", ".", ".", ".", ".", "."],
-// [".", ".", ".", ".", ".", ".", ".", ".", "."],
-// [".", ".", ".", ".", ".", ".", ".", ".", "."]];
-
-// let tSuFSS = [
-// [".", "4", ".", ".", ".", ".", ".", ".", "."],
-// [".", ".", "4", ".", ".", ".", ".", ".", "."],
-// [".", ".", ".", "1", ".", ".", "7", ".", "."],
-// [".", ".", ".", ".", ".", ".", ".", ".", "."],
-// [".", ".", ".", "3", ".", ".", ".", "6", "."],
-// [".", ".", ".", ".", ".", "6", ".", "9", "."],
-// [".", ".", ".", ".", "1", ".", ".", ".", "."],
-// [".", ".", ".", ".", ".", ".", "2", ".", "."],
-// [".", ".", ".", "8", ".", ".", ".", ".", "."]]
+function isCryptSolution(crypt, solution) {
+  // https://app.codesignal.com/interview-practice/task/yM4uWYeQTHzYewW9H/description
+  // 100%
+  let theTable = {};
+  for (let i=0; i<solution.length; i++) {
+    let currentElem = solution[i];
+    theTable[currentElem[0]] = currentElem[1];
+  }
+  let decrypted = [];
+  for(let i=0; i<crypt.length; i++){
+    let currentWord = crypt[i];
+    if(currentWord.length !==1 && theTable[currentWord[0]].match('0')) {
+      return false;
+    }
+    decrypted.push(currentWord.split('').map(c => theTable[c]).join(''));
+  }
+  let numericDecrypted = decrypted.map( numStr => parseInt(numStr, 10));
+  return numericDecrypted[2] === numericDecrypted[0] + numericDecrypted[1];
+}
