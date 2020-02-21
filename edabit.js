@@ -455,11 +455,23 @@ function fracRound(frac, n) {
 function distanceToNearestVowel(str) {
   // https://edabit.com/challenge/b9FBAhxaijR9fzxgo
   // for detailed instruction, please visit the website
-  let distance = str.split('').map( (char, index, original) => {
-    if(char.match(/[aeiou]/)) {
+  const vowel = new RegExp(/[aeiou]/);
+  let distance = str.split('').map( (char, index) => {
+    if (char.match(vowel)) {
       return 0;
     }
-    // need to work on distance to vowel
+    let vowelIndex = str.search(vowel);
+    let currentMin = null;
+    if(vowelIndex<index) {
+      currentMin = index - vowelIndex;
+    } else {
+      currentMin = vowelIndex - index;
+    }
+    return currentMin;
   })
   return distance;
 }
+
+console.log(`${distanceToNearestVowel("bba")}\n${[2, 1, 0]}`);
+console.log(`${distanceToNearestVowel("abcdabcd")}\n${[0, 1, 2, 1, 0, 1, 2, 3]}`);
+console.log(`${distanceToNearestVowel("sugarandspice")}\n${[1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 1, 0]}`);
