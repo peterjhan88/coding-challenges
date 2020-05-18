@@ -472,6 +472,48 @@ function distanceToNearestVowel(str) {
   return distance;
 }
 
-console.log(`${distanceToNearestVowel("bba")}\n${[2, 1, 0]}`);
-console.log(`${distanceToNearestVowel("abcdabcd")}\n${[0, 1, 2, 1, 0, 1, 2, 3]}`);
-console.log(`${distanceToNearestVowel("sugarandspice")}\n${[1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 1, 0]}`);
+// console.log(`${distanceToNearestVowel("bba")}\n${[2, 1, 0]}`);
+// console.log(`${distanceToNearestVowel("abcdabcd")}\n${[0, 1, 2, 1, 0, 1, 2, 3]}`);
+// console.log(`${distanceToNearestVowel("sugarandspice")}\n${[1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 1, 0]}`);
+
+function cardHide(card) {
+  // https://edabit.com/challenge/rtpvAqFT3koqMoFCJ
+  // for detailed instruction, please visit the website
+  const re = /(\d*)(?<lastFour>\d{4,4}$)/;
+  let stringCardNumber = card.toString();
+  stringCardNumber = stringCardNumber.replace(re, (match, p1, p2, offset, string) => {
+    let hidingText = "";
+    for (let i = 0; i < p1.length; i++) {
+      hidingText += "*";
+    }
+    return hidingText + p2;
+  });
+  return stringCardNumber;
+}
+
+// console.log(cardHide(123456789451234)==="***********1234");
+
+function factorial(n) {
+  // https://edabit.com/challenge/rgXMMHEmbh2MCKSrM
+  // for detailed instruction, please visit the website
+  // in recursive way!
+  if(n===0 || n===1) {
+    return 1;
+  }
+  return n*factorial(n-1);
+}
+
+// console.log(factorial(0)===1);
+// console.log(factorial(1)===1);
+// console.log(factorial(3)===6);
+
+function charCount(myChar, str) {
+  // https://edabit.com/challenge/kbFhwaDyrd79JrgeB
+  // for detailed instruction, please visit the website
+  const re = new RegExp(myChar, "g");
+  return str.match(re) ? str.match(re).length : 0;
+}
+
+// console.log(charCount("a", "edabit")===1)
+// console.log(charCount("c", "Chamber of secrets")===1)
+// console.log(charCount("b", "big fat bubble")===4)
