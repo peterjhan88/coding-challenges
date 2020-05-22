@@ -517,3 +517,34 @@ function charCount(myChar, str) {
 // console.log(charCount("a", "edabit")===1)
 // console.log(charCount("c", "Chamber of secrets")===1)
 // console.log(charCount("b", "big fat bubble")===4)
+
+function footballPoints(wins, draws, losses) {
+  // https://edabit.com/challenge/GwvwXHWCThHZrR7xu
+  // for detailed instruction, please visit the website
+  return wins*3+draws;
+}
+
+
+// https://edabit.com/challenge/rHtS59yApEQbANPcx
+// const REGEXP = /[^a-z0-9]/gi
+
+function addNums(nums) {
+  // https://edabit.com/challenge/qKQ8Bn6ontrLTTNsr
+  // for detailed instruction, please visit the website
+  return nums.split(", ").map( a => parseInt(a, 10) ).reduce( (ele, acc)=> ele+acc, 0);
+}
+
+
+function isJS(path) {
+  // https://edabit.com/challenge/AWENJSwyhcceiKvQX
+  // for detailed instruction, please visit the website
+  const re = new RegExp(".+\.(js|jsx)$");
+  return path.match(re)? true:false;
+}
+
+function getDecimalPlaces(num) {
+  // https://edabit.com/challenge/arKLRM8qGzKZbCxCk
+  // for detailed instruction, please visit the website
+  const re = /[0-9,]+\.*(?<afterDecimal>\d*)/;
+  return num.match(re).groups.afterDecimal.length;
+}
