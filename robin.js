@@ -61,3 +61,19 @@ and a tax percentage and returns the taxed amount in cents ?
 const taxAmount = (dollarAmount, taxRate) => {
   return (dollarAmount * taxRate).toFixed(0);
 };
+
+
+// Finding Factorials
+/*
+Do you know what a factorial of a number is? You can get the factorial of
+a number by multiplying all the numbers less than or equal to that number.
+As an example, 5! (5 factorial), is equal to 5 X 4 X 3 X 2 X 1 = 120.
+Would you please write a solution for Robin that returns the factorial of that number?
+** In Recursion
+*/
+const factorial = num => {
+  if (num <= 1) {
+    return 1;
+  }
+  return num * factorial(--num);
+}
