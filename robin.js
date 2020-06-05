@@ -71,7 +71,7 @@ As an example, 5! (5 factorial), is equal to 5 X 4 X 3 X 2 X 1 = 120.
 Would you please write a solution for Robin that returns the factorial of that number?
 ** In Recursion
 */
-const factorial = num => {
+function factorial(num) {
   if (num <= 1) {
     return 1;
   }
@@ -98,4 +98,11 @@ const secureCreditCardNumber = cardNumber => {
     return hidingText + p2;
   });
   return securedNumber;
+}
+
+// other way
+const secureCreditCardNumberOtherWay = cardNumber => {
+  const re = /(?<first>\d*)(?<lastFour>\d{4,4}$)/;
+  let matched = cardNumber.match(re);
+  return matched.groups.first.split("").reduce((acc, elem) => acc += "*", "") + matched.groups.lastFour;
 }
