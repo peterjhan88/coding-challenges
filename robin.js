@@ -106,3 +106,22 @@ const secureCreditCardNumberOtherWay = cardNumber => {
   let matched = cardNumber.match(re);
   return matched.groups.first.split("").reduce((acc, elem) => acc += "*", "") + matched.groups.lastFour;
 }
+
+
+// Startup Name Generator
+/*
+You are a co-founder to a new, unnamed startup. After bickering
+for hours over what the venture's name should be, the founding team
+makes a compromise. They will take the first letter of each of their
+names, capitalized, and sorted in alphabetical order - this will be
+the name of the startup. Because your colleagues have pulled
+wo all-nighters in a row, you decide to take one for the team and
+write a function that will return this new name.
+*/
+
+const startupName = (nameOne, nameTwo) => {
+  let newNameArray = [];
+  newNameArray.push(nameOne.substring(0, 1).toUpperCase());
+  newNameArray.push(nameTwo.substring(0, 1).toUpperCase());
+  return newNameArray.sort().join("");
+};
