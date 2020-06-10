@@ -176,7 +176,7 @@ const simpleMath = (numberOne, operator, numberTwo) => {
       return num1 * num2;
     case "/":
       if (num2 === 0) {
-        return "Dvidiing a nuumber by 0 is not allowed";
+        return "Dviding a number by 0 is not allowed";
       }
       return num1 / num2;
     default:
@@ -207,3 +207,56 @@ const reverseString = text => {
   return reversed;
 }
 console.log(reverseString(".uoy fo lla naht ynapmoc retteb a ekam nac I .ynapmoc siht ta OEC eht eb ot evresed I"))
+
+
+// Housewarming Preparation
+/*
+You just got hired into a new engineering position - congratulations!
+The employer required you relocate, so you moved into a new apartment
+with a bunch of old typical boring picture frames. Before you even
+think about hosting a housewarming party with your new coworkers, you
+might want to decorate your living room with eccentric picture frames
+that you can create using your coding skills. You wish to build a
+machine that prints out a frame with the provided width, height,
+and any character as an input. For example, if you were to build
+a 4 x 4 frame with the # symbol, your frame would look like:
+
+[["####"], ["# #"], ["# #"], ["####"]]
+
+In this case, for all the enclosed brackets, there should 4 characters
+printed, and only the start and end of the bracket should have the # character
+printed - the remaining two characters should be two spaces. If the number
+were five, for example, we should display the two brackets each started and
+ending with # symbols and with three spaces in between.
+
+Since you do not own any small photos, you need to make sure that your
+machine won't make a frame if the width or height is 3 or less.
+*/
+const pictureFrame = (width, height, symbol) => {
+  if (width <= 3 || height <= 3) {
+    return "Width and/or height is too small. Must be greater than 3.";
+  }
+  let frame = [];
+
+  let topAndBottom = "";
+  for (let index = 0; index < width; index++) {
+    topAndBottom += symbol;
+  }
+
+  let middlePart = "";
+  for (let index = 1; index < width - 1; index++) {
+    middlePart += " ";
+  }
+  middlePart = symbol + middlePart + symbol;
+
+  let tempArray = [];
+  tempArray.push(topAndBottom);
+  frame.push(tempArray, tempArray);
+
+  for (let vertical = 1; vertical < height - 1; vertical++) {
+    tempArray = [];
+    tempArray.push(middlePart);
+    frame.splice(1, 0, tempArray);
+  }
+  return frame;
+}
