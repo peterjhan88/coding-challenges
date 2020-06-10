@@ -206,7 +206,6 @@ const reverseString = text => {
   }
   return reversed;
 }
-console.log(reverseString(".uoy fo lla naht ynapmoc retteb a ekam nac I .ynapmoc siht ta OEC eht eb ot evresed I"))
 
 
 // Housewarming Preparation
@@ -260,3 +259,16 @@ const pictureFrame = (width, height, symbol) => {
   }
   return frame;
 }
+
+// answer by staff of Robin
+// function frameMaker(width, height, char) {
+//   if (width <= 3 || height <= 3) {
+//     return "You can't make a frame!";
+//   }
+//   let frame = [];
+//   for (let i = 0; i < height; i++) {
+//     if (i === 0 || i === height - 1) frame.push([char.repeat(width)]);
+//     else frame.push([char + " ".repeat(width - 2) + char]);
+//   }
+//   return frame;
+// }
