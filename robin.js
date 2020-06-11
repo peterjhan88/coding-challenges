@@ -272,3 +272,51 @@ const pictureFrame = (width, height, symbol) => {
 //   }
 //   return frame;
 // }
+
+
+// Serious Diet for Blind Date
+/*
+Spring is here and your friend calls to see if you are interested in meeting
+someone for a blind date next month.You have been a loner for so long - solo
+for 3 years - and even gained 30 pounds.You are determined to meet the person
+looking your best, so you decide to cut meals and do intensive cardio.You want
+to track how often your daily caloric intake is lower than the day before and
+daily hours spent excercising exceeds those from the previous day.If so, you
+will mark it as a success day.Create a function that returns the total number
+of success days.
+*/
+
+const extremeDiet = (recordsOfDiet) => {
+  // assuming the user will input array of arrays
+  // where the array is consist of daily calories taken and
+  // hours of exercises
+  /*
+     ex) [  { calories:2000,
+            exercise:0.5 },
+            { calories:2010,
+            exercise:1 },
+            { calories:1900,
+            exercise:1.2 },...]
+    */
+  if (recordsOfDiet.length <= 1) {
+    return "Insufficient Data";
+  }
+  let successfulDiet = [];
+  for (let index = 1; index < recordsOfDiet.length; index++) {
+    let caloriesCheck =
+      recordsOfDiet[index].calories < recordsOfDiet[index - 1].calories;
+    let exerciseCheck =
+      recordsOfDiet[index].exercise > recordsOfDiet[index - 1].exercise;
+    if (caloriesCheck && exerciseCheck) {
+      successfulDiet.push(true);
+    }
+  }
+  return successfulDiet.length;
+};
+// console.log(
+//   extremeDiet([
+//     { calories: 2000, exercise: 0.5 },
+//     { calories: 2010, exercise: 1 },
+//     { calories: 1900, exercise: 1.2 },
+//   ])
+// );
