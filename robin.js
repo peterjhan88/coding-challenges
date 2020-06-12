@@ -320,3 +320,42 @@ const extremeDiet = (recordsOfDiet) => {
 //     { calories: 1900, exercise: 1.2 },
 //   ])
 // );
+
+
+// Big O Notation Episode I
+/*
+During your second round interview with a senior engineer, she asks
+you to determine the time complexity for the following function:
+
+const countUpAndDown = (n) => {
+
+ console.log("You are going up!");
+
+ for (let i = 1; i < n; i++) {console.log(i);}
+
+ console.log("At the top!\nGoing down...");
+
+ for (let j = n-1; j >= 0; j--) {console.log(j);}
+
+ console.log("Back down. Bye!");
+
+ }
+
+You have 5 minutes to think about it and tell her what the time complexity is and why?
+*/
+
+// My Answer
+/*
+Big-O of provided function is 2n+3 which roughly equivalent O(n)
+Because there are two simple loops which will operate 'n' times each and three simple commands.
+*/
+
+// Robin's Answer
+/*
+  As n gets larger, the function has n operations in the first loop. Similarly,
+  as n grows larger, the function also has n operations in the second loop. It's
+  simply performing the same operations in reverse order going back down.
+  Therefore, you may think O(2n). However, we engineers don't care about
+  multiples of n. We only care about the big picture. Hence, the function
+  operates with the time complexity of O(n).
+*/
