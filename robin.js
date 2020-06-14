@@ -359,3 +359,72 @@ Because there are two simple loops which will operate 'n' times each and three s
   multiples of n. We only care about the big picture. Hence, the function
   operates with the time complexity of O(n).
 */
+
+
+// Shadow Scrabble
+/*
+Stuck in quarantine...still...and all alone, you decide to play a game of
+Scrabble against YOURSELF - rather, against your shadow. That pesky shadow
+of yours is known to be quite the Scrabble ace. In order to make sure that
+you have the best chance at winning, you decide to create a function that
+receives an array of words. The function should score the words and return
+an array of the words (or word) with the highest score. Please use the
+table below for reference:
+*/
+const wordsToScore = (words) => {
+  const scoreTable = {
+    a: 1,
+    b: 3,
+    c: 3,
+    d: 2,
+    e: 1,
+    f: 4,
+    g: 2,
+    h: 4,
+    i: 1,
+    j: 8,
+    k: 5,
+    l: 2,
+    m: 3,
+    n: 1,
+    o: 1,
+    p: 3,
+    q: 10,
+    r: 1,
+    s: 1,
+    t: 1,
+    u: 1,
+    v: 4,
+    w: 4,
+    x: 8,
+    y: 4,
+    z: 10,
+  };
+  let scores = words.map((word) =>
+    word
+      .split("")
+      .map((letter) => scoreTable[letter.toLowerCase()])
+      .reduce((acc, charScore) => acc + charScore)
+  );
+  let forSorting = [...scores];
+  let indexOfWordsWithHighestScore = [];
+  let highestScore = forSorting.sort((a, b) => a - b).pop();
+  for (let index = 0; index < scores.length; index++) {
+    if (scores[index] === highestScore) {
+      indexOfWordsWithHighestScore.push(index);
+    }
+  }
+  let wordsWithHighestScore = indexOfWordsWithHighestScore.map(
+    (elem) => words[elem]
+  );
+  return wordsWithHighestScore;
+};
+// console.log(
+//   wordsToScore(["Zoo", "ant", "ZOO", "fooodies", "apples", "orange"])
+// );
+
+// answer of Robin's
+// function winningWords(arr) {
+//   const score = arr =& gt;[1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 2, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10][arr.charCodeAt() - 97]; const wordScore = word =& gt;[...word].reduce((a, b) =& gt; a + score(b), 0); const highScore = Math.max(...arr.map(wordScore)); return arr.filter(word =& gt; wordScore(word) === highScore)
+// }
+// console.log(winningWords(["did", "you", "solve", "the", "challenge"]));
