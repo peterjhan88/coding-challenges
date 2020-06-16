@@ -428,3 +428,38 @@ const wordsToScore = (words) => {
 //   const score = arr =& gt;[1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 2, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10][arr.charCodeAt() - 97]; const wordScore = word =& gt;[...word].reduce((a, b) =& gt; a + score(b), 0); const highScore = Math.max(...arr.map(wordScore)); return arr.filter(word =& gt; wordScore(word) === highScore)
 // }
 // console.log(winningWords(["did", "you", "solve", "the", "challenge"]));
+
+
+//
+/*
+Sheltered at home, you are so bored out of your mind that you start thinking
+about palindromes. A palindrome, in our case, is a number that reads the same
+in reverse as it reads normally. Robin challenges you to write a function
+that returns the closest palindrome to any number of your choice. If your
+number is exactly in between two palindromes, return the smaller number. If
+the number you chose IS a palindrome, return itself. Have fun!
+*/
+// const numberPalindrome = (yourNumber) => {
+//   let stringNumber = yourNumber.toString(10).split("");
+//   for (let index = 0; index < stringNumber.length / 2; index++) {
+//     if (stringNumber[index] !== stringNumber[stringNumber.length - 1 - index]) {
+//       let tempNumber = [...stringNumber];
+//       tempNumber[stringNumber.length - 1 - index] = tempNumber[index];
+//       return numberPalindrome(parseInt(tempNumber.join(""), 10));
+//     }
+//   }
+//   return yourNumber;
+// }
+const numberPalindrome = (yourNumber) => {
+  let stringNumber = yourNumber.toString(10);
+  while (stringNumber !== stringNumber.split('').reverse().join('') ) {
+    stringNumber = (parseInt(stringNumber, 10)+1).toString(10);
+  }
+  const palindromePositive = parseInt(stringNumber, 10);
+  stringNumber = yourNumber.toString(10);
+  while (stringNumber !== stringNumber.split('').reverse().join('') && parseInt(stringNumber, 10)>0) {
+    stringNumber = (parseInt(stringNumber, 10) - 1).toString(10);
+  }
+  const palindromeNegative = parseInt(stringNumber, 10);
+  return (yourNumber-palindromeNegative)<(palindromePositive-yourNumber)? palindromeNegative : palindromePositive;
+}
