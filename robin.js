@@ -435,7 +435,7 @@ const wordsToScore = (words) => {
 // console.log(winningWords(["did", "you", "solve", "the", "challenge"]));
 
 
-//
+// Perfect Palindromes
 /*
 Sheltered at home, you are so bored out of your mind that you start thinking
 about palindromes. A palindrome, in our case, is a number that reads the same
@@ -506,7 +506,7 @@ const FizzBuzzFuzz = () => {
 }
 
 
-// Pyramid
+// Tweeting Thieves
 /*
 Traveling in Cairo, Egypt, with the Twitter executive team, you encounter
 thieves in the middle of a desert.These thieves heard about your travels
