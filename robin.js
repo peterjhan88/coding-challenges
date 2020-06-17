@@ -555,6 +555,7 @@ const pyramid = number => {
   return pyramidComponents.join("\n");
 }
 
+// Robin's
 // const pyramidBuilder = (n, row = 0, level = '') => {
 //   if (row === n) {
 //     return;
@@ -571,3 +572,17 @@ const pyramid = number => {
 //   }
 //   pyramidBuilder(n, row, level + add);
 // }
+
+
+const pyramidRecursive = (number, row = 0) => {
+  if (row === number) {
+    return;
+  }
+  let stringPyramid = "";
+  for (let index = 1; index <= row + 1; index++) {
+    stringPyramid = "#".repeat(index * 2 - 1);
+  }
+  stringPyramid = " ".repeat(number - Math.round(stringPyramid.length / 2)) + stringPyramid + " ".repeat(number - Math.round(stringPyramid.length / 2));
+  console.log(stringPyramid);
+  return pyramidRecursive(number, row + 1);
+}
