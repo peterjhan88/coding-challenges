@@ -425,7 +425,12 @@ const wordsToScore = (words) => {
 
 // answer of Robin's
 // function winningWords(arr) {
-//   const score = arr =& gt;[1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 2, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10][arr.charCodeAt() - 97]; const wordScore = word =& gt;[...word].reduce((a, b) =& gt; a + score(b), 0); const highScore = Math.max(...arr.map(wordScore)); return arr.filter(word =& gt; wordScore(word) === highScore)
+//   const score = arr => {
+//     [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 2, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10][arr.charCodeAt() - 97];
+//     const wordScore = word =>[...word].reduce((a, b) => a + score(b), 0);
+//     const highScore = Math.max(...arr.map(wordScore));
+//     return arr.filter(word => wordScore(word) === highScore)
+//   }
 // }
 // console.log(winningWords(["did", "you", "solve", "the", "challenge"]));
 
@@ -499,3 +504,70 @@ const FizzBuzzFuzz = () => {
     };
   }
 }
+
+
+// Pyramid
+/*
+Traveling in Cairo, Egypt, with the Twitter executive team, you encounter
+thieves in the middle of a desert.These thieves heard about your travels
+from an informant a month prior to your trip, so they knew the great Twitter
+team was going to be there.It turns out that the thieves were former interviewees
+at Twitter who didn't get hired into the software engineering positions that
+they had applied for. With anger, they ask you the following question:
+
+Write a function that accepts a positive number X.
+
+The function should console log a pyramid shape with X levels using
+the #(Twitter's invention) character. Make sure the pyramid has spaces
+on both the left and right hand sides
+
+For example,
+
+  pyramid(1)
+
+'#'
+
+pyramid(2)
+
+' # '
+
+'###'
+
+pyramid(3)
+
+' #  '
+
+' ### '
+
+'#####'
+
+If you get it right, the thieves will steal your money. If you get it wrong,
+the thieves will steal your money AND you will be forced to give them
+engineering jobs at Twitter.
+*/
+const pyramid = number => {
+  let pyramidComponents = [];
+  for (let index = 1; index <= number; index++) {
+    let stringPyramid = "#".repeat( index*2 - 1);
+    pyramidComponents.push(stringPyramid);
+  }
+  pyramidComponents = pyramidComponents.map(element => " ".repeat(number - Math.round(element.length / 2, 0)) + element + " ".repeat(number - Math.round(element.length / 2, 0)));
+  return pyramidComponents.join("\n");
+}
+
+// const pyramidBuilder = (n, row = 0, level = '') => {
+//   if (row === n) {
+//     return;
+//   } if (level.length === 2 * n - 1) {
+//     console.log(level);
+//     return pyramidBuilder(n, row + 1);
+//   }
+//   const midpoint = Math.floor((2 * n - 1) / 2);
+//   let add;
+//   if (midpoint - row <= level.length && midpoint + row >= level.length) {
+//     add = '#';
+//   } else {
+//     add = ' ';
+//   }
+//   pyramidBuilder(n, row, level + add);
+// }
