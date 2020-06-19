@@ -548,3 +548,228 @@ function getDecimalPlaces(num) {
   const re = /[0-9,]+\.*(?<afterDecimal>\d*)/;
   return num.match(re).groups.afterDecimal.length;
 }
+
+function isValidDate(d, m, y) {
+  // https://edabit.com/challenge/dhRtmeFcjGcD7yvHA
+  // for detailed instruction, please visit the website
+  let givenDate = new Date(y, m - 1, d);
+  return givenDate.getFullYear() === y && givenDate.getMonth() + 1 === m && givenDate.getDate() === d;
+}
+
+function sliceSum(arr, n) {
+  // https://edabit.com/challenge/B3FR3P7g8NyTg7t8b
+  // for detailed instruction, please visit the website
+  return arr.reduce((acc, value, index) => index < n ? acc + value : acc + 0, 0);
+}
+
+function repetition(txt, n) {
+  // https://edabit.com/challenge/MjqneMZ7aZa8AxXZG
+  // for detailed instruction, please visit the website
+  if (n < 1) {
+    return "";
+  }
+  return txt + repetition(txt, n - 1);
+}
+
+function maxTotal(nums) {
+  // https://edabit.com/challenge/Wg3pBiH8HQggcfaTg
+  // for detailed instruction, please visit the website
+  return nums.sort((a, b) => b - a).reduce((acc, value, index) => index < 5 ? acc + value : acc + 0, 0);
+}
+
+function replaceVowel(word) {
+  // https://edabit.com/challenge/xuRjEej9F9ZG3vg7M
+  // for detailed instruction, please visit the website
+  const vowelNumber = {
+    'a': '1',
+    'e': '2',
+    'i': '3',
+    'o': '4',
+    'u': '5'
+  }
+  return word.split('').map(char => char.match(/[aeiou]/i) ? vowelNumber[char] : char).join('');
+}
+
+function intWithinBounds(n, lower, upper) {
+  // https://edabit.com/challenge/YT2kXSMEtACPPk35R
+  // for detailed instruction, please visit the website
+  if (n.toString().match(/\./g)) {
+    return false;
+  }
+  return n < upper && n >= lower;
+}
+
+function factorialEdabitRecursion(z) {
+  // https://edabit.com/challenge/Ju7AK9rAGjz86hjxo
+  // for detailed instruction, please visit the website
+  if (z < 1) {
+    return 1;
+  }
+  return z * factorialEdabitRecursion(z - 1);
+}
+
+function minutesToSeconds(time) {
+  // https://edabit.com/challenge/n7qZMpuLsAMGBGNLA
+  // for detailed instruction, please visit the website
+  let givenTime = time.match(/(?<minute>\d{2,}):(?<second>\d{2,})/).groups;
+  return parseInt(givenTime.second) >= 60 ? false : parseInt(givenTime.minute) * 60 + parseInt(givenTime.second);
+}
+
+function sumArray(arr) {
+  // https://edabit.com/challenge/27Toh4rACcmRvRLrb
+  // for detailed instruction, please visit the website
+  let total = arr.reduce((accumulator, currentElem) => !Array.isArray(currentElem)? accumulator + currentElem : accumulator + sumArray(currentElem), 0);
+  return total;
+}
+
+
+function arrayOperation(x, y, n) {
+  // https://edabit.com/challenge/NFfYCBEQepsD5mfEk
+  // for detailed instruction, please visit the website
+  let result = [];
+  for (let index = x; index <= y; index++) {
+    if (index % n === 0) {
+      result.push(index);
+    }
+  }
+  return result;
+}
+
+function greetingMaker(salutation) {
+  // https://edabit.com/challenge/rLybgi7vcxL2ykt8F
+  // for detailed instruction, please visit the website
+  return function closure(name) {
+    return salutation + ", " + name;
+  }
+}
+
+function multiplyNums(nums) {
+  // https://edabit.com/challenge/TzxoYExuxuQw2ahWR
+  // for detailed instruction, please visit the website
+  return nums.split(", ").map(element => parseInt(element)).reduce((acc, value) => acc * value, 1);
+}
+
+function countOnes(i) {
+  // https://edabit.com/challenge/KcMmQE3bhxvfiYquQ
+  // for detailed instruction, please visit the website
+  return i.toString(2).match(/1/g) ? i.toString(2).match(/1/g).length : 0;
+}
+
+// https://edabit.com/challenge/5vsYNXXQ7aXzQMMpQ
+// for detailed instruction, please visit the website
+// const REGEXP = /\.{3,}/g;
+
+function isRepdigit(num) {
+  // https://edabit.com/challenge/8vSpPNjNx6JBcvxdc
+  // for detailed instruction, please visit the website
+  if (num < 0) {
+    return false;
+  }
+  if (num === 0) {
+    return true;
+  }
+  let stringNum = num.toString(10);
+  return stringNum.length === stringNum.match(/\d/g).filter((elem, index, array) => elem === array[0]).length;
+}
+
+function indexMultiplier(arr) {
+  // https://edabit.com/challenge/3Efavz8YmSBia4p8s
+  // for detailed instruction, please visit the website
+  return arr.reduce((acc, value, index) => acc + value * index, 0);
+}
+
+function countTrue(arr) {
+  // https://edabit.com/challenge/GLbuMfTtDWwDv2F73
+  // for detailed instruction, please visit the website
+  return arr.filter(elem => elem).length;
+}
+
+function bbqSkewers(grill) {
+  // https://edabit.com/challenge/uAGzHNBWbNj2iNqLr
+  // for detailed instruction, please visit the website
+  let meat = 0;
+  for(let index=0; index<grill.length; index++) {
+    if(grill[index].match(/x/)){
+      meat++;
+    }
+  }
+  return [grill.length-meat, meat];
+}
+
+function clearFog(str) {
+  // https://edabit.com/challenge/cHNEFGeQrH3nonwJw
+  // for detailed instruction, please visit the website
+  return str.match(/[fog]/gi) ? str.match(/[^fog]/gi).join("") : "It's a clear day!";
+}
+
+function solveForExp(a, b) {
+  // https://edabit.com/challenge/PXau3Fzk8GXgF6oRQ
+  // for detailed instruction, please visit the website
+  let powah =0;
+  while(b!==1){
+    b=b/a;
+    powah++
+  }
+  // let power = Math.log(b)/Math.log(a);
+  return powah;
+}
+
+function progressDays(runs) {
+  // https://edabit.com/challenge/QtcPzxgcZJQdsfdMS
+  // for detailed instruction, please visit the website
+  let progress = 0;
+  for (let index = 1; index < runs.length; index++) {
+    if (runs[index] > runs[index - 1]) {
+      progress++
+    }
+  }
+  return progress;
+}
+
+// https://edabit.com/challenge/7KbZc8QvzqrJPaE6Q
+// for detailed instruction, please visit the website
+// const REGEXP = /(red|blue) flag/g;
+
+
+function checkEquals(arr1, arr2) {
+  // Fix this broken code!
+  // https://edabit.com/challenge/3jZyJTfsXTXXwAQkA
+  // for detailed instruction, please visit the website
+  for (let index = 0; index < arr1.length; index++) {
+    if (arr1[index] !== arr2[index]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function censor(str) {
+  // https://edabit.com/challenge/huiJkoQzegoc5qeCJ
+  // for detailed instruction, please visit the website
+  return str.split(' ').map(word => word.length > 4 ? '*'.repeat(word.length) : word).join(' ');
+}
+
+function getEquivalent(note) {
+  // https://edabit.com/challenge/ZMk2HeNSWX7vRewcD
+  // for detailed instruction, please visit the website
+  let equivalentNote = '';
+  if (note[1] === '#') {
+    equivalentNote = String.fromCharCode(note.charCodeAt(0) === 71 ? 65 : note.charCodeAt(0) + 1) + "b";
+  } else {
+    equivalentNote = String.fromCharCode(note.charCodeAt(0) === 65 ? 71 : note.charCodeAt(0) - 1) + "#"
+  }
+  return equivalentNote;
+}
+
+function removeDups(arr) {
+  // https://edabit.com/challenge/Wd7WKqm95jhcAGATG
+  // for detailed instruction, please visit the website
+  let withOutDuplicate = [];
+  for (let index = 0; index < arr.length; index++) {
+    let currentElement = arr[index];
+    if (!withOutDuplicate.includes(currentElement)) {
+      withOutDuplicate.push(currentElement);
+    }
+  }
+  return withOutDuplicate;
+}
