@@ -551,7 +551,9 @@ const pyramid = number => {
     let stringPyramid = "#".repeat( index*2 - 1);
     pyramidComponents.push(stringPyramid);
   }
-  pyramidComponents = pyramidComponents.map(element => " ".repeat(number - Math.round(element.length / 2, 0)) + element + " ".repeat(number - Math.round(element.length / 2, 0)));
+  pyramidComponents = pyramidComponents.map(element => {
+    return " ".repeat(number - Math.round(element.length / 2, 0)) + element + " ".repeat(number - Math.round(element.length / 2, 0))
+  });
   return pyramidComponents.join("\n");
 }
 
@@ -573,7 +575,6 @@ const pyramid = number => {
 //   pyramidBuilder(n, row, level + add);
 // }
 
-
 const pyramidRecursive = (number, row = 0) => {
   if (row === number) {
     return;
@@ -582,7 +583,42 @@ const pyramidRecursive = (number, row = 0) => {
   for (let index = 1; index <= row + 1; index++) {
     stringPyramid = "#".repeat(index * 2 - 1);
   }
-  stringPyramid = " ".repeat(number - Math.round(stringPyramid.length / 2)) + stringPyramid + " ".repeat(number - Math.round(stringPyramid.length / 2));
+  stringPyramid = " ".repeat(number - Math.round(stringPyramid.length / 2))
+                  + stringPyramid
+                  + " ".repeat(number - Math.round(stringPyramid.length / 2));
   console.log(stringPyramid);
   return pyramidRecursive(number, row + 1);
 }
+
+
+// Desperate for TP
+/*
+You've just received intel that your local market has received a huge shipment of
+toilet paper! In desperate need, you rush out to the store. Upon arrival, you
+discover that there is an enormously large line of people waiting to get in to
+the store. You step into the queue and start to wait. While you wait, you being
+to think about data structures and come up with a challenge to keep you busy.
+Your mission: create a queue data structure. Remember, queues are FIFO - first in
+first out - in nature. Your queue should be a class that has the methods
+"add" and "remove". Adding to the queue should store an element until it is removed.
+*/
+
+class Inventory {
+  constructor() {
+    this.que = [];
+  }
+  add(item) {
+    this.que.push(item);
+  }
+  remove() {
+    this.que.splice(0, 1);
+  }
+}
+
+// const test = new Inventory();
+// test.add("toilet paper1");
+// test.add("Toilet Paper2");
+// test.add("Toilet Paper3");
+// test.add("T.P.4");
+// test.remove();
+// console.log(test.que);
