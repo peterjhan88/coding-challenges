@@ -641,3 +641,7 @@ const palindromeString = word => {
 // console.log(palindromeString("Was it a cat I saw"));
 // console.log(palindromeString("Mom"));
 // console.log(palindromeString("Kayak"));
+
+const formatPhoneNumber = (number) => {
+  return number.toString(10).replace(/(\d{3,3})(\d{3,3})(\d{4,4})/, "($1) $2-$3");
+};
