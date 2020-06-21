@@ -773,3 +773,20 @@ function removeDups(arr) {
   }
   return withOutDuplicate;
 }
+
+function inBox(arr) {
+  // https://edabit.com/challenge/CKEAH6cs5Tt7aKXKv
+  // for detailed instruction, please visit the website
+  let starCounter = 0;
+  for (let index = 0; index < arr.length; index++) {
+    if (index === 0 || index === arr.legnth - 1) {
+      if (arr[index].includes('*')) {
+        return false;
+      }
+    }
+    if (arr[index].substring(1, arr[index].length - 1).includes('*')) {
+      starCounter++;
+    }
+  }
+  return starCounter === 0 ? false : true;
+}

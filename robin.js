@@ -624,7 +624,7 @@ class Inventory {
 // console.log(test.que);
 
 
-//
+// Back to the Basics
 /*
 Coding is just like playing an instrument. If you want to get better,
 you need to have a solid concept of even the most basic things! Robin
@@ -642,6 +642,37 @@ const palindromeString = word => {
 // console.log(palindromeString("Mom"));
 // console.log(palindromeString("Kayak"));
 
+
+// Formatting Phone Numbers
+/*
+You're building a social networking platform and save your user's phone
+numbers as integers. However, when you display the phone number on their
+profile, it isn't formatted and looks pretty ugly. It's time to write
+a function that takes in 10 integers and returns the phone number as a
+formatted string. The string would look something like this: (123) 456-7890
+*/
 const formatPhoneNumber = (number) => {
   return number.toString(10).replace(/(\d{3,3})(\d{3,3})(\d{4,4})/, "($1) $2-$3");
 };
+
+
+//
+/*
+Due to the fact that everywhere - including your favorite casino - is closed
+during the COVID pandemic, you decide to do some online gambling. Lucky for
+you, there is a major flaw in their system, and you can easily hit the
+jackpot - you just need to write a function to do so. This function should
+take in an array (each array element represents a slot item) and return true
+if all of the elements are the same. For example isJackpot(["@", "@", "@", "@"]
+will return true. If you want to win the jackpot, you just need to call the
+function with matching elements. Get ready, because Virtual Vegas
+Part 2 won't be as easy ;)
+*/
+const isJackpot = array => {
+  for (let index = 1; index < array.length; index++) {
+    if (array[index] !== array[index - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
