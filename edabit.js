@@ -790,3 +790,41 @@ function inBox(arr) {
   }
   return starCounter === 0 ? false : true;
 }
+
+function rps(p1, p2) {
+  // https://edabit.com/challenge/uXf7RQ5am84tup7mQ
+  // for detailed instruction, please visit the website
+  const nemesis = {
+    "Rock": "Paper",
+    "Paper": "Scissors",
+    "Scissors": "Rock"
+  }
+  if (nemesis[p1] === p2) {
+    return "The winner is p2";
+  }
+  if (nemesis[p2] === p1) {
+    return "The winner is p1";
+  }
+  return "It's a draw";
+}
+
+function mean(num) {
+  // https://edabit.com/challenge/JAgtuPDXj6BrDMxa5
+  // for detailed instruction, please visit the website
+  return num.toString(10).split('').reduce((acc, digit) => acc + parseInt(digit, 10), 0) / num.toString(10).length;
+}
+
+function afterNYears(names, n) {
+  // https://edabit.com/challenge/xtDkfWxEh2hbmAHvn
+  // for detailed instruction, please visit the website
+  for (let key in names) {
+    names[key] = names[key] + Math.abs(n);
+  }
+  return names;
+}
+
+function oneOddOneEven(n) {
+  // https://edabit.com/challenge/d3ZmD3EiNdECFyyPR
+  // for detailed instruction, please visit the website
+  return n.toString(10).split('').reduce((acc, d) => acc + parseInt(d, 10), 0) % 2 === 1;
+}
