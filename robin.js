@@ -656,7 +656,7 @@ const formatPhoneNumber = (number) => {
 };
 
 
-//
+// Virtual Vegas Part 1
 /*
 Due to the fact that everywhere - including your favorite casino - is closed
 during the COVID pandemic, you decide to do some online gambling. Lucky for
