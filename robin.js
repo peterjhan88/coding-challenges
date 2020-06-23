@@ -744,7 +744,23 @@ const formatPhone = string => {
 }
 
 // Robin's
-const formatPhone = phone => {
-  let letters = ["ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUW", "XYZ"];
-  return phone.replace(/[A-Z]/g, (match, i) => letters.indexOf(lettrs.find(e => e.includes(match))) +2);
+// const formatPhone = phone => {
+//   let letters = ["ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUW", "XYZ"];
+//   return phone.replace(/[A-Z]/g, (match, i) => letters.indexOf(lettrs.find(e => e.includes(match))) +2);
+// }
+
+
+// How Much Longer?
+/*
+How many mores days are left until you think the COVID-19 pandemic will end?
+Why not write a function to tell you so you don't have to calculate it
+yourself! Your function should be structured like below - it should take two
+dates and return the number of days between the two
+*/
+const daysToFreedom = (date1, date2) => {
+  //assuming date is received in "06/23/2020" format
+  let jsDate1 = new Date(date1.split('/')[2], date1.split('/')[0], date1.split('/')[1]);
+  let jsDate2 = new Date(date2.split('/')[2], date2.split('/')[0], date2.split('/')[1]);
+  return Math.floor((jsDate2 - jsDate1) / (1000 * 60 * 60 * 24));
 }
+// console.log(daysToFreedom("06/23/2020", "12/31/2020"), "days till liberation...");

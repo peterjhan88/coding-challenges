@@ -828,3 +828,82 @@ function oneOddOneEven(n) {
   // for detailed instruction, please visit the website
   return n.toString(10).split('').reduce((acc, d) => acc + parseInt(d, 10), 0) % 2 === 1;
 }
+
+
+/*
+// https://edabit.com/challenge/W6RRCaj8mZJgiRAgy
+// for detailed instruction, please visit the website
+function anotherFunc() {
+  let str = "bye"
+  setTimeout(() => {
+    callback(str);
+  }, 100)
+}
+
+var doc = "hello"
+
+function callback(str) {
+  doc = str
+}
+*/
+
+function findNaN(number) {
+  // https://edabit.com/challenge/zwPbeSJHoyiRT72h2
+  // for detailed instruction, please visit the website
+  for (let index = 0; index < number.length; index++) {
+    if (isNaN(number[index])) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+function rev(n) {
+  // https://edabit.com/challenge/qrDWy9xS8BrfhLS6o
+  // for detailed instruction, please visit the website
+  // PS) I think what the submitter was meant to restrict using reverse method.
+  let absN = Math.abs(n);
+  let reversedN = "";
+  while (absN !== 0) {
+    reversedN += absN % 10;
+    absN = Math.floor(absN / 10);
+  }
+  return reversedN;
+}
+
+function hackerSpeak(str) {
+  // https://edabit.com/challenge/cada8J3AWGRhwQhkk
+  // for detailed instruction, please visit the website
+  const encryption = {
+    'a': '4',
+    'e': '3',
+    'i': '1',
+    'o': '0',
+    's': '5'
+  }
+  return str.split('').map(char => encryption[char] || char).join('');
+}
+
+function getMiddle(str) {
+  // https://edabit.com/challenge/R3649PDvoFf6wGxyg
+  // for detailed instruction, please visit the website
+  return str.length % 2 === 1 ? str[Math.round(str.length / 2) - 1] : str.substring(Math.round(str.length / 2) - 1, Math.round(str.length / 2) + 1);
+}
+
+function makeTitle(str) {
+  // https://edabit.com/challenge/LvtsCQNpx7CwHGubf
+  // for detailed instruction, please visit the website
+  return str.split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ');
+}
+
+// Joshua Mak's answer
+// https://edabit.com/user/ssh2AYXYc7RpKdaFT
+// let makeTitle = s => s.replace(/(^|\s)[a-z]/g, c => c.toUpperCase())
+
+function addsNum(n) {
+  // https://edabit.com/challenge/q4FkAnRFwDq5LXqkf
+  // for detailed instruction, please visit the website
+  return function (anotherN) {
+    return anotherN + n;
+  }
+}
