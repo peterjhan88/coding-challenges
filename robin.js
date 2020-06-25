@@ -810,3 +810,20 @@ console.log(isFullHouse(["A", "J", "10", "3", "3"]));
 //   hand.sort();
 //   return hand[0] === hand[2] && hand[3] === hand[4] || hand[0] === hand[1] && hand[2] === hand[4];
 // }
+
+// Back to School
+/*
+Do you remember learning your multiplication tables? For some, it was
+really easy. For others, they still have to perform multiplication
+using odd tricks. Today, we're all lucky, because we can practice by
+writing code that will print all the multiplication tables from 1 to X.
+The format could look something like this: '1 x 1 = 1' . Have fun taking
+a trip down memory lane!
+*/
+const multiplicationTable = (x) => {
+  for (let index = 1; index <= x; index++) {
+    for (let left = 1; left <= 9; left++) {
+      console.log(`${index} x ${left} = ${index * left}`);
+    }
+  }
+};
