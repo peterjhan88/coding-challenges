@@ -764,3 +764,49 @@ const daysToFreedom = (date1, date2) => {
   return Math.floor((jsDate2 - jsDate1) / (1000 * 60 * 60 * 24));
 }
 // console.log(daysToFreedom("06/23/2020", "12/31/2020"), "days till liberation...");
+
+
+// Poker Panic
+/*
+Your friends have invited you to play a virtual game of poker! How exciting...
+until you realize that you know nothing about Poker. Don't worry, this Robin
+challenge will at least help you figure out if you or your friends have a
+Full House. A Full House is a hand of 5 cards that have one pair of cards
+and one three of a kind. Let's write a function that takes in an array of 5
+cards and tells us if the hand is a full house or not!
+
+isFullHouse(["K", "K", "A", "K", "A"] ) should return true
+isFullHouse(["A","J","10","3","3"]) should return false
+*/
+const isFullHouse = cards => {
+  let cardsString = cards.join('');
+  let cardChecked = [];
+  let triple = false;
+  let pair = false;
+  for (let index = 0; index < cards.length; index++) {
+    if (!cardChecked.includes(cards[index])) {
+      if (cardChecked.length > 2) {
+        return false;
+      }
+      cardChecked.push(cards[index]);
+      let re = new RegExp(cards[index], 'gi');
+      let sameKind = cardsString.match(re).length;
+      if (sameKind === 2) {
+        pair = true;
+      } else if (sameKind === 3) {
+        triple = true;
+      } else {
+        return false;
+      }
+    }
+  }
+  return triple && pair;
+}
+console.log(isFullHouse(["K", "K", "A", "K", "A"]));
+console.log(isFullHouse(["A", "J", "10", "3", "3"]));
+
+// Robin's code
+// function isFullHouse(hand) {
+//   hand.sort();
+//   return hand[0] === hand[2] && hand[3] === hand[4] || hand[0] === hand[1] && hand[2] === hand[4];
+// }
