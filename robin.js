@@ -829,7 +829,7 @@ const multiplicationTable = (x) => {
 };
 
 
-//
+// Supercalifragilisticexpialidocious Vowels!
 /*
 Supercalifragilisticexpialidocious - now you can say it backwards which is
 Dociousaliexpisticfragicalirupus! But that's going a bit too far, don't you
@@ -841,4 +841,19 @@ supercalifragilisticexpialidocious"!
 const howManyVowels = word => {
   return word.match(/[aeiou]/gi).length;
 }
-// console.log(howManyVowels('supercalifragilisticexpialidocious'));
+
+
+// Frustrating Flies
+/*
+*buzz buzz buzz* Flies...again? Didn't you just get rid of them this morning?
+In a world like the one seen in Tron, you could just write a function to get
+rid of each "fly" you see. Why don't you do the same: write a function that
+removes each "fly" you see in a string, as well as any letter from the word
+"fly" (f, l, or y), just to be safe! For example, if you passed in a string
+like "flyflyfflllgoflyyyyflynefffff", it would return the string "gone".
+If there are no "fly"s or traces of "fly"s, return the string
+"No flies here!" Give it a try!
+*/
+const removeFly = word => {
+  return word.match(/[^fly]/gi).join('');
+}
