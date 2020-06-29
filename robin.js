@@ -911,3 +911,50 @@ const bubbleSort = array => {
 // }
 // This algorithm is not suitable for large data sets as its average
 // and worst case complexity are of Ο(n).
+
+
+// What's in the box!?
+/*
+What's in the box!? Let's check first if there is actually something
+IN the box before we figure out WHAT it is...
+
+Check if the asterisk is inside of the box. The function you write
+must return true only if the asterisk is INSIDE - not if it is anywhere
+else on or outside of the box.
+
+For example:
+
+inBox([
+  "####",
+  "#* #",
+  "#  #",
+  "####"
+]) ➞ true
+
+inBox([
+  "*####",
+  "# #",
+  "#  #*",
+  "####"
+]) ➞ false
+*/
+const inBoxRobin = box => {
+  // function name changed same question was answered in edabit.js
+  let asterisk = 0;
+  for (let index = 0; index < box.length; index++) {
+    if (index === 0 || index === box.length - 1) {
+      if (box[index].match(/\*/g)) {
+        return false;
+      }
+    } else {
+      if (box[index].startsWith("*") || box[index].endsWith("*")) {
+        return false
+      } else {
+        if (box[index].match(/\*/)) {
+          asterisk++;
+        }
+      }
+    }
+  }
+  return asterisk === 0 ? false : true;
+}
