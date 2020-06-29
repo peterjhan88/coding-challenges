@@ -857,3 +857,57 @@ If there are no "fly"s or traces of "fly"s, return the string
 const removeFly = word => {
   return word.match(/[^fly]/gi).join('');
 }
+
+
+// Bubble Sort Challenge
+/*
+Have you heard about bubble sort? Bubble sort is a simple sorting algorithm.
+This sorting algorithm is comparison-based. Each pair of adjacent elements are
+compared and are swapped if they are not in order. This is a frequently asked
+level 1 question asked by FAANG. Before you get a call from one of them, why
+not practice it today? Please implement bubble sort and explain when this
+algorithm is least suitable and why.
+*/
+
+/*
+Bubble sort compares one element to next element,
+and if the next element is greater than the one
+before they switch their positions. Then compares
+next element and the one after that. These
+operations happens n times, since the size of the
+array is n, and happens n times again, to check
+the entire array is in ascending order.
+This means its big O notation is n square. And
+other sorting algorithms performs better.
+*/
+const bubbleSort = array => {
+  let swapped = false;
+  do {
+    swapped = false;
+    for (let index = 0; index < array.length - 1; index++) {
+      if (array[index] > array[index + 1]) {
+        let temp = array[index];
+        array[index] = array[index + 1];
+        array[index + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return array;
+}
+
+// Robin's answer
+// function mybubbleSort(myarr) {
+//   for (let i = 0; i < myarr.length; i++) {
+//     for (let j = 0; j < (myarr.length - i - 1); j++) {
+//       if (myarr[j] > myarr[j + 1]) {
+//         const lesser = myarr[j + 1];
+//         myarr[j + 1] = myarr[j];
+//         myarr[j] = lesser;
+//       }
+//     }
+//   }
+//   return myarr;
+// }
+// This algorithm is not suitable for large data sets as its average
+// and worst case complexity are of Ο(n).
