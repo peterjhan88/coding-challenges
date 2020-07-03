@@ -1105,4 +1105,29 @@ const morseCodeConsversion = code => {
   }
   return code.replace(/([\.\-])+/g, char => morseCode[char]);
 }
-console.log(morseCodeConsversion('.--.-. ... --- ... .--.-.'));
+// console.log(morseCodeConsversion('.--.-. ... --- ... .--.-.'));
+
+
+// Google Interview Series I
+/*
+Here is one of the questions brought to our attention from an engineer who
+had an interview at Google.
+
+"I would like you to write a function to check how many times the number 8
+appears from 1 to 10,000. Instead of counting how many numbers contain the
+number 8, you need to count all instances that "8" appears.
+
+In case you may ask the question to me, I'd like to mention first that, for
+instance, 1882 should be counted as 2, 8880 as 3)."
+*/
+const countEight = number => {
+  let appearanceOfEight = 0;
+  for (let index = 1; index <= number; index++) {
+    let forCheck = index.toString().match(/8/g);
+    if (forCheck) {
+      appearanceOfEight += forCheck.length;
+    }
+  }
+  return appearanceOfEight;
+}
+// console.log(countEight(10000));
