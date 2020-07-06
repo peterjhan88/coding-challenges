@@ -313,13 +313,6 @@ const extremeDiet = (recordsOfDiet) => {
   }
   return successfulDiet.length;
 };
-// console.log(
-//   extremeDiet([
-//     { calories: 2000, exercise: 0.5 },
-//     { calories: 2010, exercise: 1 },
-//     { calories: 1900, exercise: 1.2 },
-//   ])
-// );
 
 
 // Big O Notation Episode I
@@ -373,32 +366,9 @@ table below for reference:
 */
 const wordsToScore = (words) => {
   const scoreTable = {
-    a: 1,
-    b: 3,
-    c: 3,
-    d: 2,
-    e: 1,
-    f: 4,
-    g: 2,
-    h: 4,
-    i: 1,
-    j: 8,
-    k: 5,
-    l: 2,
-    m: 3,
-    n: 1,
-    o: 1,
-    p: 3,
-    q: 10,
-    r: 1,
-    s: 1,
-    t: 1,
-    u: 1,
-    v: 4,
-    w: 4,
-    x: 8,
-    y: 4,
-    z: 10,
+    a: 1, b: 3, c: 3, d: 2, e: 1, f: 4, g: 2, h: 4, i: 1,
+    j: 8, k: 5, l: 2, m: 3, n: 1, o: 1, p: 3, q: 10, r: 1,
+    s: 1, t: 1, u: 1, v: 4, w: 4, x: 8, y: 4, z: 10,
   };
   let scores = words.map((word) =>
     word
@@ -432,7 +402,6 @@ const wordsToScore = (words) => {
 //     return arr.filter(word => wordScore(word) === highScore)
 //   }
 // }
-// console.log(winningWords(["did", "you", "solve", "the", "challenge"]));
 
 
 // Perfect Palindromes
@@ -523,22 +492,16 @@ on both the left and right hand sides
 
 For example,
 
-  pyramid(1)
-
+pyramid(1)
 '#'
 
 pyramid(2)
-
 ' # '
-
 '###'
 
 pyramid(3)
-
 ' #  '
-
 ' ### '
-
 '#####'
 
 If you get it right, the thieves will steal your money. If you get it wrong,
@@ -615,14 +578,6 @@ class Inventory {
   }
 }
 
-// const test = new Inventory();
-// test.add("toilet paper1");
-// test.add("Toilet Paper2");
-// test.add("Toilet Paper3");
-// test.add("T.P.4");
-// test.remove();
-// console.log(test.que);
-
 
 // Back to the Basics
 /*
@@ -695,23 +650,14 @@ formatPhone("888-YOU-RANG") will return 888-968-7264
 Use this chart for reference:
 
 0: none
-
 1: none
-
 2: ABC
-
 3: DEF
-
 4: GHI
-
 5: JKL
-
 6: MNO
-
 7: PQRS
-
 8: TUV
-
 9: WXYZ
 */
 const formatPhone = string => {
@@ -802,8 +748,6 @@ const isFullHouse = cards => {
   }
   return triple && pair;
 }
-// console.log(isFullHouse(["K", "K", "A", "K", "A"]));
-// console.log(isFullHouse(["A", "J", "10", "3", "3"]));
 
 // Robin's code
 // function isFullHouse(hand) {
@@ -1105,7 +1049,6 @@ const morseCodeConsversion = code => {
   }
   return code.replace(/([\.\-])+/g, char => morseCode[char]);
 }
-// console.log(morseCodeConsversion('.--.-. ... --- ... .--.-.'));
 
 
 // Google Interview Series I
@@ -1130,7 +1073,6 @@ const countEight = number => {
   }
   return appearanceOfEight;
 }
-// console.log(countEight(10000));
 
 
 // Shortest Distance
@@ -1152,7 +1094,6 @@ const closestTwoNumber = array => {
   }
   return result;
 }
-// console.log(closestTwoNumber([1, 3, 4, 8, 13, 17, 20]));
 
 
 // But is it Magic?
@@ -1203,18 +1144,6 @@ const isMagic = array => {
   }
   return true;
 }
-// console.log(
-//   isMagic([
-//     [6, 1, 8],
-//     [7, 5, 3],
-//     [2, 9, 4]
-//   ]),
-//   isMagic([
-//     [1, 2, 3],
-//     [4, 5, 6],
-//     [7, 8, 9]
-//   ])
-// )
 
 // Robin's Answer to But is it Magic?
 // const sum = (arr) => arr.reduce((total, num) => total + num, 0);
@@ -1232,3 +1161,22 @@ const isMagic = array => {
 //   const allSums = rowSums.concat(colSums).concat(diagSums);
 //   return new Set(allSums).size === 1;
 // };
+
+
+// LoveLY Adverbs
+/*
+An adverb is typically any word that ends in 'ly'. Can you write
+a function that counts the number of words that ends in 'ly'.
+For this problem, even if the word is an adjective, it's still
+okay to count it as true. However, you must not count the word if
+it starts or contains 'ly' - it MUST be at the end. Happy coding!
+*/
+const countAdverb = (sentence) => {
+  let adverbs = sentence.match(/\s?\w+ly/gi);
+  return adverbs ? adverbs.length : 0;
+};
+
+// Robin's
+// function countAdverbs(sentence) {
+//   return sentence.split(/ly\b/).length - 1;
+// }
