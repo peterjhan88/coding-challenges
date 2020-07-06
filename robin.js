@@ -1153,3 +1153,82 @@ const closestTwoNumber = array => {
   return result;
 }
 // console.log(closestTwoNumber([1, 3, 4, 8, 13, 17, 20]));
+
+
+// But is it Magic?
+/*
+You've heard about Magic Squares, right? A magic square is one big square split
+into separate squares (usually it is nine separate squares, but can be more),
+each containing a unique number. Each horizontal, vertical, and diagonal row MUST
+add up to the same number in order for it to be considered a magic square.
+
+Now, it's up to you to write a function that accepts a two-dimensional array and
+checks if it is a magic square or not.
+
+Examples:
+
+isMagic([
+  [6, 1, 8],
+  [7, 5, 3],
+  [2, 9, 4]
+]) ➞ true
+
+
+isMagic([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+]) ➞ false
+*/
+const isMagic = array => {
+  let expectedTotal = array[0].reduce((acc, val) => acc + val, 0);
+  let incrementalSum = 0;
+  let decrementalSum = 0;
+  for (let index = 0; index < array.length; index++) {
+    // row+col
+    let rowSum = array[index].reduce((acc, val) => acc + val, 0);
+    let colSum = 0;
+    for (let row = 0; row < array[index].length; row++) {
+      colSum += array[row][index];
+    }
+    if (rowSum !== expectedTotal || colSum !== colSum) {
+      return false;
+    }
+    // diagonal
+    incrementalSum += array[index][index];
+    decrementalSum += array[index][array.length - 1 - index];
+  }
+  if (incrementalSum !== decrementalSum) {
+    return false;
+  }
+  return true;
+}
+// console.log(
+//   isMagic([
+//     [6, 1, 8],
+//     [7, 5, 3],
+//     [2, 9, 4]
+//   ]),
+//   isMagic([
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+//   ])
+// )
+
+// Robin's Answer to But is it Magic?
+// const sum = (arr) => arr.reduce((total, num) => total + num, 0);
+// const getColumn = (arr, x) => arr.map((row) => row[x]);
+// const isMagicSquare = (arr) => {
+//   const rowSums = arr.map(sum);
+//   const colSums = arr.map((_, y) => sum(getColumn(arr, y)));
+//   const diagSums = arr.reduce(
+//     ([diag1, diag2], _, y) => [
+//       diag1 + arr[y][y],
+//       diag2 + arr[y][arr.length - 1 - y],
+//     ],
+//     [0, 0]
+//   );
+//   const allSums = rowSums.concat(colSums).concat(diagSums);
+//   return new Set(allSums).size === 1;
+// };
