@@ -1180,3 +1180,26 @@ const countAdverb = (sentence) => {
 // function countAdverbs(sentence) {
 //   return sentence.split(/ly\b/).length - 1;
 // }
+
+// Thanos' Infinity Gauntlet
+/*
+Thanos believes that in order to balance the program, half of the
+elements in the list should be randomly deleted.Write an Infinity
+Gauntlet program that randomly deletes and returns half of the
+elements in the input list when Thanos bounces a finger (when
+  running the program).(Since it is randomly deleted, the output
+    value must be different every time even if the input value is
+    the same)
+
+Input example: [2, 3, 1, 6, 5, 7]
+Output example 1: [2, 5, 7]
+Output example 2: [3, 6, 5]
+*/
+const thanos = array => {
+  // assuming the array will always be given in even length
+  const half = array.length / 2;
+  for (let index = 0; index < half; index++) {
+    array.splice(Math.floor(Math.random() * array.length), 1);
+  }
+  return array;
+}
