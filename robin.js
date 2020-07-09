@@ -1227,3 +1227,34 @@ numScanner("2.5.9") ➞ false
 const numScanner = num => {
   return num.match(/^(\d+\.|\.)?\d+$/) ? true : false
 }
+
+
+// Professor Parentheses
+/*
+For some odd reason, your computer science professor has become obsessed with parentheses - she probably spent too much time coding these days... In any case, she wants you to write a function that will turn each group of parentheses in a string into separate groups - these groups should be balanced.
+
+For example:
+
+group("()()()") ➞ ["()", "()", "()"]
+
+group("((())())(()(()()))") ➞ ["((())())", "(()(()()))"]
+*/
+const group = groups => {
+  let result = [];
+  let count = 0;
+  let oneGroup = "";
+  for (let index = 0; index < groups.length; index++) {
+    let current = groups[index];
+    oneGroup += groups[index];
+    if (current === "(") {
+      count++;
+    } else {
+      count--;
+      if (count === 0) {
+        result.push(oneGroup);
+        oneGroup = "";
+      }
+    }
+  }
+  return result;
+}
