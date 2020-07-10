@@ -1231,7 +1231,10 @@ const numScanner = num => {
 
 // Professor Parentheses
 /*
-For some odd reason, your computer science professor has become obsessed with parentheses - she probably spent too much time coding these days... In any case, she wants you to write a function that will turn each group of parentheses in a string into separate groups - these groups should be balanced.
+For some odd reason, your computer science professor has become obsessed with
+parentheses - she probably spent too much time coding these days... In any case,
+she wants you to write a function that will turn each group of parentheses in a
+string into separate groups - these groups should be balanced.
 
 For example:
 
@@ -1258,3 +1261,17 @@ const group = groups => {
   }
   return result;
 }
+
+
+// Sum Them Up
+/*
+Beginner programmer John Doe wants to make a program that adds and outputs
+each positive digit entered by the user (range is int). For instance, the
+result of 5528 is 20 and the result of 6714283 is 31.
+*/
+const digitSum = (integer) => {
+  return integer
+    .toString(10)
+    .split("")
+    .reduce((total, cur) => total + parseInt(cur, 10), 0);
+};
