@@ -1275,3 +1275,27 @@ const digitSum = (integer) => {
     .split("")
     .reduce((total, cur) => total + parseInt(cur, 10), 0);
 };
+
+
+// Happy Hex
+/*
+It looks like you just became a freelancer and snagged your first client.
+Unfortunately, they came to you with NO design and NO idea on what colors
+they want to use. Why don't you come up with a function that returns a random
+hexadecimal color code so you don't have to think about it either.
+*/
+const randomHexadecimal = () => {
+  const THE_RANGE = '0123456789ABCDEF';
+  const SIX_DIGITS = 6;
+  let randomColor = '#';
+  for (let index = 0; index < SIX_DIGITS; index++) {
+    randomColor += THE_RANGE[Math.floor(Math.random() * THE_RANGE.length)]
+  }
+  return randomColor
+}
+
+// Robin's
+// const generateHex = () => {
+//   let n = (Math.random() * 0xfffff * 1000000).toString(16);
+//   return "#" + n.slice(0, 6);
+// };
