@@ -1343,3 +1343,28 @@ const binarySearch = (array, target) => {
 //   }
 //   console.log("The item was not found!");
 // }
+
+
+// Validating URLs
+/*
+While working on your latest app, you encounter a bug: your code lets
+users type in ANYTHING when they should be inputting a valid URL. As
+a software engineer, you should always be writing code assuming that
+your users may not input the value that you are expecting. In this case,
+why don't you write a function that checks if a string is a valid URL
+or not?
+*/
+const checkURL = (userInput) => {
+  const re = new RegExp(/^((http|https)\:\/\/)?(www\.)?[\w|\d]+\.[\w|\d]+/);
+  return userInput.match(re) ? true : false;
+};
+
+// Robin's
+// function isURL(str) {
+//   const regexp = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+//   if (regexp.test(str)) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
