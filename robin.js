@@ -1299,3 +1299,47 @@ const randomHexadecimal = () => {
 //   let n = (Math.random() * 0xfffff * 1000000).toString(16);
 //   return "#" + n.slice(0, 6);
 // };
+
+
+// Binary Search Challenge
+/*
+Here's a fundamental search challenge for you to tackle! Binary search
+algorithms are often efficient, and they work by repeatedly dividing
+the list in half and working with the portion that may contain the item
+being looked for until the possible location is narrowed down to just
+one element. Try giving it a shot!
+*/
+const binarySearch = (array, target) => {
+  if (array.length <= 1) {
+    return array[0] === target ? "found" : "not found";
+  }
+  let midPoint = Math.floor(array.length / 2);
+  if (array[midPoint] === target) {
+    return "found";
+  } else if (array[midPoint] > target) {
+    return binarySearch(array.slice(0, midPoint), target);
+  } else {
+    return binarySearch(array.slice(midPoint + 1), target);
+  }
+}
+
+//Robin's
+// const binarySearch = (array, target) => {
+//   let start = 0;
+//   let end = array.length - 1;
+//   while (start <= end) {
+//     let middle = Math.floor((start + end) / 2);
+//     if (target === array[middle]) {
+//       return console.log("Item was found at index " + middle);
+//     }
+//     if (target > array[middle]) {
+//       start = middle + 1;
+//     }
+//     if (target < array[middle]) {
+//       end = middle - 1;
+//     } else {
+//       console.log("Item not found yet.")
+//     }
+//   }
+//   console.log("The item was not found!");
+// }
