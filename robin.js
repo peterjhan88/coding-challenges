@@ -1368,3 +1368,29 @@ const checkURL = (userInput) => {
 //     return false;
 //   }
 // }
+
+
+// Card Shark!
+/*
+You've been practicing for an upcoming poker tournament. In terms of how
+to play the game, you're all set. But don't you want to impress everyone
+with some fancy deck shuffling? You can practice by creating a function
+that shuffles an array of items. The values can be whatever you would
+like - feel free to replicate an entire card deck if you wish!
+*/
+const shuffleCards = () => {
+  const suits = "♠◇♥♧";
+  const numbers = "A,2,3,4,5,6,7,8,9,10,J,Q,K".split(",");
+  let deck = [];
+  for (let index = 0; index < suits.length; index++) {
+    for (let order = 0; order < numbers.length; order++) {
+      deck.push(suits[index] + numbers[order]);
+    }
+  }
+  let shuffled = [];
+  while (deck.length > 0) {
+    let randomIndex = Math.floor(Math.random() * deck.length);
+    shuffled.push(deck.splice(randomIndex, 1));
+  }
+  return shuffled;
+}
