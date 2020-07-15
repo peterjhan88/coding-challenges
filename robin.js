@@ -1394,3 +1394,18 @@ const shuffleCards = () => {
   }
   return shuffled;
 }
+
+
+// Just the Last
+/*
+Time for something short and sweet - please write a function that removes
+the last vowel from each word in a sentence. Only remove the LAST instance
+of a vowel. For example, "moon" would turn into "mon".
+*/
+const removeLastVowel = sentence => {
+  let words = sentence.split(' ');
+  let desiredSentence = words.map(
+    word => word.replace(/(\w*)([aeiou])(\w*)/i, (match, p1, p2, p3) => p1 + p3)
+  ).join(' ');
+  return desiredSentence;
+}
