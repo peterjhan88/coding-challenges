@@ -1454,3 +1454,19 @@ const countEvensInFibonacci = (limit) => {
   }
   return numberOfEvens;
 };
+
+
+// Camel Potholes
+/*
+Some programming languages like Python prefers Pothole case over Camel case.
+
+For instance: in JavaScript, you’d write yellowMonkey but in Python you’d write
+yellow_monkey. In case you forget, you should just build a function where you
+convert any string in Camel case to Pothole case.
+*/
+const changeToPothole = camelString => {
+  if(!camelString){
+    return "";
+  }
+  return camelString.replace(/([A-Z0-9][0-9]*)/g, (match, p1) => "_" + p1.toLowerCase());
+}
