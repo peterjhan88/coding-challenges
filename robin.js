@@ -1470,3 +1470,36 @@ const changeToPothole = camelString => {
   }
   return camelString.replace(/([A-Z0-9][0-9]*)/g, (match, p1) => "_" + p1.toLowerCase());
 }
+
+
+// More Morse
+/*
+Write a program that decodes the received Morse Code (dot: .dash:-) in
+string format and outputs it in English sentences. It is separated by
+one space between letters and two spaces between words.
+
+Use the given interpreted morse cases as your diction and decode the
+following: ".... . ... .-.. . . .--. ... ...- . .-. -.-- .-.. .- - .".
+
+You should see: “He sleeps very late.”
+*/
+const decipherMorse = morseCodes => {
+  const morseTable = morseCode = {
+    "-----": "0", ".----": "1", "..---": "2",
+    "...--": "3", "....-": "4", ".....": "5",
+    "-....": "6", "--...": "7", "---..": "8",
+    "----.": "9",
+
+    ".-": "a",    "-...": "b",  "-.-.": "c",
+    "-..": "d",   ".": "e",     "..-.": "f",
+    "--.": "g",   "....": "h",  "..": "i",
+    ".---": "j",  "-.-": "k",   ".-..": "l",
+    "--": "m",    "-.": "n",    "---": "o",
+    ".--.": "p",  "--.-": "q",  ".-.": "r",
+    "...": "s",   "-": "t",     "..-": "u",
+    "...-": "v",  ".--": "w",   "-..-": "x",
+    "-.--": "y",  "--..": "z"
+  };
+  let deciphered = morseCodes.split(' ').map(signal => "" === signal ? " " : morseTable[signal]);
+  return deciphered.join('');
+}
