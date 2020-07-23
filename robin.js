@@ -1550,3 +1550,38 @@ const doYouLoveMe = numberOfPetals => {
   result[numberOfPetals - 1] = result[numberOfPetals - 1].toUpperCase();
   return result.join(", ");
 }
+
+
+// Ditch the Strangers
+/*
+Let's look at a long string of words. If you see a word one time, it is considered
+a stranger. Once you've seen it three times, that word becomes an acquaintance.
+If you see it five times, it then becomes a friend.
+
+You can write a function to determine who your friends and acquaintances are.
+This function will read in a string and return an array of two arrays. The first array
+holds all the acquaintance words in the order that they became an acquaintance. The
+second array holds all of the friend words in the order that they became friends.
+If a word is in the friend array, it should not be in the acquaintance array.
+*/
+const acquaintanceOrFriend = sentence => {
+  let words = sentence.split(' ');
+  let uniqueWords = [];
+  let commonWords = [];
+  for (let index = 0; index < words.length; index++) {
+    let currentWord = words[index].toLowerCase();
+    if (uniqueWords.includes(currentWord)) {
+      let indexOfCommonWord = uniqueWords.indexOf(currentWord);
+      commonWords.push(currentWord);
+      uniqueWords.splice(indexOfCommonWord, 1);
+    } else {
+      uniqueWords.push(currentWord);
+    }
+  }
+  let result = `
+    Received Sentence : "${sentence}"
+    \nUnique words are : [${uniqueWords.join(", ")}]
+    \nCommon words are : [${commonWords.join(", ")}]
+    `
+  return result;
+}
