@@ -1610,3 +1610,17 @@ const splitTheBill = (food, price) => {
   }
   return bill;
 }
+
+
+// Be Unique
+/*
+Can you write a function that takes an array of values and remove all duplicate elements
+in the array? Make sure to return the array with only the unique values remaining.
+*/
+const onlyOneOfEach = array => {
+  let uniqueSet = new Set();
+  array.map(element => uniqueSet.add(element));
+  let finalArray = [];
+  uniqueSet.forEach(element => finalArray.push(element))
+  return finalArray;
+}
