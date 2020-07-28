@@ -1662,3 +1662,40 @@ const checkSmile = (stringFace="") => {
   let check = stringFace.match(re);
   return check ? check.length : 0;
 }
+
+
+// Who's online?
+/*
+Write a function that returns the number of users who are online in your slack channel.
+Please include the following features:
+
+1) If nobody is online, return "There is nobody online."
+
+2) If one person is online, return "username online"
+
+3) If there are two people online, return "username and username2 are online
+
+4) If there are more than two people,
+return "username, username2, and # more are online."
+So, if there were 6 people total online, you could
+return "username, username2, and 4 more are online."
+*/
+const whoIsOnline = (users = []) => {
+  let result = "";
+  let numberOfUsers = users.length;
+  switch (numberOfUsers) {
+    case 0:
+      result = 'There is nobody online.';
+      break;
+    case 1:
+      result = `${users[0]} online.`;
+      break;
+    case 2:
+      result = `${users[0]} and ${users[1]} are online.`;
+      break;
+    default:
+      result = `${users[0]}, ${users[1]}, and ${numberOfUsers - 2} more are online.`
+      break;
+  }
+  return result;
+}
