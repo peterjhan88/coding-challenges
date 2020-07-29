@@ -1699,3 +1699,24 @@ const whoIsOnline = (users = []) => {
   }
   return result;
 }
+
+
+// binary search
+const binarySearchV2 = (array, target) => {
+  let start = 0;
+  let end = array.length - 1;
+  while (start <= end) {
+    let middle = Math.floor((end + start) / 2);
+    let middleValue = array[middle];
+    if (target === middleValue) {
+      return `${target} is located at index ${middle}`;
+    }
+    if (target < middleValue) {
+      end = middle-1;
+    }
+    if (target > middleValue) {
+      start = middle+1;
+    }
+  }
+  return `${target} not found`;
+}
