@@ -1720,3 +1720,26 @@ const binarySearchV2 = (array, target) => {
   }
   return `${target} not found`;
 }
+
+
+// Up & Down
+/*
+Write a function that accepts a string and returns the string with
+alternating case. For example, "Hi there" would turn into "hI tHeRe".
+Make sure to ignore spaces!
+*/
+const alternateCase = sentence => {
+  let lowerCase = false;
+  let words = sentence.split(' ');
+  return words.map(word => {
+    return word.split('').map(
+      letter => {
+        lowerCase = !lowerCase;
+        if (lowerCase) {
+          return letter.toLowerCase();
+        } else {
+          return letter.toUpperCase();
+        }
+      }).join('')
+  }).join(' ');
+}
