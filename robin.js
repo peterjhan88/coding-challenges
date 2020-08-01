@@ -1743,3 +1743,45 @@ const alternateCase = sentence => {
       }).join('')
   }).join(' ');
 }
+
+
+// Palindromes - Refresher!
+/*
+Palindromes come up a lot during technical interviews.
+A numerical palindrome is a number that reads the same
+in reverse as it reads normally.
+Can you remember how to write a function that returns
+the closest palindrome to any number of your choice?
+If your number is exactly in between two palindromes,
+return the smaller number.
+If the number you chose IS a palindrome, return itself.
+Have fun!
+*/
+const checkNumberPalindrome = num => {
+  if (num < 0) {
+    return false;
+  }
+  let strNum = num.toString();
+  return strNum === strNum.split('').reverse().join('');
+}
+
+const nearestNumPalindrome = num => {
+  if (checkNumberPalindrome(num)) {
+    return num;
+  }
+  let countUpward = 0;
+  let countDownward = 0;
+  let numGoingUp = num;
+  let numGoingDown = num;
+  while (!checkNumberPalindrome(numGoingUp) || !checkNumberPalindrome(numGoingDown)) {
+    if (!checkNumberPalindrome(numGoingUp)) {
+      numGoingUp++;
+      countUpward++;
+    }
+    if (!checkNumberPalindrome(numGoingDown)) {
+      numGoingDown--;
+      countDownward++;
+    }
+  }
+  return countDownward <= countUpward ? numGoingDown : numGoingUp;
+}
