@@ -1785,3 +1785,36 @@ const nearestNumPalindrome = num => {
   }
   return countDownward <= countUpward ? numGoingDown : numGoingUp;
 }
+
+
+// More Binary Search!
+/*
+Now is the time for review! If you have been solving problems daily,
+then you've been solving problems for around two months now.
+Rather than let your practice go to waste, it's always good
+to refresh your memory. That being said, why don't you take another
+stab at creating a function that performs a binary search?
+They work by repeatedly dividing the list to sort in half and
+working with the portion that may contain the item being looked for
+until the possible location is narrowed down to just one element.
+Try giving it a shot!
+*/
+function recursiveBinarySearch(array, target, start = 0, end = Number.POSITIVE_INFINITY) {
+  if (start >= end) {
+    return `${target} not found`;
+  }
+  if (end > array.length) {
+    end = array.length;
+  }
+  let midPoint = Math.floor((start + end) / 2);
+  let value = array[midPoint]
+  if (value === target) {
+    return `${target} is found at index ${midPoint}`;
+  }
+  if (value < target) {
+    start = midPoint;
+  } else {
+    end = midPoint;
+  }
+  return recursiveBinarySearch(array, target, start, end);
+}
