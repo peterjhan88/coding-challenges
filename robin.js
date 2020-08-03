@@ -1818,3 +1818,17 @@ function recursiveBinarySearch(array, target, start = 0, end = Number.POSITIVE_I
   }
   return recursiveBinarySearch(array, target, start, end);
 }
+
+
+// The Last Vowel
+/*
+Do you remember how to write a function that removes the last vowel
+from each word in a sentence?
+You must only remove the LAST instance of a vowel.
+For example, "book" would turn into "bok".
+*/
+const removeLastVowelVersion2 = sentence => {
+  let words = sentence.split(' ');
+  let vowelsRemoved = words.map(word => word.replace(/(\w*)([aeiou])(\w*)/i, '$1$3'))
+  return vowelsRemoved.join(' ');
+}
