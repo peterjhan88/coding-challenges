@@ -1832,3 +1832,28 @@ const removeLastVowelVersion2 = sentence => {
   let vowelsRemoved = words.map(word => word.replace(/(\w*)([aeiou])(\w*)/i, '$1$3'))
   return vowelsRemoved.join(' ');
 }
+
+
+// Fibonacci Flashbacks
+/*
+Let's try working with the Fibonacci sequence again.
+Each term in the Fibonacci sequence is the sum of the two preceding terms.
+If you start with 1 and 2, this sequence is: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+What is the total number of all even numbers in the Fibonacci
+sequence that are less than 3,000,000?
+*/
+const fibonacciEven = (limit = 3000000) => {
+  let first = 1;
+  let second = 1;
+  let next = 0;
+  let evens = [];
+  while (next < limit) {
+    if (next !== 0 && next % 2 === 0) {
+      evens.push(next);
+    }
+    next = first + second;
+    first = second;
+    second = next;
+  }
+  return evens.length;
+}
