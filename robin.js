@@ -1857,3 +1857,21 @@ const fibonacciEven = (limit = 3000000) => {
   }
   return evens.length;
 }
+
+
+// g33k sp34k
+/*
+Write a function that takes a string and returns a coded version of the string.
+Your function should replace all 'a's with '4's, 'e's with '3's, 'i's with '1's,
+'o's with '0's, and 's's with '5's.
+*/
+const codeString = string => {
+  const codeTable = {
+    'a': '4',
+    'e': '3',
+    'i': '1',
+    'o': '0',
+    's': '5'
+  }
+  return string.replace(/[aeios]/g, match => codeTable[match]);
+}
