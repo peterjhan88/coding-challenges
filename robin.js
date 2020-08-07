@@ -1875,3 +1875,34 @@ const codeString = string => {
   }
   return string.replace(/[aeios]/g, match => codeTable[match]);
 }
+
+
+// Steps
+/*
+Write a function that returns the fewest number of steps it will take to convert
+a string into uppercase or into lower case, whichever takes the least number of
+steps. A step occurs when a character is changed from lower to upper case,
+or vice versa. Return 0 if the string is empty or if there are no steps
+needed to be taken.
+*/
+const leastConverting = (string = "") => {
+  let givenLength = string.length;
+  let lowerCases = string.match(/[a-z]/g) || [];
+  let upperCases = string.match(/[A-Z]/g) || [];
+  let numberOfLowers = lowerCases.length;
+  let numberOfUppers = upperCases.length;
+  if (
+    !string ||
+    givenLength === numberOfLowers ||
+    givenLength === numberOfUppers
+  ) {
+    return 0;
+  }
+  if (numberOfUppers > numberOfLowers) {
+    return "Convert to uppercase";
+  } else if (numberOfUppers < numberOfLowers) {
+    return "Convert to lowercase";
+  } else {
+    return "Up to you to decide";
+  }
+};
