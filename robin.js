@@ -1906,3 +1906,30 @@ const leastConverting = (string = "") => {
     return "Up to you to decide";
   }
 };
+
+
+// Comma Makes Perfect
+/*
+Sometimes, you may be too lazy to add a comma between 0s to separate every thousand.
+If you have your own converter that will just print out a number with commas in right
+position you'd be happy! Today, write a function that converts numeric strings to
+comma-separated strings. ※ However, do not use the money conversion library
+supported by the programming language.
+
+For example, 2000 --> 2,000 | -1224.10 --> -1,224.10
+*/
+const placeCommaInNumber = stringNumber => {
+  const re = new RegExp(/\d{1,}/);
+  let result = stringNumber.replace(re, match => {
+    let withComma = '';
+    for (let index = 0; index < match.length; index++) {
+      if (index !== 0 && index % 3 === 0) {
+        withComma += ','
+      }
+      withComma += match[match.length - 1 - index];
+    }
+    withComma = withComma.split('').reverse().join('');
+    return withComma;
+  });
+  return result;
+}
