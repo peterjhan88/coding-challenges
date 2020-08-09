@@ -1933,3 +1933,28 @@ const placeCommaInNumber = stringNumber => {
   });
   return result;
 }
+
+
+// Christmas is Near!
+/*
+Today's prompt is simple - write a function to determine how many
+days are left until Christmas!
+*/
+const daysToChristmas = (providedDate = Date.now()) => {
+  const christmas = {
+    'month':11,
+    'date':25
+  }
+  let today = new Date(providedDate);
+  let currentYear = today.getFullYear();
+  let currentMonth = today.getMonth();
+  let currentDate = today.getDate();
+  let nextChristmas;
+  if(christmas.month===currentMonth && christmas.date<currentDate){
+    nextChristmas = new Date(currentYear+1, christmas.month,christmas.date);
+  } else {
+    nextChristmas = new Date(currentYear, christmas.month,christmas.date);
+  }
+  let howManyDays = Math.ceil((nextChristmas-today)/(24*3600*1000));
+  return howManyDays;
+}
