@@ -1958,3 +1958,32 @@ const daysToChristmas = (providedDate = Date.now()) => {
   let howManyDays = Math.ceil((nextChristmas-today)/(24*3600*1000));
   return howManyDays;
 }
+
+
+// Bugs Bugs Everywhere
+/*
+I want this code to print out 0,1,2,3 in sequential order...
+but it isn't. Why is that?
+Can you re-write this function so it does what we want it to do?
+
+for (var i = 0; i < 4; i++) {
+  setTimeout(() => console.log(i), 0)
+}
+*/
+/*
+Using 'setTimeout' function will put the anonymous
+function, which is just console logging, in a queue
+and the anonymous function waits until whatever is
+executing, in this case the 'for' loop, to be done.
+Therefore, Var 'i' will be 4, since the loop is done,
+the anonymous function will console log 4 for four times.
+
+for (var i = 0; i < 4; i++) {
+  let j = i;
+  setTimeout(() => console.log(j), 0)
+}
+*/
+for (var i = 0; i < 4; i++) {
+  let j = i;
+  setTimeout(() => console.log(j), 0)
+}
