@@ -1987,3 +1987,21 @@ for (var i = 0; i < 4; i++) {
   let j = i;
   setTimeout(() => console.log(j), 0)
 }
+
+// Doubled Pennies
+/*
+You've been hired at a new company, and you earn one penny on your
+first day. However, for each sequential day of work, your base amount
+doubles. This mean that you will earn two pennies on your second day
+and four pennies on your third day. Write a function that, give
+a number of days that you provide, will return the total number
+of cumulative pennies that you will have.
+*/
+const richAfterNDays = days => {
+  let result = 1;
+  for (let index = 0; index < days; index++) {
+    result *= 2;
+  }
+  result--;
+  return `${result} pennies earned after ${days} days`;
+}
