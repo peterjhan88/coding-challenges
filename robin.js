@@ -2005,3 +2005,13 @@ const richAfterNDays = days => {
   result--;
   return `${result} pennies earned after ${days} days`;
 }
+
+
+// Reverse Reverse!
+/*
+Today's problem is short and to the point: Write a function that takes a
+string and returns the string in reversed order.
+*/
+const reverseSpelling = (string = "") => {
+  return string.split("").reverse().join("");
+};
