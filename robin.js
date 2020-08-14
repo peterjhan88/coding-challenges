@@ -2017,7 +2017,7 @@ const reverseSpelling = (string = "") => {
 };
 
 
-//
+// Fantastic Fireworks!
 /*
 Create a function that accepts a number and returns a string
 variation of the word "Boom".
@@ -2042,3 +2042,25 @@ const kaboom = n => {
   }
   return result;
 }
+
+
+// Kisses and Hugs
+/*
+Write a function that receives a string and checks if that string has equal
+numbers of 'x's and 'o's. If it does, return true. Otherwise, return false.
+If there are no 'x's or 'o's, return true.
+*/
+const checkXO = string => {
+  let xArray = string.match(/x/g) || [];
+  let oArray = string.match(/o/g) || [];
+  if (xArray.length === 0 && oArray.length === 0) {
+    return true;
+  } else {
+    return xArray.length === oArray.length;
+  }
+}
+
+// Robin's
+// function kissesAndHugs(str) {
+//   return str.replace(/[^x]/gi, "").length === str.replace(/[^o]/gi, "").length;
+// }
