@@ -2064,3 +2064,17 @@ const checkXO = string => {
 // function kissesAndHugs(str) {
 //   return str.replace(/[^x]/gi, "").length === str.replace(/[^o]/gi, "").length;
 // }
+
+
+// Vowel Hunt
+/*
+Write a function that takes in a string and returns the index of the first vowel in the string.
+Y is not considered a vowel, the string should always contain a vowel, and the string must be
+only one word.
+*/
+const indexOfVowel = (word) => {
+  let vowel = word.match(/[aeiou]/i);
+  return word.indexOf(vowel);
+};
+// Robin's
+// const findFirstVowel = (str) => str.search(/[aeiou]/i);
