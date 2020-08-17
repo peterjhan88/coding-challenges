@@ -2078,3 +2078,25 @@ const indexOfVowel = (word) => {
 };
 // Robin's
 // const findFirstVowel = (str) => str.search(/[aeiou]/i);
+
+
+// Shortest Distance
+/*
+We'd love to share one of the interview questions asked during some bootcamp students' first round
+interview at a Korean tech company. She was given one-dimensional points array
+L=[1, 3, 4, 8, 13, 17, 20]. The interviewer asked her to find a pair of the shortest distances,
+given the one-dimensional points. (Assume that the array of points is all sorted.).
+Can you ace the interview question?
+*/
+const minDistance = array => {
+  let minimumDistance = null;
+  let result = [];
+  for (let index = 1; index < array.length; index++) {
+    let currentMin = array[index] - array[index - 1];
+    if (minimumDistance === null || minimumDistance > currentMin) {
+      minimumDistance = currentMin;
+      result = [array[index - 1], array[index]]
+    }
+  }
+  return result;
+}
