@@ -2100,3 +2100,57 @@ const minDistance = array => {
   }
   return result;
 }
+
+
+// Rock, Paper, Scissors
+/*
+Do you remember that first simple project you had to build during your
+bootcamp - Rock, Paper, Scissors game? You were perhaps not sure what
+you were supposed to do at that time. Since you've either learned lots
+of more complicated coding topics or built many applications,
+you should be able to quickly build a simple RPS game today.
+Robin challenges you!
+*/
+const gameRPS = (user1, user2 = 'computer') => {
+  const choices = ['Rock', 'Paper', 'Scissors']
+  if (user2 === 'computer') {
+    let randomIndex = Math.floor(Math.random() * choices.length)
+    user2 = choices[randomIndex];
+  }
+  let winner = 'Draw!';
+  switch (user1) {
+    case 'Rock':
+      if (user2 === 'Rock') {
+        break;
+      } else if (user2 === 'Paper') {
+        winner = 'User2 Win!'
+        break;
+      } else {
+        winner = 'User1 Win!'
+        break;
+      }
+    case 'Paper':
+      if (user2 === 'Paper') {
+        break;
+      } else if (user2 === 'Scissors') {
+        winner = 'User2 Win!'
+        break;
+      } else {
+        winner = 'User1 Win!'
+        break;
+      }
+    case 'Scissors':
+      if (user2 === 'Scissors') {
+        break;
+      } else if (user2 === 'Rock') {
+        winner = 'User2 Win!'
+        break;
+      } else {
+        winner = 'User1 Win!'
+        break;
+      }
+    default:
+      return 'invalid input';
+  }
+  return `User1:${user1}, User2:${user2} => ${winner}`;
+}
