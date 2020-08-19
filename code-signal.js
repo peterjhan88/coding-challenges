@@ -402,3 +402,42 @@ function isCryptSolution(crypt, solution) {
   let numericDecrypted = decrypted.map( numStr => parseInt(numStr, 10));
   return numericDecrypted[2] === numericDecrypted[0] + numericDecrypted[1];
 }
+
+function boxBlur(image) {
+  // Divide into 3x3
+  const getSubSquare = (array, rowStart=0, colStart=0) => {
+    let subSquare = [];
+    let singleRow = [];
+    for (let index = 0; index < 3*3; index++) {
+      if (index !== 0 && index % 3 === 0) {
+        subSquare.push(singleRow);
+        singleRow = [];
+      }
+      let rowIndex = Math.floor(index / 3);
+      let colIndex = index % 3;
+      singleRow.push(array[rowStart+rowIndex][colStart+colIndex]);
+    }
+    subSquare.push(singleRow);
+    return subSquare;
+  };
+  // Get Average of 3x3 Array
+  const average3x3 = array => {
+    return Math.floor(array.flat(2).reduce((acc, val)=> acc+val, 0)/9);
+  }
+
+  let subSquares = [];
+  for (let row = 0; row < image.length - 2; row++){
+    let subSquareSingleRow = [];
+    for (let col = 0; col < image[0].length - 2; col++){
+      subSquareSingleRow.push(getSubSquare(image, row, col));
+    }
+    subSquares.push(subSquareSingleRow);
+  }
+
+  for(let row=0; row<subSquares.length; row++){
+    for(let col=0; col<subSquares[0].length; col++){
+      subSquares[row][col] = average3x3(subSquares[row][col]);
+    }
+  }
+  return subSquares;
+}
