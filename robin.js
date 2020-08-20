@@ -2154,3 +2154,16 @@ const gameRPS = (user1, user2 = 'computer') => {
   }
   return `User1:${user1}, User2:${user2} => ${winner}`;
 }
+
+
+// How Many Days in a Month?
+/*
+Write a function that accepts a month and a year as integers
+and returns the number of days in that specific month.
+*/
+const daysInGivenMonthNYear = (month, year) => {
+  let givenMonth = new Date([year, month, 1].join('/'));
+  let nextMonth = new Date([year, month + 1, 1].join('/'));
+  let daysBetween = (nextMonth - givenMonth) / (24 * 3600 * 1000);
+  return daysBetween;
+}
