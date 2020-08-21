@@ -441,3 +441,32 @@ function boxBlur(image) {
   }
   return subSquares;
 }
+
+function minesweeper(matrix) {
+  const numberOfMinesAround = (array, givenRow, givenCol) => {
+    let surroundArray = [];
+    let rowLimit = array.length;
+    let colLimit = array[0].length;
+    let startingRow = givenRow === 0 ? 0 : givenRow - 1;
+    let startingCol = givenCol === 0 ? 0 : givenCol - 1;
+    let endingRow = givenRow === rowLimit - 1 ? rowLimit : givenRow + 2;
+    let endingCol = givenCol === colLimit - 1 ? colLimit : givenCol + 2;
+    for (let row = startingRow; row < endingRow; row++) {
+      for (let col = startingCol; col < endingCol; col++) {
+        if (row !== givenRow || col !== givenCol){
+          surroundArray.push(array[row][col]);
+        }
+      }
+    }
+    return surroundArray.filter(element => element === true).length;
+  }
+  let result = [];
+  for(let row=0; row<matrix.length; row++){
+    let singleRow = [];
+    for(let col=0; col<matrix[0].length; col++){
+      singleRow.push(numberOfMinesAround(matrix, row, col));
+    }
+    result.push(singleRow);
+  }
+  return result;
+}
