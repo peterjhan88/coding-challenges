@@ -2167,3 +2167,30 @@ const daysInGivenMonthNYear = (month, year) => {
   let daysBetween = (nextMonth - givenMonth) / (24 * 3600 * 1000);
   return daysBetween;
 }
+
+
+//
+/*
+Have you been practicing your coding every day?
+Now it's time for you to practice by writing a function that accepts
+the current date and a list of dates and returns how many days you
+have been on a streak for (in our case, how many consecutive days
+you have been practicing coding).
+If the array is empty, return 0.
+*/
+const checkConsecutiveDays = (currentDate, arrayOfDates) => {
+  let today = new Date(currentDate);
+  let dateOfToday = today.getDate();
+  let monthOfToday = today.getMonth();
+  let yearOfToday = today.getFullYear();
+  let consecutiveDays = 0;
+  while (arrayOfDates.length!==0){
+    let dateForChecking = new Date(yearOfToday, monthOfToday, (dateOfToday-consecutiveDays) );
+    let dateInArray = new Date(arrayOfDates.pop());
+    if (dateInArray.getTime() !== dateForChecking.getTime()){
+      return consecutiveDays;
+    }
+    consecutiveDays++;
+  }
+  return consecutiveDays;
+}
