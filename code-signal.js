@@ -470,3 +470,7 @@ function minesweeper(matrix) {
   }
   return result;
 }
+
+function arrayReplace(inputArray, elemToReplace, substitutionElem) {
+  return inputArray.map(elem => elem===elemToReplace? substitutionElem:elem);
+}

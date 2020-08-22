@@ -2194,3 +2194,23 @@ const checkConsecutiveDays = (currentDate, arrayOfDates) => {
   }
   return consecutiveDays;
 }
+
+
+// Sharing is Caring
+/*
+Write a function that receives two strings and returns a string that contains
+only the letters that are shared between both strings. If there are none, return
+an empty string. Put the string in alphabetical order before returning it.
+*/
+const commonLetters = (wordA, wordB) => {
+  let common = [];
+  let wordASplit = wordA.split('');
+  for (let index = 0; index < wordASplit.length; index++){
+    let character = wordASplit[index];
+    let re = new RegExp(character, 'i');
+    if (wordB.match(re) && !common.includes(character)){
+      common.push(character);
+    }
+  }
+  return common.sort().join('');
+}
