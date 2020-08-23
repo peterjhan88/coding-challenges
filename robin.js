@@ -2214,3 +2214,17 @@ const commonLetters = (wordA, wordB) => {
   }
   return common.sort().join('');
 }
+
+
+// Spooky Days
+/*
+Western superstition considers Friday the 13th to be an unlucky day.
+Write a function that receives a month and year as numbers and returns whether that
+month contains a Friday 13th or not (true or false).
+Months are not preceded with 0, so January = 1, February = 2, etc.
+You can pass in the full year, like 2020 or 1975.
+*/
+const checkSpookyDays = (year, month) => {
+  let givenDate = new Date(year, month-1, 13);
+  return 5 === givenDate.getDay();
+}

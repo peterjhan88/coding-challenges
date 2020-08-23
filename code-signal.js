@@ -474,3 +474,8 @@ function minesweeper(matrix) {
 function arrayReplace(inputArray, elemToReplace, substitutionElem) {
   return inputArray.map(elem => elem===elemToReplace? substitutionElem:elem);
 }
+
+function evenDigitsOnly(n) {
+  let evenDigitCheck = n.toString(10).match(/[02468]/g);
+  return evenDigitCheck? evenDigitCheck.join('')===n.toString(10):false;
+}
