@@ -479,3 +479,7 @@ function evenDigitsOnly(n) {
   let evenDigitCheck = n.toString(10).match(/[02468]/g);
   return evenDigitCheck? evenDigitCheck.join('')===n.toString(10):false;
 }
+
+function variableName(name) {
+  return name.match(/^[a-zA-Z_]{1,}\w*$/) && true;
+}
