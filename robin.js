@@ -2323,3 +2323,31 @@ const addUp = (arrayOne, arrayTwo, target) => {
   }
   return false;
 }
+
+// Shortest Words
+/*
+Today's challenge lets us give respect to short words - words that are often
+overlooked but are also often the most important glue in a sentence!
+Can you write a function that, provided a string as an argument, returns
+the shortest words in the string lowercase and in sorted in alphabetical order?
+*/
+const shortWord = sentence => {
+  let words = sentence.match(/\w+/g).map(word => word.toLowerCase());
+  let onlyUniques = [];
+  words.sort((a, b) => a.length - b.length).map(word => !onlyUniques.includes(word) ? onlyUniques.push(word) : word);
+  let wordsByLength = {};
+  onlyUniques.map( word => {
+    if(!wordsByLength[word.length]){
+      wordsByLength[word.length] = [];
+      wordsByLength[word.length].push(word);
+    } else {
+      wordsByLength[word.length].push(word);
+    }
+  })
+  let result = [];
+  for (let key in wordsByLength){
+    let sorted = wordsByLength[key].sort();
+    result.push(...sorted);
+  }
+  return result;
+}
