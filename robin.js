@@ -2351,3 +2351,24 @@ const shortWord = sentence => {
   }
   return result;
 }
+
+// Dates Can be Palindromes Too!
+/*
+February 2nd, 2020 is a palindrome when viewed in
+mm / dd / yyyy and dd / mm / yyyy formats.
+Can you write a function that returns true if the date provided
+is a palindrome in both formats ?
+
+* Assuming provided input will be 'February 2nd, 2020'
+*/
+const datesPalindromes = dateString => {
+  let givenDate = new Date(dateString);
+  let givenYear = givenDate.getFullYear();
+  let givenMonth = givenDate.getMonth()+1;
+  let givenDay = givenDate.getDate();
+  let mmDdYyyy = '' + givenMonth + givenDay + givenYear;
+  let ddMmYyyy = '' + givenDay + givenMonth + givenYear;
+  let checkMmDdYyyy = mmDdYyyy.split('').reverse().join('') === mmDdYyyy;
+  let checkDdMmYyyy = ddMmYyyy.split('').reverse().join('') === ddMmYyyy;
+  return checkMmDdYyyy && checkDdMmYyyy;
+}
