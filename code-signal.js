@@ -483,3 +483,13 @@ function evenDigitsOnly(n) {
 function variableName(name) {
   return name.match(/^[a-zA-Z_]{1,}\w*$/) && true;
 }
+
+function alphabeticShift(inputString) {
+  let characters = inputString.split('');
+  let shiftedCharacters = characters.map(char => {
+    let currentChar = char.charCodeAt();
+    let shifted = currentChar >= 122 ? 97 : currentChar + 1;
+    return String.fromCharCode(shifted);
+  })
+  return shiftedCharacters.join('');
+}
