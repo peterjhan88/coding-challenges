@@ -2372,3 +2372,19 @@ const datesPalindromes = dateString => {
   let checkDdMmYyyy = ddMmYyyy.split('').reverse().join('') === ddMmYyyy;
   return checkMmDdYyyy && checkDdMmYyyy;
 }
+
+
+// Find My Index
+/*
+Create a function that finds the index of a given item in an array.
+example: findMyIndex([1, 2, 3], 3) ➞ 2
+*/
+const findMyIndex = (array, target) => {
+  let targetIndex = -1;
+  for(let index=0; index<array.length; index++){
+    if(array[index]===target){
+      targetIndex = index;
+    }
+  }
+  return targetIndex;
+}
