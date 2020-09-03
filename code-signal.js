@@ -493,3 +493,20 @@ function alphabeticShift(inputString) {
   })
   return shiftedCharacters.join('');
 }
+
+function chessBoardCellColor(cell1, cell2) {
+  // 65-90: A-Z
+  let oddRow = ['C', 'N'];
+  let evenRow = ['N', 'C'];
+  let cell1Coordinate = cell1.split('').map(char=> char.match(/[A-H]/)?char.charCodeAt()-64: Number(char))
+  let cell2Coordinate = cell2.split('').map(char=> char.match(/[A-H]/)?char.charCodeAt()-64: Number(char))
+  let cell1Color, cell2Color;
+  if(cell1[0]%2===0){
+    let colorIndex = (cell1Coordinate[1]-1)%2;
+    cell1Color = oddRow[colorIndex];
+  } else {
+    let colorIndex = (cell1Coordinate[1] - 1) % 2;
+    cell1Color = evenRow[colorIndex];
+  }
+  return cell1Color;
+}
