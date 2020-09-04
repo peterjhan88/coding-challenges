@@ -2422,3 +2422,15 @@ const collectWords = (sentence, targetLength) => {
   }
   return result;
 }
+
+// Phone Number Formatter
+/*
+When building web applications, it's often nice to format phone numbers that
+users input on their own so that the user only has to input numbers.
+Write a function that accepts ten numbers in an array and formats it
+like this: "(123) 456-7890
+*/
+const formatPhoneNumberVer2 = phoneNumber => {
+  let re = new RegExp(/(\d{3,3})(\d{3,3})(\d{4,4})/);
+  return phoneNumber.replace(re, '($1) $2-$3');
+}
