@@ -2434,3 +2434,16 @@ const formatPhoneNumberVer2 = phoneNumber => {
   let re = new RegExp(/(\d{3,3})(\d{3,3})(\d{4,4})/);
   return phoneNumber.replace(re, '($1) $2-$3');
 }
+
+// Moving Day!
+/*
+It's almost moving day!
+You have various boxes of different sizes and want to know the total volume
+of all the boxes together. Why don't you write a function that calculates the volume?
+The function will receive multiple arrays - each array will represent a box.
+The arrays will have three elements each: length, width, and height.
+Good luck!
+*/
+const totalVolume = dimensionsOfBoxes => {
+  return dimensionsOfBoxes.reduce((acc, box) => acc+box[0]*box[1]*box[2], 0);
+}
