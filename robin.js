@@ -2447,3 +2447,16 @@ Good luck!
 const totalVolume = dimensionsOfBoxes => {
   return dimensionsOfBoxes.reduce((acc, box) => acc+box[0]*box[1]*box[2], 0);
 }
+
+// Working for the Weekend!
+/*
+Who doesn't love the weekend!?
+Can you write a function that, given a date in the following format,
+returns whether that date is a weekend or not?
+FORMAT: Oct 11, 2010
+*/
+const isWeekend = stringDate => {
+  let givenDate = new Date(stringDate);
+  let dayOfGivenDate = givenDate.getDay();
+  return (dayOfGivenDate === 6 || dayOfGivenDate === 0);
+}
