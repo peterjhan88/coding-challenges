@@ -509,3 +509,7 @@ function chessBoardCellColor(cell1, cell2) {
   }
   return cellColor(cell1) === cellColor(cell2);
 }
+
+function circleOfNumbers(n, firstNumber) {
+  return (firstNumber + n / 2) % n;
+}
