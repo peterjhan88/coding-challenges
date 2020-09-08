@@ -2460,3 +2460,15 @@ const isWeekend = stringDate => {
   let dayOfGivenDate = givenDate.getDay();
   return (dayOfGivenDate === 6 || dayOfGivenDate === 0);
 }
+
+// Traveling Sales
+/*
+Surely you know about the famous Traveling Salesman problem?
+If you have a list of cities and the distances between each pair of cities,
+what is the shortest possible route that visits each city and returns back to
+the starting point?
+Write a function that receives "n" number of paths and returns
+the total number of possible paths that a salesman can travel.
+
+ex) paths(4)-- > 24
+*/
