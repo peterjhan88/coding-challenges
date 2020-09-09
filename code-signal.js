@@ -522,3 +522,19 @@ function depositProfit(deposit, rate, threshold) {
   }
   return year;
 }
+
+function absoluteValuesSumMinimization(a) {
+  let index = 0;
+  let currentMinimumAbsoluteSum = null;
+  let target = null;
+  while (index < a.length) {
+    let x = a[index];
+    let temp = a.reduce((acc, elem) => acc + Math.abs(elem - x), 0);
+    if (currentMinimumAbsoluteSum === null || temp < currentMinimumAbsoluteSum) {
+      currentMinimumAbsoluteSum = temp;
+      target = x;
+    }
+    index++;
+  }
+  return target;
+}
