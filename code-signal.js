@@ -538,3 +538,46 @@ function absoluteValuesSumMinimization(a) {
   }
   return target;
 }
+
+function stringsRearrangement(inputArray) {
+  // 9/11
+  const checkDifference = (string, target) => {
+    let differenceCounter = 0;
+    for (let index = 0; index < target.length; index++) {
+      if (string[index] !== target[index]) {
+        differenceCounter++;
+      }
+    }
+    return differenceCounter === 1;
+  }
+  for (let examineIndex = 0; examineIndex < inputArray.length; examineIndex++) {
+    let popped = inputArray[examineIndex];
+    let numberOfPossibleNext = 0;
+    for (let index = 0; index < inputArray.length; index++) {
+      if (checkDifference(inputArray[index], popped)) {
+        numberOfPossibleNext++;
+      }
+    }
+    if (numberOfPossibleNext < 1) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function getPermutations(array) {
+  if(array.length===0){
+    return '';
+  }
+  let result = [];
+  for(let index=0; index<array.length; index++){
+    let selected = array[index];
+    if (!Array.isArray(selected)){
+      let rest = array.filter(elem => elem !== selected);
+      result.push([selected, getPermutations(rest)]);
+    } else {
+      result.push(selected);
+    }
+  }
+  return result;
+}
