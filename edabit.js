@@ -907,3 +907,8 @@ function addsNum(n) {
     return anotherN + n;
   }
 }
+
+function giveMeSomething(a) {
+  // https://edabit.com/challenge/MvZK536X7fyrWH8Qc
+  return "something "+a;
+}
