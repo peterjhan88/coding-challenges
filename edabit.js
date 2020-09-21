@@ -912,3 +912,26 @@ function giveMeSomething(a) {
   // https://edabit.com/challenge/MvZK536X7fyrWH8Qc
   return "something "+a;
 }
+
+function mathematicalExp(exp, numbers) {
+  // https://edabit.com/challenge/9L9twcL5Fr7yTuQ2C
+  let matched = exp.match(/f\((?<variable>\w)\)\=(?<expression>.+)/)
+  let variable = matched.groups.variable;
+  let expression = matched.groups.expression;
+  let result = [];
+  for(let index=0; index<numbers.length; index++){
+    if(expression.match(/\^/)){
+      let power = Number(expression.match(/\^(?<power>\d)/).groups.power);
+      let newExpression = [];
+      for(let limit=0; limit<power; limit++){
+        newExpression.push(variable);
+      }
+      expression = newExpression.join('*');
+    }
+    let re = new RegExp(variable, 'g');
+    let stringForEval = expression.replace(re, numbers[index]);
+    let value = eval(stringForEval);
+    result.push(`f(${numbers[index]})=${value}`);
+  }
+  return result;
+}
