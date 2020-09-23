@@ -964,3 +964,19 @@ function letterCombinations(digits) {
   }
   return result;
 }
+
+function staircase(n, lineNumber = 1) {
+  // https://edabit.com/challenge/ZLTwdq8n5HK7DP9Eq
+  let absValue = Math.abs(n);
+  if (absValue < lineNumber) {
+    return '';
+  }
+  let desiredString = '';
+  if (n > 0) {
+    desiredString = '_'.repeat(absValue - lineNumber) + '#'.repeat(lineNumber);
+  } else {
+    desiredString = '_'.repeat(lineNumber - 1) + '#'.repeat(absValue - lineNumber + 1);
+  }
+  desiredString += lineNumber === absValue ? '' : '\n';
+  return desiredString + staircase(n, lineNumber + 1)
+}
