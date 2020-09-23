@@ -935,3 +935,32 @@ function mathematicalExp(exp, numbers) {
   }
   return result;
 }
+
+function letterCombinations(digits) {
+  // https://edabit.com/challenge/npLurjMJofmFRCJwx
+  let possibleLetters = {
+    '2': 'abc',
+    '3': 'def',
+    '4': 'ghi',
+    '5': 'jkl',
+    '6': 'mno',
+    '7': 'pqrs',
+    '8': 'tuv',
+    '9': 'wxyz'
+  }
+  let lettersForCombination = [];
+  let result = [];
+  digits.split('').map(digit => lettersForCombination.push(possibleLetters[digit]));
+  for (let charIndex1 = 0; charIndex1 < lettersForCombination[0].length; charIndex1++){
+    for (let charIndex2 = 0; charIndex2 < lettersForCombination[1].length; charIndex2++){
+      if(digits.length<=2){
+        result.push(lettersForCombination[0][charIndex1] + lettersForCombination[1][charIndex2]);
+      } else {
+        for (let charIndex3 = 0; charIndex3 < lettersForCombination[2].length; charIndex3++){
+          result.push(lettersForCombination[0][charIndex1] + lettersForCombination[1][charIndex2] + lettersForCombination[2][charIndex3]);
+        }
+      }
+    }
+  }
+  return result;
+}
