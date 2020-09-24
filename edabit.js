@@ -980,3 +980,16 @@ function staircase(n, lineNumber = 1) {
   desiredString += lineNumber === absValue ? '' : '\n';
   return desiredString + staircase(n, lineNumber + 1)
 }
+
+function isSubset(arr1, arr2) {
+  // https://edabit.com/challenge/3ymGugubc4gTfcqcR
+  if(arr1.length>arr2.length){
+    return false;
+  }
+  for (let index = 0; index < arr1.length; index++){
+    if(!arr2.includes(arr1[index])){
+      return false;
+    }
+  }
+  return true;
+}
