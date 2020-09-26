@@ -1014,3 +1014,26 @@ function bomb(str) {
   let presenceOfBomb = str.match(/bomb/i);
   return presenceOfBomb? 'Duck!!!': 'There is no bomb, relax.';
 }
+
+function highestDigit(number) {
+  // https://edabit.com/challenge/YJuhHKSmNCaKNHcD3
+	return Number(number.toString(10).split('').sort((a,b)=> b-a)[0]);
+}
+
+function secondLargest(arr) {
+  // https://edabit.com/challenge/3zAT89ZAxg4CAQqsZ
+  return arr.sort((a, b) => b - a)[1];
+}
+
+function warOfNumbers(arr) {
+  // https://edabit.com/challenge/Aofd78q72sAtgCyEY
+  let evenTotal = 0;
+  let oddTotal = 0;
+  arr.map(elem => elem%2===0? evenTotal+=elem:oddTotal+=elem);
+  return Math.abs(evenTotal-oddTotal);
+}
+
+function num_of_digits(num) {
+  // https://edabit.com/challenge/yFJzLfYghz7ZtsyAN
+  return num.toString(10).match(/\d/g).length;
+}
