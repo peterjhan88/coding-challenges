@@ -993,3 +993,24 @@ function isSubset(arr1, arr2) {
   }
   return true;
 }
+
+function addName(obj, name, value) {
+  // https://edabit.com/challenge/9KEKJG5PZTFmG3Zau
+  obj[name] = value;
+  return obj;
+}
+
+function calculateDifference(obj, limit) {
+  // https://edabit.com/challenge/8s2jy9hR2TAeQinKD
+  let total = 0;
+  for(let key in obj){
+    total += obj[key];
+  }
+  return total-limit;
+}
+
+function bomb(str) {
+  // https://edabit.com/challenge/r4hycBjiBNMs6AAjq
+  let presenceOfBomb = str.match(/bomb/i);
+  return presenceOfBomb? 'Duck!!!': 'There is no bomb, relax.';
+}
