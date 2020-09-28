@@ -1037,3 +1037,51 @@ function num_of_digits(num) {
   // https://edabit.com/challenge/yFJzLfYghz7ZtsyAN
   return num.toString(10).match(/\d/g).length;
 }
+
+// https://edabit.com/challenge/Pa2rHJ6KeRBTF28Pg
+function fiscalCode(person) {
+  const months = {
+    1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "H",
+    7: "L", 8: "M", 9: "P", 10: "R", 11: "S", 12: "T"
+  }
+  let theCode = '';
+
+  let stepOne = person.surname.match(/[^aeiou]/gi);
+  let stepOneCode = stepOne.join('');
+  if (stepOneCode.length>=3){
+    stepOneCode = stepOneCode.substring(0, 3);
+  } else {
+    stepOneCode += person.surname.match(/[aeiou]/gi).join('');
+    if(stepOneCode.length<3){
+      stepOneCode += 'X';
+    } else {
+      stepOneCode = stepOneCode.substring(0, 3);
+    }
+  }
+
+  let stepTwo = person.name.match(/[^aeiou]/gi);
+  let stepTwoCode = '';
+  if(stepTwo.length===3){
+    stepTwoCode = stepTwo.join('');
+  } else if(stepTwo.length>3){
+    stepTwoCode = stepTwo[0] + stepTwo[2] + stepTwo[3]
+  } else {
+    stepTwoCode = stepTwo.join('')+person.name.match(/[aeiou]/gi).join('')
+    stepTwoCode = stepTwoCode.slice(0, 3);
+    if(stepTwoCode.length<3){
+      stepTwoCode += 'X'
+    }
+  }
+
+  let stepThree = person.dob.match(/(?<day>\d{1,2})\/(?<month>\d{1,2})\/(?<year>\d{4,4})/);
+  let stepThreeCode = stepThree.groups.year.slice(2);
+  stepThreeCode += months[Number(stepThree.groups.month)];
+  if(person.gender==='M'){
+    stepThreeCode += stepThree.groups.day.length === 2 ? stepThree.groups.day : '0' + stepThree.groups.day;
+  } else {
+    stepThreeCode += stepThree.groups.day.length === 2 ? (Number(stepThree.groups.day) + 40).toString(10) : '4' + stepThree.groups.day;
+  }
+
+  theCode += stepOneCode.toUpperCase() + stepTwoCode.toUpperCase() + stepThreeCode.toUpperCase();
+  return theCode;
+}
