@@ -1038,8 +1038,8 @@ function num_of_digits(num) {
   return num.toString(10).match(/\d/g).length;
 }
 
-// https://edabit.com/challenge/Pa2rHJ6KeRBTF28Pg
 function fiscalCode(person) {
+  // https://edabit.com/challenge/Pa2rHJ6KeRBTF28Pg
   const months = {
     1: "A", 2: "B", 3: "C", 4: "D", 5: "E", 6: "H",
     7: "L", 8: "M", 9: "P", 10: "R", 11: "S", 12: "T"
@@ -1084,4 +1084,26 @@ function fiscalCode(person) {
 
   theCode += stepOneCode.toUpperCase() + stepTwoCode.toUpperCase() + stepThreeCode.toUpperCase();
   return theCode;
+}
+
+function countChocolates(money, cost) {
+  // https://edabit.com/challenge/nqNkTkNKcwBH6geSX
+  const moneyExtract = new RegExp(/(?<value>\-?\d+)\s*(\$|dollars)/,'i');
+  let moneyInPocket = money.match(moneyExtract) ? Number(money.match(moneyExtract).groups.value):-1;
+  let chocolatePrice = cost.match(moneyExtract) ? Number(cost.match(moneyExtract).groups.value):-1;
+  if (moneyInPocket <= 0 || chocolatePrice<=0){
+    return "Invalid Input"
+  }
+  let chocolateCounter = 0;
+  while (moneyInPocket >= chocolatePrice){
+    moneyInPocket -= chocolatePrice;
+    chocolateCounter++;
+    if (chocolateCounter!==0 && chocolateCounter%3===0){
+      chocolateCounter++;
+    }
+  }
+  if (chocolateCounter !== 0 && chocolateCounter % 3 === 0) {
+    chocolateCounter++;
+  }
+  return chocolateCounter;
 }
