@@ -1107,3 +1107,17 @@ function countChocolates(money, cost) {
   }
   return chocolateCounter;
 }
+
+function measureDepth(arr) {
+  // https://edabit.com/challenge/rKExAu3SwQaCJ2XA8
+  if(arr === undefined){
+    return 'Invalid Input';
+  }
+  let depthCounter = 1;
+  let selected = arr[0];
+  while (Array.isArray(selected)){
+    depthCounter++;
+    selected = selected[0];
+  }
+  return depthCounter;
+}
