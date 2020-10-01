@@ -1121,3 +1121,13 @@ function measureDepth(arr) {
   }
   return depthCounter;
 }
+
+function sortIt(arr) {
+  // https://edabit.com/challenge/zemLfbNWaKuhrbJPt
+  return arr.sort((a,b) => (a[0] || a) - (b[0] || b));
+}
+
+function isOrthogonal(arr1, arr2) {
+  // https://edabit.com/challenge/qJGDCEZRoGRPt3viu
+  return arr1.reduce((total, elem, index) => elem * arr2[index] + total, 0) === 0;
+}
