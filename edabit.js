@@ -779,7 +779,7 @@ function inBox(arr) {
   // for detailed instruction, please visit the website
   let starCounter = 0;
   for (let index = 0; index < arr.length; index++) {
-    if (index === 0 || index === arr.legnth - 1) {
+    if (index === 0 || index === arr.length - 1) {
       if (arr[index].includes('*')) {
         return false;
       }
@@ -1130,4 +1130,35 @@ function sortIt(arr) {
 function isOrthogonal(arr1, arr2) {
   // https://edabit.com/challenge/qJGDCEZRoGRPt3viu
   return arr1.reduce((total, elem, index) => elem * arr2[index] + total, 0) === 0;
+}
+
+function extractPrimes(num) {
+  // https://edabit.com/challenge/JpfNfZCEesy7Nz67i
+  const isPrime = number => {
+    if(number<2){
+      return false;
+    }
+    let factors = [1];
+    for (let divisor = 2; divisor <= number; divisor++) {
+      if (number % divisor === 0) {
+        factors.push(divisor);
+      }
+    }
+    return factors.length===2;
+  }
+  let stringNum = num.toString(10);
+  let primeNumbers = [];
+  for (let targetLength = 1; targetLength <= stringNum.length; targetLength++){
+    let endIndex = stringNum.length-targetLength;
+    for (let index = 0; index <= endIndex; index++){
+      let stringPartialNumber = stringNum.substring(index, index+targetLength);
+      if (!stringPartialNumber.match(/^0\d*/)){
+        let integerPartialNumber = Number(stringPartialNumber);
+        if (isPrime(integerPartialNumber)){
+          primeNumbers.push(integerPartialNumber);
+        }
+      }
+    }
+  }
+  return primeNumbers.sort( (a,b)=>a-b);
 }
