@@ -327,9 +327,6 @@ function getDistance(a, b) {
 
 // //unquote and use run to test these cases
 // let q = new Circle(4.44);
-// console.log(q.getArea());
-// console.log(q.getPerimeter());
-
 
 function returnEndOfNumber(num) {
   // https://edabit.com/challenge/MEgXcp8cj3vNvD42v
@@ -472,10 +469,6 @@ function distanceToNearestVowel(str) {
   return distance;
 }
 
-// console.log(`${distanceToNearestVowel("bba")}\n${[2, 1, 0]}`);
-// console.log(`${distanceToNearestVowel("abcdabcd")}\n${[0, 1, 2, 1, 0, 1, 2, 3]}`);
-// console.log(`${distanceToNearestVowel("sugarandspice")}\n${[1, 0, 1, 0, 1, 0, 1, 2, 2, 1, 0, 1, 0]}`);
-
 function cardHide(card) {
   // https://edabit.com/challenge/rtpvAqFT3koqMoFCJ
   // for detailed instruction, please visit the website
@@ -491,8 +484,6 @@ function cardHide(card) {
   return stringCardNumber;
 }
 
-// console.log(cardHide(123456789451234)==="***********1234");
-
 function factorial(n) {
   // https://edabit.com/challenge/rgXMMHEmbh2MCKSrM
   // for detailed instruction, please visit the website
@@ -503,20 +494,12 @@ function factorial(n) {
   return n*factorial(n-1);
 }
 
-// console.log(factorial(0)===1);
-// console.log(factorial(1)===1);
-// console.log(factorial(3)===6);
-
 function charCount(myChar, str) {
   // https://edabit.com/challenge/kbFhwaDyrd79JrgeB
   // for detailed instruction, please visit the website
   const re = new RegExp(myChar, "g");
   return str.match(re) ? str.match(re).length : 0;
 }
-
-// console.log(charCount("a", "edabit")===1)
-// console.log(charCount("c", "Chamber of secrets")===1)
-// console.log(charCount("b", "big fat bubble")===4)
 
 function footballPoints(wins, draws, losses) {
   // https://edabit.com/challenge/GwvwXHWCThHZrR7xu
@@ -1161,4 +1144,23 @@ function extractPrimes(num) {
     }
   }
   return primeNumbers.sort( (a,b)=>a-b);
+}
+
+function caesarCipher(s, k) {
+  // https://edabit.com/challenge/a33jdGXkaQRtK9ZTs
+  // A : 65
+  // a : 97
+  const numberOfAlphabets = 26;
+  let result = '';
+  for(let index=0; index<s.length; index++){
+    let currentChar = s[index];
+    let charCode = currentChar.charCodeAt();
+    if (currentChar.match(/[A-Z]/)){
+      charCode = 65 + (charCode - 65 + k) % numberOfAlphabets;
+    } else if (currentChar.match(/[a-z]/)){
+      charCode = 97 + (charCode - 97 + k) % numberOfAlphabets;
+    }
+    result += String.fromCharCode(charCode);
+  }
+  return result;
 }
