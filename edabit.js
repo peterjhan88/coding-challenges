@@ -1164,3 +1164,77 @@ function caesarCipher(s, k) {
   }
   return result;
 }
+
+function duplicateNums(nums) {
+  // https://edabit.com/challenge/WYNfvyd5NRfAgtcqZ
+  let checked = [];
+  let duplicates = [];
+  nums.map(elem => {
+    if (checked.includes(elem)) {
+      duplicates.push(elem);
+    } else {
+      checked.push(elem);
+    }
+  })
+  return duplicates.length === 0 ? null : duplicates.sort((a, b) => a - b);
+}
+
+function isTriplet(n1, n2, n3) {
+  // https://edabit.com/challenge/qfAvihoTKivTuzapt
+  let threeSides = [n1, n2, n3].sort((a, b) => a - b);
+  return (threeSides[0] ** 2 + threeSides[1] ** 2 - threeSides[2] ** 2) === 0;
+}
+
+function peelLayerOff(arr) {
+  // https://edabit.com/challenge/mQznJjH2mtaybMCG8
+  let peeledArray = [];
+  let rowStart = 1;
+  let rowEnd = arr.length - 1;
+  let colStart = 1;
+  let colEnd = arr[0].length - 1 || 0;
+  for (let row = rowStart; row < rowEnd; row++) {
+    let singleRow = [];
+    for (let col = colStart; col < colEnd; col++) {
+      singleRow.push(arr[row][col]);
+    }
+    peeledArray.push(singleRow);
+  }
+  return peeledArray;
+}
+
+function allPrime(nums) {
+  // https://edabit.com/challenge/Cn5Z8vqaijYzCC7uY
+  const isPrime = suspect => {
+    let factors = [1];
+    for (let divisor = 2; divisor <= suspect; divisor++) {
+      if (suspect % divisor === 0) {
+        factors.push(divisor);
+      }
+    }
+    return factors.length === 2;
+  }
+  return nums.every(isPrime);
+}
+
+function numbersSum(arr) {
+  // https://edabit.com/challenge/PWqkt9HiLcJSr6QEY
+  return arr.reduce((total, elem) => typeof elem === 'number' ? total + elem : total + 0, 0);
+}
+
+function jazzify(arr) {
+  // https://edabit.com/challenge/EMuszDzF66k9J73HG
+  return arr.map(elem => elem.match(/7$/) ? elem : elem + '7');
+}
+
+function solve(eq) {
+  // https://edabit.com/challenge/zrgLnPbhsNo6J6cBR
+  const re = new RegExp(/(?<operator>\+|-)\s*(?<xSide>-?\d+)\s*=\s*(?<otherSide>-?\d+)/);
+  let extractedInfo = eq.match(re).groups;
+  let theX = null;
+  if(extractedInfo.operator === '+'){
+    theX = Number(extractedInfo.otherSide) - Number(extractedInfo.xSide);
+  } else {
+    theX = Number(extractedInfo.otherSide) + Number(extractedInfo.xSide);
+  }
+  return theX;
+}
