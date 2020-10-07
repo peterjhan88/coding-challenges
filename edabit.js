@@ -1238,3 +1238,14 @@ function solve(eq) {
   }
   return theX;
 }
+
+function isHeteromecic(n, currentN=0) {
+  // https://edabit.com/challenge/rtYE79GzaQp4RccFC
+	if(currentN*(currentN+1)===n){
+		return true;
+	} else if (currentN*(currentN+1)>n){
+		return false;
+	} else {
+		return isHeteromecic(n, currentN+1);
+	}
+}
