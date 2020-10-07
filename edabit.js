@@ -1249,3 +1249,45 @@ function isHeteromecic(n, currentN=0) {
 		return isHeteromecic(n, currentN+1);
 	}
 }
+
+function uniqueSort(arr) {
+  // https://edabit.com/challenge/CvPCBc9FtTLix9zov
+  let result = [];
+  for (let index = 0; index < arr.length; index++) {
+    if (!result.includes(arr[index])) {
+      result.push(arr[index]);
+    }
+  }
+  return result.sort((a, b) => a - b);
+}
+
+function numberLenSort(arr) {
+  // https://edabit.com/challenge/fuvMP8KMtiQY3QXrJ
+  return arr.sort((a, b) => a.toString(10).length - b.toString(10).length)
+}
+
+function tetra(n, layer = 1) {
+  // https://edabit.com/challenge/zRCyxKBBmr4F2x4Bv
+  let baseTriangle = 0;
+  for (let index = 1; index <= layer; index++) {
+    baseTriangle += index;
+  }
+  if (layer === n) {
+    return baseTriangle;
+  } else {
+    return baseTriangle + tetra(n, layer + 1);
+  }
+}
+
+function neutralise(s1, s2) {
+  // https://edabit.com/challenge/HzxTqSHLmRC3zEfXb
+  let result = '';
+  for(let index=0; index<s1.length; index++){
+    if (s1[index] === s2[index]){
+      result += s1[index];
+    } else {
+      result += '0';
+    }
+  }
+  return result;
+}
