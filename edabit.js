@@ -1291,3 +1291,57 @@ function neutralise(s1, s2) {
   }
   return result;
 }
+
+function findZip(str) {
+  // https://edabit.com/challenge/HLvES6FKvbFGPXs7X
+  let matched = str.match(/zip/gi);
+  if (matched && matched.length > 1) {
+    return str.lastIndexOf(matched[matched.length - 1])
+  }
+  return -1;
+}
+
+function equal(a, b, c) {
+  // https://edabit.com/challenge/PKiTjA7SLK99ZZ8GK
+  let counter = 0;
+  let strABC = '' + a + b + c;
+  for (let index = 0; index < strABC.length; index++) {
+    let re = new RegExp(strABC[index], 'g');
+    if (strABC.match(re).length >= 2) {
+      counter = strABC.match(re).length;
+    }
+  }
+  return counter;
+}
+
+function timeToFinish(full, part) {
+  // https://edabit.com/challenge/MarKs2qWR3cMHZjxy
+  let fullSetenceLength = full.match(/[^\s]/g) ? full.match(/[^\s]/g).length : 0;
+  let userInputLength = part.match(/[^\s]/g) ? part.match(/[^\s]/g).length : 0;
+  return (fullSetenceLength - userInputLength) * 0.5;
+}
+
+function doubleLetters(word) {
+  // https://edabit.com/challenge/YHLaB8itA9tEDN5TG
+  for (let index = 1; index < word.length; index++) {
+    if (word[index - 1] === word[index]) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function reverseImage(image) {
+  // https://edabit.com/challenge/uNzzNQPDQferAAGMc
+  const maxValue = 1;
+  let negativeImage = [];
+  for(let row=0; row<image.length; row++){
+    let singleRow = [];
+    for(let col=0; col<image[row].length; col++){
+      let invertedPixel = maxValue-image[row][col];
+      singleRow.push(invertedPixel);
+    }
+    negativeImage.push(singleRow);
+  }
+  return negativeImage
+}
