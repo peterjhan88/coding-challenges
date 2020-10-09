@@ -1345,3 +1345,68 @@ function reverseImage(image) {
   }
   return negativeImage
 }
+
+function reverse(str) {
+  // https://edabit.com/challenge/wPNzJEJebN2mewcqY
+  return str.split(' ').map(word => word.length >= 5 ? word.split('').reverse().join('') : word).join(' ')
+}
+
+function isAnagram(s1, s2) {
+  // https://edabit.com/challenge/FPamWj3Ky7ep9ApBz
+  let lettersOfS1 = s1.match(/\w/g).map(char => char.toLowerCase()).sort();
+  let lettersOfS2 = s2.match(/\w/g).map(char => char.toLowerCase()).sort();
+  for (let index = 0; index < lettersOfS1.length; index++) {
+    if (lettersOfS1[index] !== lettersOfS2[index]) {
+      return false
+    }
+  }
+  return true;
+}
+
+function calculateBonus(days) {
+  // https://edabit.com/challenge/cYcKEFos6DjYQpGS7
+  let [daysInZone1, daysInZone2, daysInZone3] = [0, 0, 0];
+  if (days > 48) {
+    daysInZone3 = days - 48;
+    days = 48;
+  }
+  if (days > 40) {
+    daysInZone2 = days - 40;
+    days = 40;
+  }
+  if (days > 32) {
+    daysInZone1 = days - 32;
+  }
+  let incentives = 325 * daysInZone1 + 550 * daysInZone2 + 600 * daysInZone3;
+  return incentives;
+}
+
+function fibStr(n, str) {
+  // https://www.twitch.tv/videos/765067935
+  if (n < 3) {
+    return str.join(', ');
+  }
+  let combinedStr = str[0] + ', ';
+  let newPrevious = str[1];
+  let newNext = str[1] + str[0];
+  str = [newPrevious, newNext];
+  return combinedStr + fibStr(n - 1, str);
+}
+
+function validatePIN(pin) {
+  // https://edabit.com/challenge/RhvdtEWHAMAqkdugn
+  if (pin.match(/^\d{4,4}$/) || pin.match(/^\d{6,6}$/)) {
+    return true;
+  }
+  return false;
+}
+
+function removeSpecialCharacters(str) {
+  // https://edabit.com/challenge/k7CwrsKPHrEL8h4z6
+  return str.replace(/[^\w\-\s]/g, '');
+}
+
+function isValidPhoneNumber(str) {
+  // https://edabit.com/challenge/nHaKL55KwW3XaGrAw
+  return str.match(/^\(\d{3}\) \d{3}-\d{4}$/) ? true : false;
+}
