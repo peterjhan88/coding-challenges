@@ -1410,3 +1410,27 @@ function isValidPhoneNumber(str) {
   // https://edabit.com/challenge/nHaKL55KwW3XaGrAw
   return str.match(/^\(\d{3}\) \d{3}-\d{4}$/) ? true : false;
 }
+
+function getDay(day) {
+  // https://edabit.com/challenge/K8FPxyGNDXhWQD9jX
+  return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date(day))
+}
+
+function DECIMATOR(str) {
+  // https://edabit.com/challenge/qabZCHGmuTak57C7h
+  let removalLength = Math.ceil(str.length / 10);
+  return str.slice(0, str.length - removalLength);
+}
+
+function lastDig(a, b, c) {
+  // https://edabit.com/challenge/RQtF47HMPbHDGBeW6
+  let lastDigitOfA = a % 10;
+  let lastDigitOfB = b % 10;
+  let lastDigitOfC = c % 10;
+  return (lastDigitOfA * lastDigitOfB) % 10 === lastDigitOfC;
+}
+
+function formatNum(num) {
+  // https://edabit.com/challenge/5o7CE6N4uNAGDzjRg
+  return num.toString(10).split('').reverse().join('').match(/(\d{1,3})/g).join(',').split('').reverse().join('');
+}
