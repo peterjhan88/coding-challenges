@@ -1466,3 +1466,28 @@ function Magic(str) {
   let dM = givenDate[0] * givenDate[1];
   return givenDate[2] % (10 ** dM.toString(10).length) === dM;
 }
+
+function fizzBuzz(number) {
+  // https://edabit.com/challenge/cKQA9N9Yg7ExeWusQ
+  let result = [];
+  for (let index = 1; index <= number; index++) {
+    if (index % 3 === 0 || index % 5 === 0) {
+      let fizzBuzz = '';
+      if (index % 3 === 0) {
+        fizzBuzz += 'Fizz';
+      }
+      if (index % 5 === 0) {
+        fizzBuzz += 'Buzz';
+      }
+      result.push(fizzBuzz)
+    } else {
+      result.push(index);
+    }
+  }
+  return result
+}
+
+function sumFoundIndexes(arr, n) {
+  // https://edabit.com/challenge/TTu48ECaTRwZDj69x
+  return arr.reduce((acc, value, index) => value === n ? acc + index : acc, 0);
+}
