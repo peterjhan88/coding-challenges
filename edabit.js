@@ -1434,3 +1434,35 @@ function formatNum(num) {
   // https://edabit.com/challenge/5o7CE6N4uNAGDzjRg
   return num.toString(10).split('').reverse().join('').match(/(\d{1,3})/g).join(',').split('').reverse().join('');
 }
+
+function fairDie(arr) {
+  // https://edabit.com/challenge/c9DRPNpNKQ7wJeEHs
+  const criticalValue = 11.0705;
+  let expected = arr.reduce((total, value) => total + value, 0) / 6;
+  let chiSquared = arr.reduce((total, value) => total + (value - expected) ** 2, 0) / expected;
+  return chiSquared < criticalValue;
+}
+
+function isAutomorphic(n) {
+  // https://edabit.com/challenge/QXadaT8denMNXvn3t
+  let stringSquared = (n ** 2).toString(10);
+  let stringN = n.toString(10);
+  return stringSquared.slice(stringSquared.length - stringN.length) === stringN;
+}
+
+function shiftRight(x, y) {
+  // https://edabit.com/challenge/QMH7HFhjzTxapsoDf
+  if (y < 1) {
+    return Math.floor(x);
+  }
+  x = x / 2;
+  y--;
+  return shiftRight(x, y)
+}
+
+function Magic(str) {
+  // https://edabit.com/challenge/x6bADPfDJPMYyzpBa
+  let givenDate = str.split(' ').map(string => Number(string));
+  let dM = givenDate[0] * givenDate[1];
+  return givenDate[2] % (10 ** dM.toString(10).length) === dM;
+}
