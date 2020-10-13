@@ -1491,3 +1491,60 @@ function sumFoundIndexes(arr, n) {
   // https://edabit.com/challenge/TTu48ECaTRwZDj69x
   return arr.reduce((acc, value, index) => value === n ? acc + index : acc, 0);
 }
+
+function uniqueArr(arr) {
+  // https://edabit.com/challenge/Fx2NdxGzayHpfu8pS
+  let checked = [];
+  let uniques = [];
+  for (let index = 0; index < arr.length; index++) {
+    let current = arr[index];
+    if (!checked.includes(current)) {
+      checked.push(current);
+      if (!uniques.includeds(current)){
+        uniques.push(current);
+      } else {
+        uniques = uniques.filter( val=> val!==current);
+      }
+    }
+  }
+  return uniques.filter(val => val>0);
+}
+
+function showTheLove(arr) {
+  // https://edabit.com/challenge/t5w3KeLXzs5ChWDMo
+  let minimum = Math.min(...arr);
+  let removed = arr.filter(value => value !== minimum).reduce((total, value) => total + value, 0) * 0.25;
+  return arr.map(value => value !== minimum ? value * 0.75 : value + removed);
+}
+
+function sameAscii(a, b) {
+  // https://edabit.com/challenge/y6TD7s63sm9RwByLY
+  return a.split('').reduce((total, char) => total += char.charCodeAt(), 0) === b.split('').reduce((total, char) => total += char.charCodeAt(), 0)
+}
+
+function countPosSumNeg(arr) {
+  // https://edabit.com/challenge/xXJLZry3vYd4erPct
+  if (arr.length === 0) {
+    return arr;
+  }
+  let numberOfPositiveNumber = 0;
+  let sumOfNegativeNumbers = 0;
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index] > 0) {
+      numberOfPositiveNumber++;
+    } else {
+      sumOfNegativeNumbers += arr[index];
+    }
+  }
+  return [numberOfPositiveNumber, sumOfNegativeNumbers];
+}
+
+function wurstIsBetter(str) {
+  // https://edabit.com/challenge/j7s4LTKexAEazQApv
+  let wurst = ['kielbasa', 'chorizo', 'moronga', 'salami', 'sausage', 'andouille', 'naem', 'merguez', 'gurk', 'snorkers', 'pepperoni']
+  wurst.map(toWurst => {
+    let re = new RegExp(toWurst, 'gi');
+    str = str.replace(re, 'Wurst');
+  })
+  return str;
+}
