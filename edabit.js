@@ -1548,3 +1548,35 @@ function wurstIsBetter(str) {
   })
   return str;
 }
+
+function checkPattern(arr, pattern) {
+  // https://bbs.ruliweb.com/family/496/board/102230
+  const checkEqualPattern = (arr1, arr2) => {
+    for (let index = 0; index < arr1.length; index++) {
+      if (arr1[index] !== arr2[index]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  let checkedPatterns = {}
+  for (let i = 0; i < pattern.length; i++) {
+    let label = pattern[i];
+    let arrForChecking = arr[i];
+    let keys = Object.keys(checkedPatterns);
+    if (keys.includes(label)) {
+      if (!checkEqualPattern(arrForChecking, checkedPatterns[label])) {
+        return false;
+      }
+    } else {
+      for (let index = 0; index < keys.length; index++) {
+        let key = keys[index];
+        if (checkEqualPattern(arrForChecking, checkedPatterns[key])) {
+          return false;
+        }
+      }
+      checkedPatterns[label] = arrForChecking;
+    }
+  }
+  return true;
+}
