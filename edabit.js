@@ -1580,3 +1580,60 @@ function checkPattern(arr, pattern) {
   }
   return true;
 }
+
+function overlapping(arr) {
+  // https://edabit.com/challenge/z6ydynS7YBL9K9t3T
+  let currentMin = null;
+  let currentMax = null;
+  for (let index = 0; index < arr.length; index++) {
+    if (currentMin === null || arr[index][0] > currentMin) {
+      currentMin = arr[index][0];
+    }
+    if (currentMax === null || arr[index][1] < currentMax) {
+      currentMax = arr[index][1];
+    }
+  }
+  let result = currentMin <= currentMax ? [currentMin, currentMax] : 'No overlapping';
+  return result;
+}
+
+function invert(arr) {
+  // https://edabit.com/challenge/6YfWWLSQyPJwz2Srg
+  let invertedImage = [];
+  for (let row = 0; row < arr.length; row++) {
+    let singleRow = [];
+    for (let col = 0; col < arr[row].length; col++) {
+      let invertedPixel = arr[row][col].map(rgbValue => {
+        if (rgbValue < 0) {
+          rgbValue = 0
+        } else if (rgbValue > 255) {
+          rgbValue = 255;
+        }
+        return (255 - rgbValue);
+      });
+      singleRow.push(invertedPixel);
+    }
+    invertedImage.push(singleRow);
+  }
+  return invertedImage;
+}
+
+function returnEndOfNumber(num) {
+  // https://edabit.com/challenge/MEgXcp8cj3vNvD42v
+  let strNum = num.toString(10);
+  let suffix = '-TH'
+  if (strNum.match(/1[0-9]$/)) {
+    return strNum + suffix;
+  } else {
+    if (strNum.endsWith('1')) {
+      suffix = '-ST';
+    }
+    if (strNum.endsWith('2')) {
+      suffix = '-ND';
+    }
+    if (strNum.endsWith('3')) {
+      suffix = '-RD';
+    }
+  }
+  return strNum + suffix;
+}
