@@ -1637,3 +1637,90 @@ function returnEndOfNumber(num) {
   }
   return strNum + suffix;
 }
+
+function sudokuValidator(x) {
+  // https://edabit.com/challenge/rGTJckjQsBDq2M8WL
+  const theNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const checkNumbers = (arr) => {
+    for (let index = 0; index < theNumbers.length; index++) {
+      if (!arr.includes(theNumbers[index])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  // row check
+  for (let row = 0; row < x.length; row++) {
+    if (!checkNumbers(x[row])) {
+      return false;
+    }
+  }
+  // col check
+  for (let col = 0; col < x[0].length; col++) {
+    let column = [];
+    for (let row = 0; row < x.length; row++) {
+      column.push(x[row][col]);
+    }
+    if (!checkNumbers(column)) {
+      return false;
+    }
+  }
+  // subCube check
+  const getSubCubes = (arr) => {
+    let subCubes = [];
+    for (let row = 0; row < arr.length; row += 3) {
+      for (let col = 0; col < arr[row].length; col += 3) {
+        let singleSubCube = [];
+        for (let index = 0; index < 9; index++) {
+          singleSubCube.push(arr[row + Math.floor(index / 3)][col + index % 3]);
+        }
+        subCubes.push(singleSubCube);
+      }
+    }
+    return subCubes;
+  }
+
+  let subCubes = getSubCubes(x);
+  for(let index=0; index<subCubes.length; index++){
+    if (!checkNumbers(subCubes[index])){
+      return false;
+    }
+  }
+  return true;
+}
+
+function ascending(str) {
+  // https://edabit.com/challenge/jN89tuARCFbtQm6vE
+  let numberLength = 1;
+  while (numberLength <= str.length / 2) {
+    let slicedNumbers = [];
+    for (let index = 0; index < str.length; index += numberLength) {
+      let sliced = str.slice(index, index + numberLength);
+      slicedNumbers.push(Number(sliced));
+    }
+    let isConsecutive = true;
+    for (let index = 1; index < slicedNumbers.length; index++) {
+      if (slicedNumbers[index - 1] + 1 !== slicedNumbers[index]) {
+        isConsecutive = false;
+        break;
+      }
+    }
+    if (isConsecutive) {
+      return isConsecutive;
+    } else {
+      numberLength++;
+    }
+  }
+  return false;
+}
+
+function wordNest(word, nest) {
+  // https://edabit.com/challenge/yDQnwtscs6sRi27we
+  const searchTarget = new RegExp(eval(`/(\w*)(${word})(\w*)/`));
+  let depth = 0;
+  while (nest.length > word.length) {
+    nest = nest.replace(searchTarget, '$1$3');
+    depth++;
+  }
+  return depth;
+}
