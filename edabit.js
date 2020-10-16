@@ -1724,3 +1724,22 @@ function wordNest(word, nest) {
   }
   return depth;
 }
+
+function adc(value) {
+  // https://edabit.com/challenge/zif8ugd3u2zHjMhsY
+  return Math.round(value * 5 * 100 / 1023) / 100;
+}
+
+function tpChecker(home) {
+  // https://edabit.com/challenge/xhrEw5w9N45TfsgiY
+  const sqsInTpPerRoll = 500;
+  const avgTpUsagePerDay = 57;
+  const threshHold = 14;
+  let expectedDays = Math.floor(home.tp * 500 / (avgTpUsagePerDay * home.people));
+  let isEnough = expectedDays > threshHold;
+  let result = `Your TP will ${isEnough ? 'last' : 'only last'
+    } ${expectedDays} days, ${isEnough ? 'no need to panic!' : 'buy more!'
+    }`;
+  return result;
+}
+}
