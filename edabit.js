@@ -1742,4 +1742,53 @@ function tpChecker(home) {
     }`;
   return result;
 }
+
+function finalCountdown(arr) {
+  // https://edabit.com/challenge/HW4ZzYmDaASKfwdq6
+  let counter = 0;
+  let countDownSequences = [];
+  let singleCountDown = [];
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index] === 1) {
+      singleCountDown.push(arr[index]);
+      countDownSequences.push(singleCountDown);
+      counter++;
+      singleCountDown = [];
+    } else if (arr[index] === arr[index + 1] + 1) {
+      singleCountDown.push(arr[index]);
+    } else {
+      singleCountDown = [];
+    }
+  }
+  return [counter, countDownSequences];
+}
+
+function uniqueInOrder(sequence) {
+  // https://edabit.com/challenge/cW5gZqYEv6bszrNSw
+  let currentDuplicate = null;
+  let desiredArray = [];
+  for (let index = 0; index < sequence.length; index++) {
+    if (currentDuplicate !== sequence[index]) {
+      currentDuplicate = sequence[index];
+      desiredArray.push(currentDuplicate);
+    }
+  }
+  return desiredArray;
+}
+
+function asciiSort(arr) {
+  // https://edabit.com/challenge/AKocM4opFZBrva2JX
+  arr.sort((a, b) => {
+    const asciiSum = word => {
+      return word.split('').reduce((sum, char) => sum += char.charCodeAt(), 0);
+    }
+    return asciiSum(a) - asciiSum(b);
+  })
+  return arr[0];
+}
+
+function perimeter(l, num) {
+  // https://edabit.com/challenge/WEvqZTFcHeYzFn74c
+  let result = (('c'.charCodeAt() % l.charCodeAt()) * 4 * num + ('s'.charCodeAt() % l.charCodeAt()) * 6.28 * num) / ('c'.charCodeAt() % l.charCodeAt() + 's'.charCodeAt() % l.charCodeAt());
+  return result;
 }
