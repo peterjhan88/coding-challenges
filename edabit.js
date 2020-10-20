@@ -1832,3 +1832,75 @@ function hasSyncopation(s) {
   // https://edabit.com/challenge/9JGd2TFCb33SQ2rhL
   return [...s].some((sign, index) => sign === "#" && index % 2 === 1)
 }
+
+function firstNVowels(s, n) {
+  // https://edabit.com/challenge/2FBEMqxiZ2z9efgQB
+  let vowels = s.match(/[aeiou]/g);
+  if (vowels && vowels.length >= n) {
+    return vowels.join('').slice(0, n);
+  }
+  return 'invalid';
+}
+
+function neighboring(str) {
+  // https://edabit.com/challenge/mHP2n9i4XERvCF3C8
+  let charCodes = [...str].map(char => char.charCodeAt(0));
+  if (charCodes.length === 1) {
+    return true;
+  } else if (charCodes.length === 2) {
+    return Math.abs(charCodes[0] - charCodes[1]) === 1;
+  } else {
+    for (let index = 1; index < charCodes.length; index++) {
+      let currentCharCode = charCodes[index];
+      let prevCharCode = charCodes[index - 1];
+      if (Math.abs(currentCharCode - prevCharCode) !== 1) {
+        return false;
+      }
+    }
+    return true;
+  }
+}
+
+function isbn13(str) {
+  // https://edabit.com/challenge/C5mooK3wfdhoooeLw
+  let result = 'Invalid';
+  if (str.length === 13) {
+    let vNum = str.split('').reduce((a, d, i) => i % 2 === 0 ? a += Number(d) : a += Number(d) * 3, 0);
+    if (vNum % 10 === 0) {
+      result = 'Valid';
+    }
+  } else if (str.length === 10) {
+    let vNum = str.split('').reduce((a, d, i) => d.match(/x/i) ? a += 10 * (10 - i) : a += Number(d) * (10 - i), 0);
+    if (vNum % 11 === 0) {
+      result = ('978' + str).slice(0, -1);
+      let sum = result.split('').reduce((a, d, i) => i % 2 === 0 ? a += Number(d) : a += Number(d) * 3, 0);
+      let lastDigit = 10 - sum % 10;
+      result += lastDigit;
+    }
+  }
+  return result;
+}
+
+function countRepetitions(arr) {
+  // https://edabit.com/challenge/XWXprtaTWYCWBGAax
+  let counting = {};
+  for (let index = 0; index < arr.length; index++) {
+    if (counting[arr[index]]) {
+      counting[arr[index]] = counting[arr[index]] + 1;
+    } else {
+      counting[arr[index]] = 1;
+    }
+  }
+  let keyValuePairs = Object.entries(counting);
+  keyValuePairs.sort((a, b) => b[1] - a[1]);
+  let resultInOrder = Object.fromEntries(keyValuePairs);
+  return resultInOrder
+}
+
+function isCentral(str) {
+  // https://edabit.com/challenge/EatpBWKGDGvntrMmo
+  const re = new RegExp(/(?<before>\s*)(?<center>\S)(?<after>\s*)/);
+  let spacesBefore = str.match(re).groups.before.length;
+  let spacesAfter = str.match(re).groups.after.length;
+  return spacesBefore === spacesAfter;
+}
