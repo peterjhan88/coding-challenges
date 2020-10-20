@@ -1792,3 +1792,43 @@ function perimeter(l, num) {
   let result = (('c'.charCodeAt() % l.charCodeAt()) * 4 * num + ('s'.charCodeAt() % l.charCodeAt()) * 6.28 * num) / ('c'.charCodeAt() % l.charCodeAt() + 's'.charCodeAt() % l.charCodeAt());
   return result;
 }
+
+function count(n) {
+  // https://edabit.com/challenge/wv6p5WR648oG6mTZx
+  let power = 1;
+  while (n % (10 ** power) !== n) {
+    power++;
+  }
+  return power;
+}
+
+function catchZeroDivision(expr) {
+  // https://edabit.com/challenge/2ncgPqA3cY35op7B2
+  if (expr.match(/\/\s(?<afterDivision>.*)/)) {
+    let matched = expr.match(/\/\s(?<afterDivision>.*)/).groups.afterDivision;
+    if (matched.match(/\(/)) {
+      let numberRightParenthesis = matched.match(/\(/g).length;
+      let numberLeftParenthesis = matched.match(/\)/g).length;
+      if (numberRightParenthesis !== numberLeftParenthesis) {
+        let index = 0;
+        while (numberRightParenthesis > 0) {
+          if (matched[index] === ")") {
+            numberRightParenthesis--;
+          }
+          index++;
+        }
+        matched = matched.slice(0, index);
+      }
+    }
+    return eval(matched) === 0;
+  }
+  return false;
+}
+
+// https://edabit.com/challenge/fdDprqnJyvFb2QLsu
+// const REGEXP = /\x65\x64\x61\x62\x69\x74/g
+
+function hasSyncopation(s) {
+  // https://edabit.com/challenge/9JGd2TFCb33SQ2rhL
+  return [...s].some((sign, index) => sign === "#" && index % 2 === 1)
+}
