@@ -1904,3 +1904,52 @@ function isCentral(str) {
   let spacesAfter = str.match(re).groups.after.length;
   return spacesBefore === spacesAfter;
 }
+
+function polybius(text) {
+  // https://edabit.com/challenge/sGYuA9fEJLHqEBSjA
+  const polybiusSquare = ['000000',
+    '0abcde',
+    '0fghik',
+    '0lmnop',
+    '0qrstu',
+    '0vwxyz'];
+
+  const slicer = (word, targetLength = 2) => {
+    let result = [];
+    for (let index = 0; index < word.length; index += targetLength) {
+      result.push(word.slice(index, index + targetLength));
+    }
+    return result;
+  }
+
+  const encryptLetter = letter => {
+    let lowerCased = letter.toLowerCase();
+    if (lowerCased.match(/j/i)) {
+      return '24';
+    } else if (lowerCased.match(/\s/)) {
+      return ' ';
+    } else {
+      for (let index = 1; index < polybiusSquare.length; index++) {
+        if (polybiusSquare[index].includes(lowerCased)) {
+          let stringCorrdinates = '' + index + polybiusSquare[index].indexOf(lowerCased);
+          return stringCorrdinates;
+        }
+      }
+    }
+  }
+
+  if (text.match(/\d+/g)) {
+    let words = text.match(/\d+/g).map(word => slicer(word));
+    return words.map(encrypted => encrypted.map(letter => polybiusSquare[letter[0]][letter[1]]).join('')).join(' ');
+  } else {
+    let letters = text.split('').map(letter => encryptLetter(letter));
+    return letters.join('');
+  }
+}
+
+function absolute(str) {
+  // https://edabit.com/challenge/hK7At2a9sc4nGhwBL
+  let words = str.split(' ');
+  let desiredWords = words.map(word => word.match(/^a$/i) ? word + 'n absolute' : word);
+  return desiredWords.join(' ');
+}
