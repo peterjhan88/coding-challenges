@@ -1953,3 +1953,48 @@ function absolute(str) {
   let desiredWords = words.map(word => word.match(/^a$/i) ? word + 'n absolute' : word);
   return desiredWords.join(' ');
 }
+
+function expressFactors(n) {
+  // https://edabit.com/challenge/B2v5qnwvYK929TnWB
+  // generating prime numbers less than 10000;
+  let primeNumbers = [];
+  let number = 2;
+  while (number <= n) {
+    let factors = [1]
+    for (let divisor = 2; divisor <= number; divisor++) {
+      if (number % divisor === 0) {
+        factors.push(divisor);
+        if (factors.length > 2) {
+          continue;
+        }
+      }
+    }
+    if (factors.length === 2) {
+      primeNumbers.push(number);
+    }
+    number++;
+  }
+
+  // getting prime factors for given 'n'
+  let primeFactors = [];
+  for (let index = primeNumbers.length - 1; index >= 0; index--) {
+    if (primeNumbers[index] <= n && n % primeNumbers[index] === 0) {
+      primeFactors.push(primeNumbers[index]);
+    }
+  }
+
+  // getting powers for each prime factors
+  let result = [];
+  for (let index = 0; index < primeFactors.length; index++) {
+    let power = 0;
+    let currentBase = primeFactors[index];
+    while (n % currentBase === 0 && n > 1) {
+      n = n / currentBase;
+      power++;
+    }
+    let factorWithPower = currentBase.toString(10);
+    factorWithPower += power !== 1 ? `^${power}` : '';
+    result.unshift(factorWithPower);
+  }
+  return result.join(' x ');
+}
