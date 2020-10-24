@@ -2046,3 +2046,41 @@ function numThenChar(arr) {
   }
   return result
 }
+
+function numToEng(n) {
+  // https://edabit.com/challenge/PFH9yEZXSbAngQm7T
+  const tenOrLess = ['zero', 'one', 'two', 'three', 'four', 'five',
+    'six', 'seven', 'eight', 'nine', 'ten']
+  const prefix = ['placeholder', 1, 2, 'thir', 'four', 'fif',
+    'six', 'seven', 'eight', 'nine'];
+  const specialCase = [null, 'eleven', 'twelve'];
+  if (n <= 10) {
+    return tenOrLess[n];
+  } else if (n < 20) {
+    if (n < 13) {
+      return specialCase[n - 10];
+    }
+    return tenOrLess[n - 10] + 'teen';
+  } else if (n < 30) {
+    let numberInEnglish = 'twenty';
+    if (n - 20 > 0) {
+      numberInEnglish += ' ' + tenOrLess[n - 20];
+    }
+    return numberInEnglish;
+  } else {
+    let numberInEnglish = '';
+    if (n % 100 === n) {
+      numberInEnglish = prefix[Math.floor(n / 10)] + 'ty';
+      let digitOne = n % 10 === 0 ? '' : ' ' + tenOrLess[n % 10];
+      return numberInEnglish + digitOne;
+    } else {
+      let hundred = Math.floor(n / 100);
+      n = n % 100;
+      numberInEnglish += tenOrLess[hundred] + ' hundred';
+      if (n % 10 !== 0) {
+        numberInEnglish += ' ';
+      }
+      return numberInEnglish + numToEng(n);
+    }
+  }
+}
