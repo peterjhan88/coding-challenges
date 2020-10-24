@@ -1998,3 +1998,51 @@ function expressFactors(n) {
   }
   return result.join(' x ');
 }
+
+function join(arr) {
+  // https://edabit.com/challenge/J6ZGG6AvXQzqRpRsy
+  const tailAndHead = (word1, word2) => {
+    let min = Math.min(word1.length, word2.length);
+    let numberOfShared = 0;
+    for(let index=1; index<=min; index++){
+      let temp = word2.slice(0,index);
+      if(word1.endsWith(temp)){
+        numberOfShared = index;
+      }
+    }
+    return numberOfShared;
+  }
+  let result = arr[0];
+  let minimum = null;
+  for (let index = 1; index < arr.length; index++){
+    let currentShared = tailAndHead(arr[index - 1], arr[index]);
+    result += arr[index].slice(currentShared);
+    if (minimum === null || minimum > currentShared){
+      minimum = currentShared
+    }
+  }
+  return [result, minimum];
+}
+
+function numThenChar(arr) {
+  // https://edabit.com/challenge/wkD5ChYH9ukyNSmZm
+  let numbers = [];
+  let letters = [];
+  let giantArr = arr.flat(1).map(elem => typeof elem === 'number' ? numbers.push(elem) : letters.push(elem));
+  numbers.sort((a, b) => a - b);
+  letters.sort();
+  let allElementsCombined = numbers.concat(letters);
+  let initialLengths = arr.map(subArr => subArr.length);
+  let result = [];
+  let subArray = [];
+  let subArrayIndex = 0;
+  for (let index = 0; index < allElementsCombined.length; index++) {
+    subArray.push(allElementsCombined[index]);
+    if (subArray.length === initialLengths[subArrayIndex]) {
+      result.push(subArray);
+      subArrayIndex++;
+      subArray = [];
+    }
+  }
+  return result
+}
