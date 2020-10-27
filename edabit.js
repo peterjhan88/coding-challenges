@@ -2084,3 +2084,22 @@ function numToEng(n) {
     }
   }
 }
+
+function makeDetailedList(arr) {
+  https://edabit.com/challenge/u8SiTaBmMKCYAfK3J
+  let detailedList = {};
+  const roomName = 0;
+  const stolenItems = 1;
+  const stolenItemsValue = 2;
+  for (let index = 0; index < arr.length; index++) {
+    let room = arr[index][roomName];
+    let stolenGoods = arr[index][stolenItems];
+    let stolenGoodsValue = arr[index][stolenItemsValue];
+    let stolenGoodsInfo = {};
+    for (let itemIndex = 0; itemIndex < stolenGoods.length; itemIndex++) {
+      stolenGoodsInfo[stolenGoods[itemIndex]] = stolenGoodsValue[itemIndex];
+    }
+    detailedList[room] = stolenGoodsInfo;
+  }
+  return detailedList;
+}
