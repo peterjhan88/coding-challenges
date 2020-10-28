@@ -2117,10 +2117,10 @@ function minPalindromeSteps(str) {
   let lastIndex = str.length - 1;
   for (let index = 1; index < str.length; index++) {
     let tempStr = str.slice(lastIndex - index);
-    if (!isPalindrome(tempStr)) {
-      minimumNeeded++;
-    } else {
+    if (isPalindrome(tempStr)) {
       minimumNeeded = 0;
+    } else {
+      minimumNeeded++;
     }
   }
   return minimumNeeded;
