@@ -2103,3 +2103,25 @@ function makeDetailedList(arr) {
   }
   return detailedList;
 }
+
+function minPalindromeSteps(str) {
+  // https://edabit.com/challenge/zadc59oCm9Hj5xnrh
+  const isPalindrome = word => {
+    let reversed = word.split('').reverse().join('');
+    return word === reversed;
+  }
+  let minimumNeeded = 0;
+  if (isPalindrome(str)) {
+    return minimumNeeded;
+  }
+  let lastIndex = str.length - 1;
+  for (let index = 1; index < str.length; index++) {
+    let tempStr = str.slice(lastIndex - index);
+    if (!isPalindrome(tempStr)) {
+      minimumNeeded++;
+    } else {
+      minimumNeeded = 0;
+    }
+  }
+  return minimumNeeded;
+}
