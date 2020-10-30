@@ -2140,3 +2140,22 @@ function spaceWeights(planetA, weight, planetB) {
   }
   return Math.round((weight * gAccel[planetB] / gAccel[planetA]) * 100) / 100
 }
+
+function resistanceCalculator(resistors) {
+  // https://edabit.com/challenge/geb39pk8YifkrgJ95
+  let parallelResistance = 0;
+  let seriesResistance = 0;
+  for (let index = 0; index < resistors.length; index++) {
+    seriesResistance += resistors[index];
+    parallelResistance += 1 / resistors[index];
+  }
+  parallelResistance = Math.round(1 / parallelResistance * 100) / 100;
+  seriesResistance = Math.round(seriesResistance * 10) / 10;
+  return [parallelResistance, seriesResistance]
+}
+
+function grabNumberSum(s) {
+  // https://edabit.com/challenge/8E2BQmb5GZ8G4mkgM
+  let numbers = s.match(/\d+/g).map(number => Number(number));
+  return numbers.reduce((total, number) => total += number, 0);
+}
