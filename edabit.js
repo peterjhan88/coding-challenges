@@ -2159,3 +2159,18 @@ function grabNumberSum(s) {
   let numbers = s.match(/\d+/g).map(number => Number(number));
   return numbers.reduce((total, number) => total += number, 0);
 }
+
+function kaprekarNumbers(p, q) {
+  // https://edabit.com/challenge/ZHResBjuzYzXfWHAy
+  let kaprekars = [];
+  for (let number = p; number <= q; number++) {
+    let stringSquared = (number ** 2).toString(10);
+    let lengthOfNumber = number.toString(10).length;
+    let rightSideNumber = Number(stringSquared.slice(stringSquared.length - lengthOfNumber));
+    let leftSideNumber = Number(stringSquared.slice(0, stringSquared.length - lengthOfNumber));
+    if (rightSideNumber + leftSideNumber === number) {
+      kaprekars.push(number);
+    }
+  }
+  return kaprekars.length === 0 ? 'INVALID RANGE' : kaprekars.join(' ');
+}
