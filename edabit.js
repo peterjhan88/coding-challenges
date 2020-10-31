@@ -2086,7 +2086,7 @@ function numToEng(n) {
 }
 
 function makeDetailedList(arr) {
-  https://edabit.com/challenge/u8SiTaBmMKCYAfK3J
+  // https://edabit.com/challenge/u8SiTaBmMKCYAfK3J
   let detailedList = {};
   const roomName = 0;
   const stolenItems = 1;
@@ -2173,4 +2173,50 @@ function kaprekarNumbers(p, q) {
     }
   }
   return kaprekars.length === 0 ? 'INVALID RANGE' : kaprekars.join(' ');
+}
+
+function fibonacciBigNumber(n) {
+  // https://edabit.com/challenge/DxCJgn8TtqAupmHxd
+  const stringSum = (strNum1, strNum2) => {
+    let strNum1DigitsReversed = strNum1.split('').reverse();
+    let strNum2DigitsReversed = strNum2.split('').reverse();
+    let num1Length = strNum1DigitsReversed.length;
+    let num2Length = strNum2DigitsReversed.length;
+    let isPreviousSumOver9 = false;
+    let summedDigitsReversed = [];
+    for (let index = 0; index < num1Length || index < num2Length; index++) {
+      let num1Digit = strNum1DigitsReversed[index] !== undefined ? Number(strNum1DigitsReversed[index]) : 0;
+      let num2Digit = strNum2DigitsReversed[index] !== undefined ? Number(strNum2DigitsReversed[index]) : 0;
+      let digitWiseSum = num1Digit + num2Digit;
+      if (isPreviousSumOver9) {
+        digitWiseSum++;
+        isPreviousSumOver9 = false;
+      }
+      if (digitWiseSum > 9) {
+        isPreviousSumOver9 = true;
+        digitWiseSum = digitWiseSum % 10;
+      }
+      summedDigitsReversed.push(digitWiseSum);
+    }
+    if (isPreviousSumOver9){
+      summedDigitsReversed.push(1);
+    }
+    let summedDigits = summedDigitsReversed.reverse();
+    return summedDigits.join('');
+  }
+  let prevNum = '0';
+  let nextNum = '1';
+  if (n < 1) {
+    return prevNum;
+  } else if (n < 2) {
+    return nextNum;
+  } else {
+    let temp = '';
+    for (let index = 2; index <=n; index++) {
+      temp = stringSum(prevNum, nextNum);
+      prevNum = nextNum;
+      nextNum = temp;
+    }
+    return temp;
+  }
 }
