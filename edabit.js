@@ -2220,3 +2220,78 @@ function fibonacciBigNumber(n) {
     return temp;
   }
 }
+
+function isWristband(arr) {
+  // https://edabit.com/challenge/HX5eEuKb7epMgsKsj
+  // horizontal check
+  let isPatterned = true;
+  for (let row = 0; row < arr.length; row++) {
+    let target = arr[row][0];
+    if (arr[row].some(element => element !== target)) {
+      isPatterned = false;
+    }
+  }
+  if (isPatterned) {
+    return isPatterned;
+  } else {
+    isPatterned = true;
+  }
+
+  // vertical check
+  for (let col = 0; col < arr[0].length; col++) {
+    let target = arr[0][col];
+    let column = [];
+    for (let row = 0; row < arr.length; row++) {
+      column.push(arr[row][col]);
+    }
+    if (column.some(element => element !== target)) {
+      isPatterned = false;
+    }
+  }
+  if (isPatterned) {
+    return isPatterned;
+  } else {
+    isPatterned = true;
+  }
+
+  // diagonal-left
+  let rowMax = arr.length;
+  let colMax = arr[0].length;
+  for (let row = 0; row < arr.length; row++) {
+    for (let col = 0; col < arr[row].length; col++) {
+      let diagonalIndexMax = Math.min(rowMax - row, colMax - col);
+      let target = arr[row][col];
+      let diagonal = [];
+      for (let diagonalIndex = 0; diagonalIndex < diagonalIndexMax; diagonalIndex++) {
+        diagonal.push(arr[row + diagonalIndex][col + diagonalIndex]);
+      }
+      if (diagonal.some(element => element !== target)) {
+        isPatterned = false;
+      }
+    }
+  }
+  if (isPatterned) {
+    return isPatterned;
+  } else {
+    isPatterned = true;
+  }
+
+  // diagonal-right
+  for (let row = 0; row < arr.length; row++) {
+    for (let col = 0; col < arr[row].length; col++) {
+      let diagonalIndexMax = Math.min(rowMax - row, col + 1);
+      let target = arr[row][col];
+      let diagonal = [];
+      for (let diagonalIndex = 0; diagonalIndex < diagonalIndexMax; diagonalIndex++) {
+        diagonal.push(arr[row + diagonalIndex][col - diagonalIndex]);
+      }
+      if (diagonal.some(element => element !== target)) {
+        isPatterned = false;
+      }
+    }
+  }
+  if (isPatterned) {
+    return isPatterned;
+  }
+  return isPatterned;
+}
