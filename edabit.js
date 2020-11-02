@@ -2295,3 +2295,19 @@ function isWristband(arr) {
   }
   return isPatterned;
 }
+
+function indexFilter(idx, str) {
+  // https://edabit.com/challenge/q5N9n3ZjKq5Fn2hzg
+  const indexFinder = (number, strLength) => {
+    if (number < 0) {
+      return strLength + number;
+    }
+    return number;
+  }
+  let result = '';
+  for (let index = 0; index < idx.length; index++) {
+    let translatedIdx = indexFinder(idx[index], str.length)
+    result += str[translatedIdx];
+  }
+  return result.toLowerCase();
+}
