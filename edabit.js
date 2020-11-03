@@ -2311,3 +2311,10 @@ function indexFilter(idx, str) {
   }
   return result.toLowerCase();
 }
+
+function sumOddAndEven(arr) {
+  // https://edabit.com/challenge/EY4nTmp6SbAmtJz5C
+	let evenSum = arr.reduce((sum, num)=>num%2===0? sum+=num:sum,0);
+	let oddSum = arr.reduce((sum, num)=>Math.abs(num%2)===1? sum+=num:sum,0);
+	return [evenSum, oddSum];
+}
