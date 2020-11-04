@@ -2318,3 +2318,11 @@ function sumOddAndEven(arr) {
 	let oddSum = arr.reduce((sum, num)=>Math.abs(num%2)===1? sum+=num:sum,0);
 	return [evenSum, oddSum];
 }
+
+function digitsCount(num, n=1) {
+  // https://edabit.com/challenge/uL2Hi8Aj3FDgW9F7q
+	if(num%10===num){
+		return n;
+	}
+	return digitsCount(Math.round(num/10), n+1);
+}
