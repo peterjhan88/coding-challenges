@@ -2326,3 +2326,14 @@ function digitsCount(num, n=1) {
 	}
 	return digitsCount(Math.round(num/10), n+1);
 }
+
+function incrementalDepth(arr) {
+  // https://edabit.com/challenge/jThp2fAGWuwffsokZ
+  if (arr.length === 1) {
+    return arr;
+  }
+  let result = arr.slice(0, 1);
+  let theRest = arr.slice(1);
+  result.push(incrementalDepth(theRest))
+  return result;
+}
