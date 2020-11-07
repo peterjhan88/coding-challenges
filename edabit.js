@@ -2337,3 +2337,25 @@ function incrementalDepth(arr) {
   result.push(incrementalDepth(theRest))
   return result;
 }
+
+function generation(x, y) {
+  // https://edabit.com/challenge/48EJWLhF224na8po3
+  let result = ''
+  let gen = Math.abs(x);
+  switch (gen) {
+    case 0:
+      result += 'me!';
+      break;
+    case 3:
+      result += 'great ';
+    case 2:
+      result += 'grand';
+    default:
+      if (x > 0) {
+        result += y === 'm' ? 'son' : 'daughter';
+      } else {
+        result += y === 'm' ? 'father' : 'mother';
+      }
+  }
+  return result;
+}
