@@ -2359,3 +2359,21 @@ function generation(x, y) {
   }
   return result;
 }
+
+function endsAddTo10(nums) {
+  // https://edabit.com/challenge/ki2njto7agJD3EdZ6
+  let targetNumbers = [];
+  for (let index = 0; index < nums.length; index++) {
+    let currentN = Math.abs(nums[index]);
+    let lastDigit = currentN % 10;
+    let firstDigit = null;
+    while (currentN > 9) {
+      currentN = Math.floor(currentN / 10);
+    }
+    firstDigit = currentN;
+    if (lastDigit + firstDigit === 10) {
+      targetNumbers.push(nums[index]);
+    }
+  }
+  return targetNumbers.length;
+}
