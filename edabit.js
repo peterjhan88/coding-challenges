@@ -2377,3 +2377,26 @@ function endsAddTo10(nums) {
   }
   return targetNumbers.length;
 }
+
+function grayscale(arr) {
+  // https://edabit.com/challenge/BDbY3zSN8mcBN2Xrn
+  let greyedImage = [];
+  for (let row = 0; row < arr.length; row++) {
+    let desiredRow = [];
+    for (let col = 0; col < arr[row].length; col++) {
+      let pixel = arr[row][col];
+      let boundPixel = pixel.map(rgb => {
+        if (rgb < 0 || rgb > 255) {
+          rgb = Math.min(rgb, 255);
+          rgb = Math.max(rgb, 0);
+        }
+        return rgb;
+      })
+      let greyValue = Math.round(boundPixel.reduce((total, val) => total += val, 0) / 3);
+      boundPixel.fill(greyValue);
+      desiredRow.push(boundPixel);
+    }
+    greyedImage.push(desiredRow);
+  }
+  return greyedImage;
+}
