@@ -2400,3 +2400,8 @@ function grayscale(arr) {
   }
   return greyedImage;
 }
+
+function superheroes(heroes) {
+  // https://edabit.com/challenge/FdwbNYkFrF36NwJxa
+  return heroes.filter(name => !name.match(/woman/i) && name.match(/man/i)).sort();
+}
