@@ -2405,3 +2405,12 @@ function superheroes(heroes) {
   // https://edabit.com/challenge/FdwbNYkFrF36NwJxa
   return heroes.filter(name => !name.match(/woman/i) && name.match(/man/i)).sort();
 }
+
+function validDivision(d) {
+  // https://edabit.com/challenge/dfFpj2ZBtdy5J5sen
+  if (d.match(/\d+\/0/)) {
+    return 'invalid'
+  }
+  let numbers = d.match(/\d+/g).map(strNum => Number(strNum));
+  return numbers[0] % numbers[1] === 0;
+}
