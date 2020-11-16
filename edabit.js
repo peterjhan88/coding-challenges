@@ -2414,3 +2414,16 @@ function validDivision(d) {
   let numbers = d.match(/\d+/g).map(strNum => Number(strNum));
   return numbers[0] % numbers[1] === 0;
 }
+
+function squares(a, b) {
+  // https://edabit.com/challenge/aHFBLwgCPKBoAcJAA
+  let counter = 0;
+  let theStart = Math.ceil(Math.pow(a, 0.5))
+  let theMax = Math.floor(Math.pow(b, 0.5))
+  for (let number = theStart; number <= theMax; number++) {
+    if (number ** 2 <= b) {
+      counter++;
+    }
+  }
+  return counter;
+}
