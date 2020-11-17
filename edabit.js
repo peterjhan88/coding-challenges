@@ -2427,3 +2427,18 @@ function squares(a, b) {
   }
   return counter;
 }
+
+function operation(a, b, op) {
+  // https://edabit.com/challenge/mgCKn998CNowjAZBF
+  const operators = {
+    'add': '+',
+    'subtract': '-',
+    'divide': '/',
+    'multiply': '*'
+  };
+  if (operators[op] === '/' && b === '0') {
+    return 'undefined';
+  }
+  let equation = a + operators[op] + b;
+  return eval(equation);
+}
