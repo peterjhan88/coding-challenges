@@ -1956,7 +1956,7 @@ function absolute(str) {
 
 function expressFactors(n) {
   // https://edabit.com/challenge/B2v5qnwvYK929TnWB
-  // generating prime numbers less than 10000;
+  // generating prime numbers less than or equal to 'n';
   let primeNumbers = [];
   let number = 2;
   while (number <= n) {
@@ -2441,4 +2441,69 @@ function operation(a, b, op) {
   }
   let equation = a + operators[op] + b;
   return eval(equation);
+}
+
+function lcm(nums) {
+  // https://edabit.com/challenge/gR9DKqpyvBWmyoe9X
+  const maxNumGiven = Math.max(...nums);
+
+  // check prime number
+  const isPrime = number => {
+    let factors = [1];
+    for (let divisor = 2; divisor <= number; divisor++) {
+      if (number % divisor === 0) {
+        factors.push(divisor);
+      }
+    }
+    return factors.length === 2;
+  }
+
+  // get prime numbers less than the maximum number given
+  let primes = [];
+  for (let n = 2; n <= maxNumGiven; n++) {
+    if (isPrime(n)) {
+      primes.push(n);
+    }
+  }
+
+  // get prime factors
+  const getPrimeFactors = number => {
+    let primeFactors = {};
+    let index = 0;
+    while (number > 1) {
+      let primeNumber = primes[index];
+      if (number % primeNumber === 0) {
+        number = number / primes[index];
+        if (!primeFactors[primeNumber]) {
+          primeFactors[primeNumber] = [primeNumber];
+        } else {
+          primeFactors[primeNumber].push(primeNumber)
+        }
+      } else {
+        index++;
+      }
+    }
+    return primeFactors;
+  }
+
+  // get primes factors of give nums
+  let factoredNums = nums.map(num => getPrimeFactors(num));
+
+  // collect factors for lcm
+  let lcmFactors = {};
+  for(let index=0; index<factoredNums.length; index++){
+    let factorsOfANumber = factoredNums[index]
+    for (let key in factorsOfANumber){
+      if (!lcmFactors[key] || lcmFactors[key].length < factorsOfANumber[key].length){
+        lcmFactors[key] = factorsOfANumber[key];
+      }
+    }
+  }
+
+  // calculate lcm
+  let lcm = 1;
+  for(let key in lcmFactors){
+    lcm = lcm * lcmFactors[key].reduce((total, num) => total*=num,1);
+  }
+  return lcm;
 }
