@@ -2507,3 +2507,27 @@ function lcm(nums) {
   }
   return lcm;
 }
+
+function hoursPassed(t1, t2) {
+  // https://edabit.com/challenge/CFszCxtcmqAsgZdw8
+  const getTimeIn24 = stringTime => {
+    let time = stringTime.split(' ');
+    let hour = Number(time[0].split(':')[0]);
+    if (time[1] === 'PM') {
+      hour += 12;
+    } else if (time[1] === 'AM' && hour === 12) {
+      hour = 0;
+    }
+    return hour;
+  }
+  let t1Hour = getTimeIn24(t1);
+  let t2Hour = getTimeIn24(t2);
+  if (t2Hour - t1Hour === 0) {
+    return 'no time passed';
+  }
+  if (t2Hour - t1Hour < 0) {
+    return `${24 + (t2Hour - t1Hour)} hours`;
+  } else {
+    return `${t2Hour - t1Hour} hours`;
+  }
+}
