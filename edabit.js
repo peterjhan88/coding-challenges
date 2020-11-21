@@ -2556,3 +2556,19 @@ function spotlightSum(n) {
   }
   return total;
 }
+
+function extendVowels(word, num) {
+  // https://edabit.com/challenge/P4zxwFNwZPGeiDwKy
+  let desiredString = '';
+  if (num < 0 || num % 1 !== 0) {
+    return 'invalid'
+  }
+  for (let index = 0; index < word.length; index++) {
+    let char = word[index];
+    desiredString += char;
+    if (char.match(/[aeiou]/i)) {
+      desiredString += char.repeat(num);
+    }
+  }
+  return desiredString;
+}
