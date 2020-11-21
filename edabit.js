@@ -2572,3 +2572,12 @@ function extendVowels(word, num) {
   }
   return desiredString;
 }
+
+function emotify(str) {
+  // https://edabit.com/challenge/Szh3ib2bpJCYXKrKa
+  str = str.replace('grin', ':)');
+  str = str.replace('smile', ':D');
+  str = str.replace('sad', ':(');
+  str = str.replace('mad', ':P');
+  return str;
+}
