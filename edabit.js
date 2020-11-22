@@ -2581,3 +2581,12 @@ function emotify(str) {
   str = str.replace('mad', ':P');
   return str;
 }
+
+function joinDigits(n) {
+  // https://edabit.com/challenge/9qrjtshZq8L5ATcKt
+  let result = [];
+  for (let number = 1; number <= n; number++) {
+    result.push(...number.toString(10));
+  }
+  return result.join('-');
+}
