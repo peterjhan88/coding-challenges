@@ -2590,3 +2590,15 @@ function joinDigits(n) {
   }
   return result.join('-');
 }
+
+function isScalable(arr) {
+  // https://edabit.com/challenge/LSPPZKTuQJhqW2Rwb
+  if (arr.length >= 2) {
+    for (let index = 1; index < arr.length; index++) {
+      if (Math.abs(arr[index] - arr[index - 1]) > 5) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
