@@ -2602,3 +2602,24 @@ function isScalable(arr) {
   }
   return true;
 }
+
+function fixImport(s) {
+  // https://edabit.com/challenge/3XiwjSzuMN4MQN6tJ
+  return s.replace(/(import \w+) (from \w+)/, '$2 $1');
+}
+
+function trueAlphabetic(str) {
+  // https://edabit.com/challenge/8NDcdD8QZiMKJJaYL
+  let sortedLetters = str.match(/\w/g).sort().reverse();
+  let lengthArr = str.split(' ').map(word => word.length);
+  let result = [];
+  for (let index = 0; index < lengthArr.length; index++) {
+    let sortedWord = '';
+    let wordLength = lengthArr[index];
+    for (let index2 = 0; index2 < wordLength; index2++) {
+      sortedWord += sortedLetters.pop();
+    }
+    result.push(sortedWord);
+  }
+  return result.join(' ')
+}
