@@ -2623,3 +2623,15 @@ function trueAlphabetic(str) {
   }
   return result.join(' ')
 }
+
+function countSameEnds(str) {
+  // https://edabit.com/challenge/JDDeK9jSFKJbfzhMt
+  let matched = str.match(/\w+/gi) || 0;
+  let counter = 0;
+  for (let index = 0; index < matched.length; index++) {
+    if (matched[index].match(/^(\w)\w*\1$/i)) {
+      counter++;
+    }
+  }
+  return counter;
+}
