@@ -2635,3 +2635,22 @@ function countSameEnds(str) {
   }
   return counter;
 }
+
+function splitBunches(bunches) {
+  // https://edabit.com/challenge/FrFkH5BPnqz4pYpqD
+  let result = [];
+  for (let index = 0; index < bunches.length; index++) {
+    let currentObject = bunches[index];
+    let targetName = currentObject.name;
+    let targetQuantity = currentObject.quantity;
+    while (targetQuantity >= 1) {
+      let singularObject = {
+        'name': targetName,
+        'quantity': 1
+      };
+      result.push(singularObject);
+      targetQuantity--;
+    }
+  }
+  return result;
+}
