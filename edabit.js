@@ -2654,3 +2654,24 @@ function splitBunches(bunches) {
   }
   return result;
 }
+
+function fatPrime(a, b) {
+  // https://edabit.com/challenge/edP3JPvJHGigcYhQX
+  const isPrime = num => {
+    let factors = [1];
+    for (let n = 2; n <= num; n++) {
+      if (num % n === 0) {
+        factors.push(n);
+      }
+    }
+    return factors.length === 2;
+  }
+  let max = Math.max(a, b);
+  let min = Math.min(a, b);
+  for (let num = max; num >= min; num--) {
+    if (isPrime(num)) {
+      return num;
+    }
+  }
+  return 'nope'
+}
