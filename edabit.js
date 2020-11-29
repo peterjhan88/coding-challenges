@@ -2675,3 +2675,13 @@ function fatPrime(a, b) {
   }
   return 'nope'
 }
+
+function gimmeTheLetters(spectrum) {
+  // https://edabit.com/challenge/sJSKWWeSYqov6ew44
+  let [start, end] = spectrum.split('-');
+  let result = '';
+  for (let index = start.charCodeAt(); index <= end.charCodeAt(); index++) {
+    result += String.fromCharCode(index);
+  }
+  return result;
+}
