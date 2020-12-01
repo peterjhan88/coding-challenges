@@ -2690,3 +2690,12 @@ function camelToSnake(str) {
   // https://edabit.com/challenge/NekgMswiPasDonSDe
   return str.replace(/[A-Z]/g, matched => '_' + matched.toLowerCase());
 }
+
+function multiplyArray(arr) {
+  // https://edabit.com/challenge/7ZhszvZBs7wkEBncb
+  let result = [];
+  for (let index = 0; index < arr.length; index++) {
+    result.push(new Array(arr.length).fill(arr[index]));
+  }
+  return result;
+}
