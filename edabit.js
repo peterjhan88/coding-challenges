@@ -2685,3 +2685,8 @@ function gimmeTheLetters(spectrum) {
   }
   return result;
 }
+
+function camelToSnake(str) {
+  // https://edabit.com/challenge/NekgMswiPasDonSDe
+  return str.replace(/[A-Z]/g, matched => '_' + matched.toLowerCase());
+}
