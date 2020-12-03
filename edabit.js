@@ -2708,3 +2708,25 @@ function multiplyArray(arr) {
 //     User.userCount++;
 //   }
 // }
+
+function modInv(n, m) {
+  // https://edabit.com/challenge/b4vuZMpjTfFzxhgvK
+  let gcd = 1;
+  let smallNum = Math.min(n, m);
+  for (let divisor = smallNum; divisor > 1; divisor--) {
+    if (n % divisor === 0 && m % divisor === 0) {
+      gcd = divisor;
+      break;
+    }
+  }
+  if (gcd !== 1) {
+    return false;
+  }
+  let modularInverse = 1;
+  let temp = n * modularInverse;
+  while (temp % m !== 1) {
+    modularInverse++;
+    temp = n * modularInverse;
+  }
+  return modularInverse;
+}
