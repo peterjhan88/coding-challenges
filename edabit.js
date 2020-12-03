@@ -2699,3 +2699,12 @@ function multiplyArray(arr) {
   }
   return result;
 }
+
+// class User {
+//   // https://edabit.com/challenge/7PA4jhWqDYJT4ixLp
+//   static userCount = 0;
+//   constructor(username) {
+//     this.username = username;
+//     User.userCount++;
+//   }
+// }
