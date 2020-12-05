@@ -2730,3 +2730,16 @@ function modInv(n, m) {
   }
   return modularInverse;
 }
+
+function formatBigInt(bigNumber, decimals) {
+  // https://edabit.com/challenge/cXgmHb6aXESZBvW4b
+  let strBigInt = bigNumber.toString(10);
+  let result = '';
+  for (let index = 0; index < strBigInt.length; index++) {
+    if (index + decimals === strBigInt.length) {
+      result += ".";
+    }
+    result += strBigInt[index];
+  }
+  return result;
+}
