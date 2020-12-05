@@ -2743,3 +2743,21 @@ function formatBigInt(bigNumber, decimals) {
   }
   return result;
 }
+
+function isExact(n, bound = 1) {
+  // https://edabit.com/challenge/chDJCBDzZkjSExMwm
+  let isInteger = Number.isInteger(n);
+  if (!isInteger) {
+    return 'Not an exact bound!';
+  }
+  if (n === bound) {
+    let original = 1;
+    for (let number = 1; number <= bound; number++) {
+      original *= number;
+    }
+    return [original, bound];
+  }
+  n = n / bound;
+  bound++;
+  return isExact(n, bound);
+}
