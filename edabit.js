@@ -2761,3 +2761,26 @@ function isExact(n, bound = 1) {
   bound++;
   return isExact(n, bound);
 }
+
+// https://edabit.com/challenge/H5rAoCQBjyB4woTPY
+// const obj = {
+//   kitchen: {
+//     knives: 500,
+//     stereo: 200,
+//     signature: ""
+//   },
+//   signature: "Rocky Balboa"
+// }
+
+function signAgain(obj) {
+  // write your code here
+  // don't use a return statement
+  Object.seal(obj.kitchen);
+  Object.freeze(obj);
+  // DON'T CHANGE OR REMOVE THE LINES BELOW
+  obj.signature = "Terminator"
+  obj.extraProperty = "not possible"
+  obj.kitchen.piano = 1000
+  obj.kitchen.signature = "Rocky Balboa"
+  return obj
+}
