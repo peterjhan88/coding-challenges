@@ -2784,3 +2784,9 @@ function signAgain(obj) {
   obj.kitchen.signature = "Rocky Balboa"
   return obj
 }
+
+function variableValid(variable) {
+  // https://edabit.com/challenge/cGXwWujXdkx6BS3CX
+	let re = new RegExp(/^[a-zA-Z_]\w*$/);
+	return re.test(variable);
+}
