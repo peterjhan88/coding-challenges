@@ -2790,3 +2790,12 @@ function variableValid(variable) {
 	let re = new RegExp(/^[a-zA-Z_]\w*$/);
 	return re.test(variable);
 }
+
+function license(me, agents, others) {
+  // https://edabit.com/challenge/W3yNHjZdzie2fo2Er
+  let allPeople = others.split(' ');
+  allPeople.push(me);
+  allPeople.sort();
+  let myGroup = Math.ceil((allPeople.indexOf(me) + 1) / agents);
+  return myGroup * 20;
+}
