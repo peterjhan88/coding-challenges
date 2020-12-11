@@ -2799,3 +2799,34 @@ function license(me, agents, others) {
   let myGroup = Math.ceil((allPeople.indexOf(me) + 1) / agents);
   return myGroup * 20;
 }
+
+function diceScore(throws) {
+  // https://edabit.com/challenge/tM3qXKn2MMCYCpWMD
+  const scoreTable = {
+    'triple': [0, 1000, 200, 300, 400, 500, 600],
+    '1': 100,
+    '5': 50
+  }
+  let diceNumbers = {};
+  for (let index = 0; index < throws.length; index++) {
+    let dice = throws[index];
+    if (diceNumbers[dice]) {
+      diceNumbers[dice] = diceNumbers[dice] + 1;
+    } else {
+      diceNumbers[dice] = 1;
+    }
+  }
+  let totalScore = 0;
+  for (let diceNumber in diceNumbers) {
+    let occurance = diceNumbers[diceNumber];
+    if (occurance >= 3) {
+      while (occurance >= 3) {
+        totalScore += scoreTable.triple[diceNumber];
+        occurance -= 3;
+      }
+    }
+    let subScore = scoreTable[diceNumber] ? scoreTable[diceNumber] * occurance : 0;
+    totalScore += subScore;
+  }
+  return totalScore;
+}
