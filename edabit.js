@@ -2830,3 +2830,33 @@ function diceScore(throws) {
   }
   return totalScore;
 }
+
+function hiddenAnagram(text, phrase) {
+  // https://edabit.com/challenge/7hnsWYJGc6yPqEMjc
+  const originalTextJustLetters = text.match(/[a-z]/gi).map(letter => letter.toLowerCase());
+  const phraseLetters = phrase.match(/[a-z]/gi).map(letter => letter.toLowerCase());
+  const phraseLength = phraseLetters.length;
+  let startIndex = 0;
+  let copiedPhraseLetters = [...phraseLetters];
+  let endIndex = startIndex + phraseLength;
+  for (let index = startIndex; index < endIndex; index++) {
+    let currentLetter = originalTextJustLetters[index];
+    if (!copiedPhraseLetters.includes(currentLetter)) {
+      startIndex++;
+      endIndex = startIndex + phraseLength;
+      if (endIndex > originalTextJustLetters.length){
+        break;
+      }
+      index = startIndex-1;
+      copiedPhraseLetters = [...phraseLetters];
+    } else {
+      let currentLetterIndex = copiedPhraseLetters.indexOf(currentLetter);
+      copiedPhraseLetters.splice(currentLetterIndex, 1);
+    }
+  }
+  if (startIndex + phraseLength > originalTextJustLetters.length) {
+    return 'noutfond';
+  }
+  let result = originalTextJustLetters.slice(startIndex, startIndex + phraseLength);
+  return result.join('');
+}
