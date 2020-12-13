@@ -2860,3 +2860,18 @@ function hiddenAnagram(text, phrase) {
   let result = originalTextJustLetters.slice(startIndex, startIndex + phraseLength);
   return result.join('');
 }
+
+function calculateArrowhead(arr) {
+  // https://edabit.com/challenge/8ZQmveyijozCKFGTB
+  let overallArrow = arr.join('');
+  let stepsToRight = overallArrow.match(/>/g) ? overallArrow.match(/>/g).length : 0;
+  let stepsToLeft = overallArrow.match(/</g) ? overallArrow.match(/</g).length : 0;
+  let difference = stepsToRight - stepsToLeft;
+  let result = '';
+  if (difference > 0) {
+    result += '>'.repeat(difference);
+  } else {
+    result += '<'.repeat(Math.abs(difference));
+  }
+  return result;
+}
