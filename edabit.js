@@ -2875,3 +2875,11 @@ function calculateArrowhead(arr) {
   }
   return result;
 }
+
+function heightNeeded(volume) {
+  // https://edabit.com/challenge/gGWmC3BvmQ3gfAeR7
+  const radius = 5;
+  const litre = 1000;
+  let height = volume * litre * 3 / (Math.PI * radius * radius);
+  return Math.round(height * 100) / 100;
+}
