@@ -2895,3 +2895,18 @@ function verbify(str) {
   }
   return `${firstWord} ${secondWord}`;
 }
+
+function checkSum(arr, n) {
+  // https://edabit.com/challenge/i5pr5wJfQfmugehZm
+  let start = 0;
+  while (start < arr.length - 1) {
+    let baseNum = arr[start];
+    for (let index = start + 1; index < arr.length; index++) {
+      if (baseNum + arr[index] === n) {
+        return true;
+      }
+    }
+    start++;
+  }
+  return false;
+}
