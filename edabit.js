@@ -2883,3 +2883,15 @@ function heightNeeded(volume) {
   let height = volume * litre * 3 / (Math.PI * radius * radius);
   return Math.round(height * 100) / 100;
 }
+
+function verbify(str) {
+  // https://edabit.com/challenge/R7g5N9rscC6jgec5G
+  let [firstWord, secondWord] = str.split(' ');
+  const re = new RegExp(/(\w+)(e|ed)$/);
+  if (re.exec(firstWord)) {
+    firstWord = firstWord.replace(re, '$1ed');
+  } else {
+    firstWord += 'ed';
+  }
+  return `${firstWord} ${secondWord}`;
+}
