@@ -2910,3 +2910,25 @@ function checkSum(arr, n) {
   }
   return false;
 }
+
+function scoreIt(s) {
+  // https://edabit.com/challenge/3kLXjsWRwH62Skt78
+  let score = 0;
+  let depth = 0;
+  let digits = '';
+  for(let index=0; index<s.length; index++){
+    let char = s[index];
+    if(char.match(/\d/)){
+      digits += char;
+    } else if (char.match(/\(/)){
+      score += Number(digits) * depth;
+      digits = "";
+      depth++;
+    } else if (char.match(/\)/)){
+      score += Number(digits) * depth;
+      digits = "";
+      depth--;
+    }
+  }
+  return score;
+}
