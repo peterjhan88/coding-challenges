@@ -2932,3 +2932,11 @@ function scoreIt(s) {
   }
   return score;
 }
+
+function areaOfCountry(name, area) {
+  // https://edabit.com/challenge/ejfdLAp673DwxSg5R
+	const totalLand = 148940000;
+	let ratio = Math.round(area/totalLand * 100 * 100)/100;
+	let result = `${name} is ${ratio}% of the total world's landmass`;
+	return result;
+}
