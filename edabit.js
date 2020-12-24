@@ -2940,3 +2940,9 @@ function areaOfCountry(name, area) {
 	let result = `${name} is ${ratio}% of the total world's landmass`;
 	return result;
 }
+
+function impedanceCalculator(Dd, Dc, er) {
+  // https://edabit.com/challenge/yNS9sBcofT6NuT2kN
+	let result = 138 * (Math.log(Dd/Dc)/Math.log(10)) / ( Math.sqrt(er))
+	return Math.round(result*10) /10;
+}
