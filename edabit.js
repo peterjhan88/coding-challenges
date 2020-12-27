@@ -2946,3 +2946,53 @@ function impedanceCalculator(Dd, Dc, er) {
 	let result = 138 * (Math.log(Dd/Dc)/Math.log(10)) / ( Math.sqrt(er))
 	return Math.round(result*10) /10;
 }
+
+function parkingExit(arr) {
+  // https://edabit.com/challenge/sGneEQ9ZvGtBuNyrr
+	const car = 2
+	const stair = 1;
+	let result = [];
+  let stepsDown = 0;
+  // case of single floored parking lot
+	if(arr.length===1){
+    let distance = (arr[0].length-1);
+		distance -= arr[0].indexOf(car);
+		if(distance===0){
+      return result;
+		} else {
+      result.push(`R${distance}`);
+      return result;
+    }
+  }
+
+  // all other case
+	for(let row=0; row<arr.length; row++){
+    let carPosition = arr[row].indexOf(car);
+    let stairPosition = arr[row].indexOf(stair);
+    if (carPosition !== -1 && stairPosition!==-1){
+      let distance = carPosition-stairPosition;
+      let distanceWithDirection = (distance>0?'L':'R')+ Math.abs(distance);
+      result.push(distanceWithDirection);
+      stepsDown++;
+    } else if (carPosition === -1 && stairPosition !== -1){
+      let previousStairPosition = arr[row - 1].indexOf(stair);
+      let distance = previousStairPosition - stairPosition;
+      if(distance===0){
+        stepsDown++;
+      } else {
+        let distanceWithDirection = (distance > 0 ? 'L' : 'R') + Math.abs(distance);
+        result.push(`D${stepsDown}`,  distanceWithDirection);
+        stepsDown=1;
+      }
+    } else {
+      let distance = (arr[0].length - 1) - arr[row-1].indexOf(stair);
+      let distanceWithDirection = `R${Math.abs(distance)}`;
+      if(distance===0){
+        result.push(`D${stepsDown}`);
+      } else {
+        result.push(`D${stepsDown}`, distanceWithDirection);
+      }
+    }
+	}
+	return result;
+}
