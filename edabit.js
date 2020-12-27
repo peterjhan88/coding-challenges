@@ -2996,3 +2996,28 @@ function parkingExit(arr) {
 	}
 	return result;
 }
+
+class Twitter {
+  // https://edabit.com/challenge/Nc75jSjR5nuBfx7TK
+	#password = null;
+	#privateTweets = [];
+	constructor(user, pass){
+		this.user = user;
+		this.#password = pass;
+	}
+	checkPassword(pass){
+		return pass===this.#password;
+	}
+	get password() {
+		return '****'
+	}
+	set tweet(message){
+		this.#privateTweets.push(message);
+		if(this.#privateTweets.length>5){
+      this.#privateTweets = this.#privateTweets.slice(1);
+		}
+	}
+	get tweets(){
+		return [...this.#privateTweets];
+	}
+}
