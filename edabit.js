@@ -3021,3 +3021,16 @@ class Twitter {
 		return [...this.#privateTweets];
 	}
 }
+
+function spinAround(r) {
+  // https://edabit.com/challenge/Z8QZZJzLF4LWPA5Xw
+  let currentDegree = 0;
+  for (let index = 0; index < r.length; index++) {
+    if (r[index].match('right')) {
+      currentDegree += 90;
+    } else {
+      currentDegree -= 90;
+    }
+  }
+  return Math.floor(Math.abs(currentDegree) / 360);
+}
