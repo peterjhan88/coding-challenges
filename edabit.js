@@ -3021,3 +3021,20 @@ class Twitter {
 		return [...this.#privateTweets];
 	}
 }
+
+function lowerTriang(matrix) {
+  // https://edabit.com/challenge/jkkhAZ2C9Zy4SHbtj
+  let result = [];
+  for(let row=0; row<matrix.length; row++){
+    let singleRow = [];
+    for(let col=0; col<matrix[row].length; col++){
+      if(col>row){
+        singleRow.push(0);
+      } else {
+        singleRow.push(matrix[row][col]);
+      }
+    }
+    result.push(singleRow);
+  }
+  return result;
+}
