@@ -3022,6 +3022,19 @@ class Twitter {
 	}
 }
 
+function spinAround(r) {
+  // https://edabit.com/challenge/Z8QZZJzLF4LWPA5Xw
+  let currentDegree = 0;
+  for (let index = 0; index < r.length; index++) {
+    if (r[index].match('right')) {
+      currentDegree += 90;
+    } else {
+      currentDegree -= 90;
+    }
+  }
+  return Math.floor(Math.abs(currentDegree) / 360);
+}
+
 function lowerTriang(matrix) {
   // https://edabit.com/challenge/jkkhAZ2C9Zy4SHbtj
   let result = [];
@@ -3079,4 +3092,38 @@ function reverseSort(str) {
     result.push(...temp);
   }
 	return result.join(' ');
+}
+
+function isConsecutive(s) {
+  // https://edabit.com/challenge/3kqmmTPHjB67ieK3t
+	const maxLength = s.length/2;
+	let isConsecutive = false;
+	for(let targetLength=1; targetLength<=maxLength; targetLength++){
+    // create an array of numbers with target length
+		let numbers = [];
+		let start = 0;
+		let end = start+targetLength;
+    while (start<s.length){
+			let number = Number(s.slice(start, end));
+			numbers.push(number);
+			start = end;
+      end += targetLength;
+    }
+
+    // check consecutiveness
+    let difference = numbers[1]-numbers[0];
+    if(Math.abs(difference)===1){
+      for(let index=0; index<numbers.length-1; index++){
+        isConsecutive = true;
+        if(numbers[index]+difference!==numbers[index+1]){
+          isConsecutive = false;
+          break;
+        }
+      }
+    }
+		if(isConsecutive){
+			return isConsecutive;
+		}
+	}
+	return isConsecutive;
 }
