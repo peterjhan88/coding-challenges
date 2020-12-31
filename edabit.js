@@ -3052,6 +3052,48 @@ function lowerTriang(matrix) {
   return result;
 }
 
+function reverseSort(str) {
+  // https://edabit.com/challenge/jX6FbEai4APajFbeC
+  let words = str.split(' ');
+	let groupedByLength = {}
+	for(let index=0; index<words.length; index++){
+		let word = words[index]
+		let theLength = word.length;
+		if(groupedByLength[theLength]){
+			groupedByLength[theLength].push(word);
+		} else {
+			groupedByLength[theLength] = [word];
+		}
+  }
+
+	let wordsByLengthReverse = [];
+	for(let [wordLength, words] of Object.entries(groupedByLength)){
+		let wordObject = {
+			length: Number(wordLength),
+			words: words
+		}
+		wordsByLengthReverse.push(wordObject);
+	}
+	wordsByLengthReverse.sort((a,b)=>b.length-a.length);
+  let result = [];
+  for (let index = 0; index < wordsByLengthReverse.length; index++){
+    let temp = wordsByLengthReverse[index].words;
+    temp.sort((a, b) => {
+      let lowA = a.toLowerCase();
+      let lowB = b.toLowerCase();
+      if (lowA < lowB) {
+        return 1;
+      }
+      if (lowA > lowB) {
+        return -1;
+      }
+      return 0;
+    });
+    result.push(...temp);
+  }
+	return result.join(' ');
+}
+
 function isConsecutive(s) {
   // https://edabit.com/challenge/3kqmmTPHjB67ieK3t
 	const maxLength = s.length/2;
