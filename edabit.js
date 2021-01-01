@@ -3127,3 +3127,10 @@ function isConsecutive(s) {
 	}
 	return isConsecutive;
 }
+
+function digitalDecipher(eMessage, key) {
+  // https://edabit.com/challenge/tfeccdFSN8Eh2NiCE
+  const keyByDigits = key.toString(10).split('').map(digit => Number(digit));
+  let result = eMessage.map((number, index) => String.fromCharCode(number - keyByDigits[index % keyByDigits.length] + 96)).join('');
+  return result;
+}
