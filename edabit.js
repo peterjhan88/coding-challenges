@@ -3134,3 +3134,22 @@ function digitalDecipher(eMessage, key) {
   let result = eMessage.map((number, index) => String.fromCharCode(number - keyByDigits[index % keyByDigits.length] + 96)).join('');
   return result;
 }
+
+function perimeter(arr) {
+  // https://edabit.com/challenge/gFMNDo3TGGnA4ZuMB
+  const getDistance = (pointA, pointB) => {
+    let deltaX = pointB[0] - pointA[0];
+    let deltaY = pointB[1] - pointA[1];
+    let distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+    return distance;
+  }
+  let perimeter = 0;
+  for (let index = 0; index <= arr.length - 1; index++) {
+    if (index === arr.length - 1) {
+      perimeter += getDistance(arr[index], arr[0]);
+    } else {
+      perimeter += getDistance(arr[index], arr[index + 1]);
+    }
+  }
+  return Math.round(perimeter * 100) / 100;
+}
