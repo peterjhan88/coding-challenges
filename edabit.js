@@ -3153,3 +3153,36 @@ function perimeter(arr) {
   }
   return Math.round(perimeter * 100) / 100;
 }
+
+function resist(net) {
+  // https://edabit.com/challenge/eWXL8Jz78hP5tW644
+  // these will find resistors in series/parallel
+  const seriesRE = new RegExp(/\([0-9\.,\s]+\)/g);
+  const parallelRE = new RegExp(/\[[0-9\.,\s]+\]/g);
+
+  // replace
+  let containSeries = seriesRE.test(net);
+  let containParallel = parallelRE.test(net);
+  while (containSeries || containParallel){
+    if (containSeries){
+      net = net.replace(seriesRE, matched => {
+        let resistors = matched.match(/[\d\.]+/g)
+        resistors = resistors.map(resistorString => Number(resistorString));
+        let total = resistors.reduce((totalOhm, resistorOhm) => totalOhm += resistorOhm, 0);
+        return total
+      })
+    }
+    if (containParallel) {
+      net = net.replace(parallelRE, matched => {
+        let resistors = matched.match(/[\d\.]+/g)
+        resistors = resistors.map(resistorString => Number(resistorString));
+        let total = resistors.reduce((totalOhm, resistorOhm) => totalOhm += (1/resistorOhm), 0);
+        return (1/total);
+      })
+    }
+    containSeries = seriesRE.test(net);
+    containParallel = parallelRE.test(net);
+  }
+  let result = Math.round(Number(net)*10)/10;
+  return result;
+}
