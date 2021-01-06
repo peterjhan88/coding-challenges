@@ -3186,3 +3186,24 @@ function resist(net) {
   let result = Math.round(Number(net)*10)/10;
   return result;
 }
+
+function primeFaster(x) {
+  // https://edabit.com/challenge/FkcL7Fw9KF74rLCbK
+  const limit = Math.sqrt(x);
+  if (x <= 1) {
+    // eliminate 1 or less
+    return false;
+  } else {
+    if (x % 2 === 0) {
+      // eliminate even
+      return false;
+    } else {
+      for (let number = 3; number <= limit; number += 2) {
+        if (x % number === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+}
