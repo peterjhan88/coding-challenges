@@ -3220,3 +3220,8 @@ function notGoodMath(n, k) {
   }
   return n;
 }
+
+function makeWordRiddle(s) {
+  // https://edabit.com/challenge/Nz7ZmEeMFZ6GznPex
+	return s.replace(/(\w+)in(\w)(\w+)/i, '$2$1$3').toUpperCase();
+}
