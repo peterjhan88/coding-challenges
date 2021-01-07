@@ -3207,3 +3207,16 @@ function primeFaster(x) {
     }
   }
 }
+
+function notGoodMath(n, k) {
+  // https://edabit.com/challenge/x8ucw62XkGQkv9QdR
+  while (k > 0) {
+    if (n % 10 === 0) {
+      n /= 10;
+    } else {
+      n -= 1;
+    }
+    k--;
+  }
+  return n;
+}
