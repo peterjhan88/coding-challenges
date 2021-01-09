@@ -3225,3 +3225,10 @@ function makeWordRiddle(s) {
   // https://edabit.com/challenge/Nz7ZmEeMFZ6GznPex
 	return s.replace(/(\w+)in(\w)(\w+)/i, '$2$1$3').toUpperCase();
 }
+
+function factory(num) {
+  // https://edabit.com/challenge/FEiLd6HgHcwkgHTWP
+  return (numberArray) => {
+    return numberArray.map(number => number / num);
+  }
+}
