@@ -3232,3 +3232,14 @@ function factory(num) {
     return numberArray.map(number => number / num);
   }
 }
+
+function trackRobot(...steps) {
+  // https://edabit.com/challenge/jfpfpH6w42tZeRo2T
+  let currentPosition = [0, 0];
+  let direction = [1, 1, -1, -1];
+  for (let index = 0; index < steps.length; index++) {
+    let sign = direction[index % 4];
+    currentPosition[(index + 1) % 2] += sign * steps[index];
+  }
+  return currentPosition
+}
