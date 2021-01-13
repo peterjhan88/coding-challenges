@@ -3243,3 +3243,21 @@ function trackRobot(...steps) {
   }
   return currentPosition
 }
+
+function secret(text) {
+  // https://edabit.com/challenge/SPsf87irFHTimcDCS
+  let [parent, children] = text.split('>');
+  let limitForChildren = Number(children.match(/\*(?<limit>\d+)$/).groups.limit);
+  children = children.replace(/\*\d+$/, '');
+  let [tagOfChildren, className] = children.split('.');
+  let childrenElements = '';
+  for (let index = 0; index < limitForChildren; index++) {
+    childrenNumber = (index + 1).toString(10);
+    childrenElements += `<${tagOfChildren} class="${className.replace(/\$+/, numberFormat => {
+      return childrenNumber.padStart(numberFormat.length, '0');
+    })
+      }"></${tagOfChildren}>`
+  }
+  let result = `<${parent}>${childrenElements}</${parent}>`;
+  return result;
+}
