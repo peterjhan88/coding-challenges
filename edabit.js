@@ -3261,3 +3261,13 @@ function secret(text) {
   let result = `<${parent}>${childrenElements}</${parent}>`;
   return result;
 }
+
+function balanced(word) {
+  // https://edabit.com/challenge/8QTBwLzAdaM8wkrXu
+  let [leftSide, rightSide] = [0, 0];
+  for (let index = 0; index < word.length / 2; index++) {
+    leftSide += word[index].charCodeAt() - 95;
+    rightSide += word[word.length - 1 - index].charCodeAt() - 95;
+  }
+  return leftSide === rightSide;
+}
