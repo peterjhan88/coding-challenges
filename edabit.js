@@ -3271,3 +3271,16 @@ function balanced(word) {
   }
   return leftSide === rightSide;
 }
+
+function sumDigProd(...numbers) {
+  // https://edabit.com/challenge/Kzmyf4pLx66ZRsnWk
+	let result = numbers.reduce( (total, number) => total+=number, 0);
+	if(result<1){
+		return result
+	}
+	while(result%10!==result){
+		let digits = result.toString(10).split('').map( digit=> Number(digit));
+		result = digits.reduce( (total, digit) => total*=digit, 1)
+	}
+	return result;
+}
