@@ -3284,3 +3284,23 @@ function sumDigProd(...numbers) {
 	}
 	return result;
 }
+
+function funcSort(arr) {
+  // https://edabit.com/challenge/zi2Mvb2GZi3r34JKv
+  let allInfo = [];
+  for (let index = 0; index < arr.length; index++) {
+    let elementInfo = {
+      'originalElement': arr[index]
+    }
+    let potentialFunction = arr[index];
+    let call = 0;
+    while (typeof potentialFunction === 'function') {
+      potentialFunction = potentialFunction();
+      call++;
+    }
+    elementInfo.call = call;
+    allInfo.push(elementInfo);
+  }
+  let result = allInfo.sort((a, b) => a.call - b.call).map(element => element.originalElement);
+  return result;
+}
