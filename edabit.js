@@ -3304,3 +3304,28 @@ function funcSort(arr) {
   let result = allInfo.sort((a, b) => a.call - b.call).map(element => element.originalElement);
   return result;
 }
+
+function goldDistribution(gold) {
+  // https://edabit.com/challenge/XayqZJQQ5oJJGZSqc
+  let result = []
+  let [mubashir, matt] = [0, 0];
+  let isMubashirTurn = true;
+  while (gold.length > 0) {
+    let goldPile = 0;
+    let lastIndex = gold.length - 1;
+    if (gold[0] >= gold[lastIndex]) {
+      goldPile = gold[0];
+      gold.splice(0, 1);
+    } else {
+      goldPile = gold[lastIndex];
+      gold.splice(lastIndex, 1);
+    }
+    if (isMubashirTurn) {
+      mubashir += goldPile;
+    } else {
+      matt += goldPile;
+    }
+    isMubashirTurn = !isMubashirTurn;
+  }
+  return [mubashir, matt];
+}
