@@ -3329,3 +3329,43 @@ function goldDistribution(gold) {
   }
   return [mubashir, matt];
 }
+
+function primalStrength(n) {
+  // https://edabit.com/challenge/n3w4fqdaMuCB9bjgs
+  const isPrime = number => {
+    const limit = Math.sqrt(number);
+    if (number <= 1) {
+      return false;
+    } else {
+      if (number % 2 === 0 && number !== 2) {
+        return false;
+      } else {
+        for (let num = 3; num <= limit; num += 2) {
+          if (number % num === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+  }
+  let smallerPrime = null;
+  let biggerPrime = null;
+  let difference = 1;
+  while (smallerPrime === null || biggerPrime === null) {
+    if (smallerPrime === null && isPrime(n - difference)) {
+      smallerPrime = n - difference;
+    }
+    if (biggerPrime === null && isPrime(n + difference)) {
+      biggerPrime = n + difference;
+    }
+    difference++;
+  }
+  let status = 'Balanced';
+  if (n - smallerPrime > biggerPrime - n) {
+    status = 'Strong';
+  } else if (n - smallerPrime < biggerPrime - n) {
+    status = 'Weak';
+  }
+  return status;
+}
