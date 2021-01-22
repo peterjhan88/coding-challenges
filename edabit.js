@@ -3381,3 +3381,25 @@ function takeDownAverage(scores) {
   let targetScore = targetClassTotal - classTotal;
   return `${targetScore.toFixed(0)}%`
 }
+
+function findAllDigits(nums) {
+  // https://edabit.com/challenge/5hsyLC2Ntgoqn2wAy
+  let targetDigits = [...'0123456789'];
+  let index = 0;
+  let result = 'Missing digits!';
+  while (index < nums.length && targetDigits.length > 0) {
+    let currentDigits = [...nums[index].toString(10)];
+    for (let digitIndex = 0; digitIndex < currentDigits.length; digitIndex++) {
+      let targetIndex = targetDigits.indexOf(currentDigits[digitIndex]);
+      if (targetIndex !== -1) {
+        targetDigits.splice(targetIndex, 1);
+      }
+    }
+    if (targetDigits.length === 0) {
+      result = nums[index];
+      break;
+    }
+    index++;
+  }
+  return result;
+}
