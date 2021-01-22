@@ -3369,3 +3369,15 @@ function primalStrength(n) {
   }
   return status;
 }
+
+function takeDownAverage(scores) {
+  // https://edabit.com/challenge/JemYN797Zmqj98YEt
+  let numbers = scores.map(score => Number(score.match(/\d+/)));
+  let classTotal = numbers.reduce((total, score) => total += score, 0);
+  let totalStudent = numbers.length;
+  let classAverage = classTotal / totalStudent;
+  let targetAverage = classAverage - 5;
+  let targetClassTotal = (classAverage - 5) * (totalStudent + 1);
+  let targetScore = targetClassTotal - classTotal;
+  return `${targetScore.toFixed(0)}%`
+}
