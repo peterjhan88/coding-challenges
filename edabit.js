@@ -3423,3 +3423,22 @@ function nearestChapter(chapt, page) {
 	}
 	return nearestChapter;
 }
+
+function overlappingRectangles(rect1, rect2) {
+  // https://edabit.com/challenge/dejHsfH2qWpgu4CGC
+  rect1.sort((a, b) => a.x - b.x);
+  rect2.sort((a, b) => a.x - b.x);
+  let leftBottomVertex = {
+    'x': Math.max(rect1[0].x, rect2[0].x),
+    'y': Math.max(rect1[0].y, rect2[0].y)
+  };
+  let rightTopVertex = {
+    'x': Math.min(rect1[1].x, rect2[1].x),
+    'y': Math.min(rect1[1].y, rect2[1].y)
+  };
+  let area = 0;
+  if (leftBottomVertex.x < rightTopVertex.x && leftBottomVertex.y < rightTopVertex.y) {
+    area = (rightTopVertex.x - leftBottomVertex.x) * (rightTopVertex.y - leftBottomVertex.y);
+  }
+  return area;
+}
