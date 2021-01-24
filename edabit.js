@@ -3403,3 +3403,23 @@ function findAllDigits(nums) {
   }
   return result;
 }
+
+function nearestChapter(chapt, page) {
+  // https://edabit.com/challenge/E5kxeJA782rNX2bch
+	let pagesToBookmark = []
+	for(let chapterName in chapt){
+		let chapterInfo = {}
+		chapterInfo['distance'] = Math.abs(chapt[chapterName] - page);
+		chapterInfo['originalPage'] = chapt[chapterName];
+		chapterInfo['chapterTitle'] = chapterName;
+		pagesToBookmark.push(chapterInfo);
+	}
+	pagesToBookmark.sort((a,b)=>a.distance-b.distance);
+	let nearestChapter = pagesToBookmark[0].chapterTitle;
+	if(pagesToBookmark[0].distance===pagesToBookmark[1].distance){
+		if(pagesToBookmark[0].originalPage<pagesToBookmark[1].originalPage){
+			nearestChapter = pagesToBookmark[1].chapterTitle;
+		}
+	}
+	return nearestChapter;
+}
