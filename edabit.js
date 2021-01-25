@@ -3442,3 +3442,20 @@ function overlappingRectangles(rect1, rect2) {
   }
   return area;
 }
+
+function happy(n) {
+  // https://edabit.com/challenge/EhGY9aaNHiCqqpnL9
+  const getDigitSquareSum = number => {
+    let total = 0;
+    while (n % 10 !== n) {
+      total += (n % 10) ** 2;
+      n = Math.floor(n / 10);
+    }
+    total += (n % 10) ** 2;
+    return total;
+  }
+  while (n !== 1 && n !== 4) {
+    n = getDigitSquareSum(n);
+  }
+  return n === 1;
+}
