@@ -3459,3 +3459,28 @@ function happy(n) {
   }
   return n === 1;
 }
+
+function convertFunctions(fn) {
+  // https://edabit.com/challenge/Zf5a8fNYZ6hPJeXE4
+  // function => arrow
+  const fnToArrow = new RegExp(/function\s?(?<name>\w+)?\s?(?<parameter>\(.*\))\s?(?<body>\{[\s\S]*\})/);
+  // arrow => function
+  const arrowToFn = new RegExp(/(var\s|let\w|const\s)?(?<name>\w+)?(=|\s=\s)?(?<parameter>\(.*\))\s?=>\s?(?<body>\{[\s\S]*\})/);
+  let matched = fn.match(fnToArrow);
+  let convertedFunction = '';
+  if (fnToArrow.exec(fn)) {
+    let functionInfo = fn.match(fnToArrow).groups;
+    if (functionInfo.name !== undefined) {
+      convertedFunction += `const ${functionInfo.name} = `;
+    }
+    convertedFunction += `${functionInfo.parameter} => ${functionInfo.body}`;
+  } else {
+    let functionInfo = fn.match(arrowToFn).groups;
+    convertedFunction += 'function ';
+    if (functionInfo.name !== undefined) {
+      convertedFunction += `${functionInfo.name}`;
+    }
+    convertedFunction += `${functionInfo.parameter} ${functionInfo.body}`;
+  }
+  return convertedFunction;
+}
