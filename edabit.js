@@ -3484,3 +3484,19 @@ function convertFunctions(fn) {
   }
   return convertedFunction;
 }
+
+function divisibleByLeft(n) {
+  // https://edabit.com/challenge/ZRvwAuxcA8SFsPoBP
+  let digits = [...n.toString(10)].map(digit => Number(digit));
+  let result = [];
+  for (let index = 0; index < digits.length; index++) {
+    let digit = digits[index];
+    let previousDigit = digits[index - 1];
+    if (previousDigit === undefined || digit % previousDigit !== 0) {
+      result.push(false);
+    } else {
+      result.push(true);
+    }
+  }
+  return result;
+}
