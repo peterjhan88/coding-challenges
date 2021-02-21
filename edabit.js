@@ -3500,3 +3500,20 @@ function divisibleByLeft(n) {
   }
   return result;
 }
+
+function maxPossible(n1, n2) {
+  // https://edabit.com/challenge/7vowiHDR5oYksAjqQ
+  let digitsOfN1 = [...n1.toString(10)].map(digit => Number(digit));
+  let digitsOfN2 = [...n2.toString(10)].map(digit => Number(digit)).sort((a, b) => a - b);
+  let currentMaxDigitOfN2 = digitsOfN2.pop();
+  let result = [];
+  for (let index = 0; index < digitsOfN1.length; index++) {
+    if (currentMaxDigitOfN2 > digitsOfN1[index]) {
+      result.push(currentMaxDigitOfN2);
+      currentMaxDigitOfN2 = digitsOfN2.pop();
+    } else {
+      result.push(digitsOfN1[index]);
+    }
+  }
+  return Number(result.join(''));
+}
