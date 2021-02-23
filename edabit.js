@@ -3517,3 +3517,20 @@ function maxPossible(n1, n2) {
   }
   return Number(result.join(''));
 }
+
+function stringExpansion(txt) {
+  // https://edabit.com/challenge/4NKNkPZtN39cqCQMk
+  let result = '';
+  let matchedLetters = txt.match(/(\d[a-z]+|[a-z]+)/gi) || [];
+  for (let index = 0; index < matchedLetters.length; index++) {
+    let currentLetter = matchedLetters[index];
+    let desiredString = '';
+    let [letters] = currentLetter.match(/[a-z]+/i);
+    let limit = currentLetter.match(/\d/) ? Number(currentLetter.match(/\d/)) : 1;
+    for (let letterIndex = 0; letterIndex < letters.length; letterIndex++) {
+      desiredString += letters[letterIndex].repeat(limit);
+    }
+    result += desiredString;
+  }
+  return result;
+}
