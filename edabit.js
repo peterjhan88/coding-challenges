@@ -3534,3 +3534,19 @@ function stringExpansion(txt) {
   }
   return result;
 }
+
+function isSet(cards) {
+  // https://edabit.com/challenge/278bzxEFeTKNiKXfM
+  let setOfColors = new Set();
+  let setOfNumbers = new Set();
+  let setOfShades = new Set();
+  let setOfShapes = new Set();
+  for(let index=0; index<cards.length; index++){
+    let card = cards[index];
+    setOfColors.add(card.color);
+    setOfNumbers.add(card.number);
+    setOfShades.add(card.shade);
+    setOfShapes.add(card.shape);
+  }
+  return setOfColors.size !== 2 && setOfNumbers.size !== 2 && setOfShades.size !== 2 && setOfShapes.size !== 2
+}
