@@ -3550,3 +3550,25 @@ function isSet(cards) {
   }
   return setOfColors.size !== 2 && setOfNumbers.size !== 2 && setOfShades.size !== 2 && setOfShapes.size !== 2
 }
+
+function mode(nums) {
+  // https://edabit.com/challenge/biyHa34iTd58LfFFb
+	let distinctiveElements = new Set();
+	let maxOccurrence = null;
+	let modeInfo = [];
+	for(let index=0; index<nums.length; index++){
+		distinctiveElements.add(nums[index]);
+	}
+	distinctiveElements.forEach( (element, key, thisSet)=> {
+		let someNumber = {
+			value : element,
+      occurrence : nums.filter(num => num===element).length
+		}
+    if (maxOccurrence === null || maxOccurrence < someNumber.occurrence){
+      maxOccurrence = someNumber.occurrence;
+		}
+		modeInfo.push(someNumber)
+	});
+	let result = modeInfo.filter( number => number.occurrence === maxOccurrence).map(number => number.value);
+	return result;
+}
