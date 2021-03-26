@@ -3572,3 +3572,15 @@ function mode(nums) {
 	let result = modeInfo.filter( number => number.occurrence === maxOccurrence).map(number => number.value);
 	return result;
 }
+
+function simpleTimer(seconds) {
+  // https://edabit.com/challenge/Ckaeua4gBHeGBF7Lr
+  let result = [];
+  let hours = Math.floor(seconds / 3600);
+  seconds = seconds - hours * 3600;
+  let minutes = Math.floor(seconds / 60);
+  seconds = seconds - minutes * 60;
+  result.push(hours, minutes, seconds);
+  result = result.map(time => ('' + time).padStart(2, '0'));
+  return result.join(':');
+}
