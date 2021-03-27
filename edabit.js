@@ -3584,3 +3584,12 @@ function simpleTimer(seconds) {
   result = result.map(time => ('' + time).padStart(2, '0'));
   return result.join(':');
 }
+
+function canBuild(digits, arr) {
+  // https://edabit.com/challenge/sEn8HvF2pHiv4La2N
+  if (arr.length < 1) {
+    return true;
+  }
+  let digitsOfArr = arr.map(num => num.toString(10).split('')).flat(1).map(digit => digits[digit] = digits[digit] - 1);
+  return digits.every(digit => digit >= 0);
+}
