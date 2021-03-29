@@ -3593,3 +3593,13 @@ function canBuild(digits, arr) {
   let digitsOfArr = arr.map(num => num.toString(10).split('')).flat(1).map(digit => digits[digit] = digits[digit] - 1);
   return digits.every(digit => digit >= 0);
 }
+
+function windowMaxes(array, windowLength) {
+  // https://edabit.com/challenge/eiwM33xiRvWwpRZua
+  let result = [];
+  for(let index=0; index<=array.length-windowLength; index++){
+    let arrayPortion = array.slice(index, index+windowLength);
+    result.push(Math.max(arrayPortion));
+  }
+  return result;
+}
