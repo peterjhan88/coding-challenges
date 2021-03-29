@@ -3603,3 +3603,21 @@ function windowMaxes(array, windowLength) {
   }
   return result;
 }
+
+function pigLatinSentence(sentence) {
+  // https://edabit.com/challenge/bzir2NMSGMYDXeNEG
+  let words = sentence.split(' ');
+  let wordsWithPigLatin = [];
+  for (let index = 0; index < words.length; index++) {
+    let word = words[index];
+    let newWord = null;
+    if (word.match(/^[aeiou].*/i)) {
+      newWord = word + 'way';
+    } else {
+      let firstVowel = word.match(/[aeiou]/i);
+      newWord = word.replace(/^([^aeiou]*)([aeiou]+.*$)/i, '$2$1ay');
+    }
+    wordsWithPigLatin.push(newWord);
+  }
+  return wordsWithPigLatin.join(' ');
+}
