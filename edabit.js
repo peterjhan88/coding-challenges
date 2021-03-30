@@ -3621,3 +3621,23 @@ function pigLatinSentence(sentence) {
   }
   return wordsWithPigLatin.join(' ');
 }
+
+function verticalText(str) {
+  // https://edabit.com/challenge/aBMEMcMoWbbSRjFWS
+	let words = str.split(' ');
+	let maxLength = Math.max(...words.map( word=> word.length));
+	let transposed = [];
+	for(let row=0; row<maxLength; row++){
+		let newRow = [];
+		for(let col=0; col<words.length; col++){
+			let letter = words[col][row];
+			if(letter===undefined){
+				newRow.push(' ');
+			} else {
+				newRow.push(letter)
+			}
+		}
+		transposed.push(newRow);
+	}
+	return transposed;
+}
