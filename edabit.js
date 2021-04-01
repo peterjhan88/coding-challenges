@@ -3641,3 +3641,9 @@ function verticalText(str) {
 	}
 	return transposed;
 }
+
+function getDays(date1, date2) {
+  // https://edabit.com/challenge/3hdXjfJozQySRC3gE
+  let differenceInMilliseconds = date2 - date1;
+  return Math.floor(differenceInMilliseconds / (1000 * 3600 * 24));
+}
