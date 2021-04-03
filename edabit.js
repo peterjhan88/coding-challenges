@@ -3647,3 +3647,14 @@ function getDays(date1, date2) {
   let differenceInMilliseconds = date2 - date1;
   return Math.floor(differenceInMilliseconds / (1000 * 3600 * 24));
 }
+
+function minSwaps(s1, s2) {
+  // https://edabit.com/challenge/HZcpmfBg6NstB5soN
+  let swapCounter = 0;
+  for (let index = 0; index < s1.length; index++) {
+    if (s1[index] !== s2[index]) {
+      swapCounter++;
+    }
+  }
+  return swapCounter / 2;
+}
