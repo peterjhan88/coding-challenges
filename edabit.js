@@ -3658,3 +3658,19 @@ function minSwaps(s1, s2) {
   }
   return swapCounter / 2;
 }
+
+function lessEqual(arr, k) {
+  // https://edabit.com/challenge/4AY5rGSq6n3had3wY
+  let result = null;
+  if (k === 0) {
+    if (arr[k] > 1) {
+      result = 1;
+    }
+  } else {
+    arr.sort((a, b) => a - b);
+    if (arr[k - 1] !== arr[k]) {
+      result = arr[k - 1];
+    }
+  }
+  return result;
+}
