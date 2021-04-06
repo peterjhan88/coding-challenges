@@ -3674,3 +3674,14 @@ function lessEqual(arr, k) {
   }
   return result;
 }
+
+function strMatchBy2char(a, b) {
+  // https://edabit.com/challenge/tWEsR6BY3qRFP3L8r
+	let matchCounter = 0;
+	for(let index=0; index<a.length-1 && b.length-1; index++){
+		if(a[index]===b[index] && a[index+1]===b[index+1]){
+			matchCounter++;
+		}
+	}
+	return matchCounter;
+}
