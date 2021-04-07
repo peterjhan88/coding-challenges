@@ -3685,3 +3685,10 @@ function strMatchBy2char(a, b) {
 	}
 	return matchCounter;
 }
+
+function evenLast(arr) {
+  // https://edabit.com/challenge/vwLPMwTHQshP3PkJN
+  let evenIndexed = arr.filter((element, index) => index % 2 === 0);
+  let result = evenIndexed.reduce((acc, element) => acc += element * arr[arr.length - 1], 0);
+  return result;
+}
