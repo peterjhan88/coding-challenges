@@ -3692,3 +3692,14 @@ function evenLast(arr) {
   let result = evenIndexed.reduce((acc, element) => acc += element * arr[arr.length - 1], 0);
   return result;
 }
+
+function validatePN(s) {
+  // https://edabit.com/challenge/LQvRrzwHzc2BAXBQx
+  let isValid = false;
+  if (s.match(/\d/g).length === 10 || s.match(/\d/g).length === 11){
+    let validPhoneNumber = new RegExp(/(?<countryCode>\+\d[\s\.\-\/]|\d[\s\.\-\/]|\d)?(?<areaCode>\(\d{3}\)|\d{3})(?<phoneNumberPart1>\d{3})/);
+    let matched = s.match(validPhoneNumber)
+    console.log(matched)
+  }
+  return isValid;
+}
