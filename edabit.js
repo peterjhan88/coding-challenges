@@ -3692,3 +3692,20 @@ function evenLast(arr) {
   let result = evenIndexed.reduce((acc, element) => acc += element * arr[arr.length - 1], 0);
   return result;
 }
+
+function combinations(k, n) {
+  // https://edabit.com/challenge/Wk7ScSpAG4wLSqm8k
+  const getFactorial = number => {
+    let total = 1;
+    for(let num = number; num>1; num--){
+      total*=num;
+    }
+    return total;
+  }
+  let result = 1;
+  for (let number = n; number > n - k && number>1; number--){
+    result *= number;
+  }
+  result = result/getFactorial(k);
+  return Math.floor(result);
+}
