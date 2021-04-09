@@ -3709,3 +3709,18 @@ function combinations(k, n) {
   result = result/getFactorial(k);
   return Math.floor(result);
 }
+
+function groupEdabit(arr, size) {
+  // https://edabit.com/challenge/w5LTwJwDLK4uQ3Dmv
+  let result = [];
+  let numberOfGroups = Math.ceil(arr.length / size);
+  for (let index = 0; index < arr.length; index++) {
+    let subGroupsIndex = index % numberOfGroups;
+    if (result[subGroupsIndex] === undefined) {
+      result.push([arr[index]]);
+    } else {
+      result[subGroupsIndex].push(arr[index]);
+    }
+  }
+  return result;
+}
