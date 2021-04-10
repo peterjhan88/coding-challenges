@@ -3724,3 +3724,21 @@ function groupEdabit(arr, size) {
   }
   return result;
 }
+
+function rearrange(sentence) {
+  // https://edabit.com/challenge/TZR9EM6xcJrer4Naq
+  if (!sentence.match(/\w/g)) {
+    return '';
+  }
+  let words = sentence.split(' ');
+  let sortedWords = words.map(word => {
+    let wordObject = {
+      number: word.match(/\d+/),
+      word: word.replace(/\d+/, '')
+    };
+    return wordObject
+  })
+  sortedWords.sort((a, b) => a.number - b.number);
+  let result = sortedWords.map(word => word.word);
+  return result.join(' ');
+}
