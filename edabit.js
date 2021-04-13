@@ -3745,5 +3745,28 @@ function rearrange(sentence) {
 
 function spoonerise(phrase) {
   // https://edabit.com/challenge/CCAEMfHcmrvSwA4KR
-  return phrase.replace(/([^aeiou]*)([aieou]\w*) ([^aeiou]*)([aieou]\w*)/, '$3$2 $1$4');
+  return phrase.replace(/([^aeiou]*)([aeiou]\w*) ([^aeiou]*)([aeiou]\w*)/, '$3$2 $1$4');
+}
+
+function removeVirus(files) {
+  // https://edabit.com/challenge/kLGCKsaYKoZHdtLv7
+  let result = 'PC Files: ';
+  let justFiles = files.match(/PC Files: (?<files>.*)/).groups.files.split(', ') || [];
+  let safeFiles = [];
+  for (let index = 0; index < justFiles.length; index++) {
+    let file = justFiles[index];
+    if (file.match(/(virus|malware)/i)) {
+      if (file.match(/^(not|anti)/)) {
+        safeFiles.push(file);
+      }
+    } else {
+      safeFiles.push(file);
+    }
+  }
+  if (safeFiles.length === 0) {
+    result += 'Empty';
+  } else {
+    result += safeFiles.join(', ');
+  }
+  return result;
 }
