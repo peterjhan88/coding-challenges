@@ -3742,3 +3742,8 @@ function rearrange(sentence) {
   let result = sortedWords.map(word => word.word);
   return result.join(' ');
 }
+
+function spoonerise(phrase) {
+  // https://edabit.com/challenge/CCAEMfHcmrvSwA4KR
+  return phrase.replace(/([^aeiou]*)([aieou]\w*) ([^aeiou]*)([aieou]\w*)/, '$3$2 $1$4');
+}
