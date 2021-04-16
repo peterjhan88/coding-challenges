@@ -3770,3 +3770,11 @@ function removeVirus(files) {
   }
   return result;
 }
+
+function decomposeAddress(str) {
+  // https://edabit.com/challenge/xAc7G3AzGgQzLabTe
+  let re = new RegExp(/(?<streetNum>\d+) (?<street>\w+ [A-Z][a-z]) (?<city>.+), (?<state>[A-Z]{2}) (?<zipCode>\d{5})/);
+  let decomposed = str.match(re).groups;
+  let result = [decomposed.streetNum, decomposed.street, decomposed.city, decomposed.state, decomposed.zipCode];
+  return result;
+}
