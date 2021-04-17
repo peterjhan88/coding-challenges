@@ -3778,3 +3778,34 @@ function decomposeAddress(str) {
   let result = [decomposed.streetNum, decomposed.street, decomposed.city, decomposed.state, decomposed.zipCode];
   return result;
 }
+
+function bombLocation(arr) {
+  // https://edabit.com/challenge/2Z5A9F7rGp4jAj22y
+  const getDistance = (sensorInfo, targetCoordinates)=> {
+    let [xZero, yZero, time, distanceToBomb] = sensorInfo;
+    let [x, y] = targetCoordinates;
+    let distance = Math.sqrt((xZero-x)**2+(yZero-y)**2);
+    return distance;
+  }
+
+  // adding distance to each sensor info
+  let sensorInfoWithDistance = arr.map(sensorInfo => [...sensorInfo, sensorInfo[2] * 0.343]);
+
+  const isPointOnRightDistance = (sensorInfo, coordinates, tolerance=0) => {
+    let distanceFromSensorToPoint = getDistance(sensorInfo, coordinates);
+    let difference = Math.abs(sensorInfo[3] - distanceFromSensorToPoint);
+    return difference <= tolerance
+  }
+
+  let result = [];
+  for(let x=0; x<=50; x++){
+    for(let y=0; y<=50; y++){
+      let coordinates = [x, y];
+      if (sensorInfoWithDistance.every(sensorInfo => isPointOnRightDistance(sensorInfo, coordinates, 0.1))){
+        result = coordinates;
+        return result;
+      }
+    }
+  }
+  return result;
+}
