@@ -3809,3 +3809,22 @@ function bombLocation(arr) {
   }
   return result;
 }
+
+function foil(len) {
+  // https://edabit.com/challenge/ZSqNfoKhnjonFShpb
+  // unit : cm
+  const aluminumThickness = 0.0025
+  const coreDiameter = 4;
+  let finalDiameter = coreDiameter;
+  while (len > 0) {
+    let circumference = Math.PI * finalDiameter
+    len -= circumference / 2
+    if (len > 0) {
+      finalDiameter += aluminumThickness * 2;
+      len -= circumference / 2
+    } else {
+      finalDiameter += aluminumThickness;
+    }
+  }
+  return Math.round(finalDiameter * 10000) / 10000;
+}
