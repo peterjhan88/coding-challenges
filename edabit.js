@@ -3828,3 +3828,20 @@ function foil(len) {
   }
   return Math.round(finalDiameter * 10000) / 10000;
 }
+
+function isPalindromeRecursion(p) {
+  // https://edabit.com/challenge/NmmKFQWA9dzWz5can
+  let justLetters = p.match(/[a-z]/ig);
+  if (justLetters.length < 1) {
+    return true;
+  } else {
+    let last = justLetters.pop();
+    let [first, ...rest] = justLetters;
+    if (first === last) {
+      let text = rest.join('');
+      return isPalindrome(text);
+    } else {
+      return false;
+    }
+  }
+}
