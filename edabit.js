@@ -3695,11 +3695,58 @@ function evenLast(arr) {
 
 function validatePN(s) {
   // https://edabit.com/challenge/LQvRrzwHzc2BAXBQx
-  let isValid = false;
-  if (s.match(/\d/g).length === 10 || s.match(/\d/g).length === 11){
-    let validPhoneNumber = new RegExp(/(?<countryCode>\+\d[\s\.\-\/]|\d[\s\.\-\/]|\d)?(?<areaCode>\(\d{3}\)|\d{3})(?<phoneNumberPart1>\d{3})/);
-    let matched = s.match(validPhoneNumber)
-    console.log(matched)
+  let pickingDigits = new RegExp(/\d/g);
+  let numbersOnly = s.match(pickingDigits);
+  if (numbersOnly.length === 10 || numbersOnly.length === 11) {
+    if (numbersOnly.length === 11){
+      // console.log('11 digits - working');
+      return 'working';
+    } else {
+      if(s.match(/[\(|\)]/g)){
+        let re = new RegExp(/\(\d{3}\)\s(\d{3})\-(\d{4})/);
+        if(re.exec(s)){
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        let re = new RegExp(/(?<areaCode>\d{3})([\-\.\/\s])?(?<firstThree>\d{3})\2(?<lastFour>\d{4})/);
+        if (re.exec(s)){
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  } else {
+    return false;
   }
-  return isValid;
 }
+// true
+// console.log('followings are true');
+// validatePN("+1-892-445-7663")
+// validatePN("1-892-445-7663")
+// validatePN("1 (892) 445-7663")
+// validatePN("1.892.567.8901")
+// validatePN("1/892/567/8901")
+// validatePN("1 892 567 8901")
+// validatePN("18925678901")
+// validatePN("(892) 445-7663")
+// validatePN("892-445-7663")
+// validatePN("892.567.8901")
+// validatePN("892/567/8901")
+// validatePN("892 567 8901")
+// validatePN("8925678901")
+
+//false
+// console.log('followings are false');
+// validatePN("89-445-7663")
+// validatePN("(892) 4454-7663")
+// validatePN("892  567 8901")
+// validatePN("892?567?8901")
+// validatePN("!1-892-567-8901")
+// validatePN("(8924) 445-7663")
+// validatePN("12 892 445-7663")
+// validatePN("1&892&445-7663")
+// validatePN("894-445-766")
+// validatePN("894 445 766")
