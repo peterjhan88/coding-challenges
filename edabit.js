@@ -3844,3 +3844,27 @@ function isPalindrome(p) {
     }
   }
 }
+
+function isEarlyBird(range, n) {
+  // https://edabit.com/challenge/oPcmocNP9BDwbN43L
+  let target = n.toString(10);
+  let naturalNumberStringSequence = '';
+  for (let number = 0; number <= range; number++) {
+    naturalNumberStringSequence += number;
+  }
+  let result = [];
+  let fromIndex = 0;
+  while (naturalNumberStringSequence.indexOf(target, fromIndex) !== -1) {
+    let targetIndex = naturalNumberStringSequence.indexOf(target, fromIndex);
+    let targetIndexes = [];
+    for (let index = 0; index < target.length; index++) {
+      targetIndexes.push(targetIndex + index);
+    }
+    result.push(targetIndexes);
+    fromIndex = targetIndex + 1;
+  }
+  if (result.length > 1) {
+    result.push('Early Bird!');
+  }
+  return result;
+}
