@@ -3868,3 +3868,46 @@ function isEarlyBird(range, n) {
   }
   return result;
 }
+
+function validatePN(s) {
+  // https://edabit.com/challenge/LQvRrzwHzc2BAXBQx
+  let pickingDigits = new RegExp(/\d/g);
+  let numbersOnly = s.match(pickingDigits);
+  if (numbersOnly.length === 10 || numbersOnly.length === 11) {
+    if (numbersOnly.length === 11) {
+      if (s.match(/[\(|\)]/g)) {
+        let re = new RegExp(/\d \(\d{3}\) \d{3}\-\d{4}/);
+        if (re.exec(s)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        let re = new RegExp(/^\+?(\d)([\-\.\/\s])?\d{3}\2\d{3}\2\d{4}/);
+        if (re.exec(s)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    } else {
+      if (s.match(/[\(|\)]/g)) {
+        let re = new RegExp(/\(\d{3}\)\s(\d{3})\-(\d{4})/);
+        if (re.exec(s)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        let re = new RegExp(/(\d{3})([\-\.\/\s])?(\d{3})\2(\d{4})/);
+        if (re.exec(s)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  } else {
+    return false;
+  }
+}
