@@ -3911,3 +3911,33 @@ function validatePN(s) {
     return false;
   }
 }
+
+function primorial(n) {
+  // https://edabit.com/challenge/NavpMQj44kMQ6bXo7
+  const isPrime = number => {
+    if (number <= 1) {
+      return false;
+    } else {
+      if(number%2===0 && number!==2){
+        return false;
+      } else {
+        const limit = Math.sqrt(number);
+        for (let num=3; num<=limit; num+=2){
+          if(number%num===0){
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+  }
+  let primeNumbers = [2];
+  let number = 3;
+  while (primeNumbers.length < n) {
+    if(isPrime(number)){
+      primeNumbers.push(number);
+    }
+    number++;
+  }
+  return primeNumbers.reduce((ac, number) => ac *= number, 1);
+}
