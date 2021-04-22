@@ -3941,3 +3941,19 @@ function primorial(n) {
   }
   return primeNumbers.reduce((ac, number) => ac *= number, 1);
 }
+
+function isPalindromeRecursive(p) {
+  // https://edabit.com/challenge/NmmKFQWA9dzWz5can
+  let justLetters = p.match(/[a-z]/gi) ? p.match(/[a-z]/gi) : '';
+  if (justLetters.length < 2) {
+    return true;
+  } else {
+    let last = justLetters.pop();
+    let [first, ...rest] = justLetters;
+    if (first.toLowerCase() === last.toLowerCase()) {
+      return isPalindrome(rest.join(''));
+    } else {
+      return false;
+    }
+  }
+}
