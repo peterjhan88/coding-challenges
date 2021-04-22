@@ -472,7 +472,7 @@ function distanceToNearestVowel(str) {
 function cardHide(card) {
   // https://edabit.com/challenge/rtpvAqFT3koqMoFCJ
   // for detailed instruction, please visit the website
-  const re = /(\d*)(?<lastFour>\d{4,4}$)/;
+  const re = new RegExp(/(\d*)(?<lastFour>\d{4,4}$)/);
   let stringCardNumber = card.toString();
   stringCardNumber = stringCardNumber.replace(re, (match, p1, p2, offset, string) => {
     let hidingText = "";
