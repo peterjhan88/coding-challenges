@@ -3957,3 +3957,31 @@ function isPalindromeRecursive(p) {
     }
   }
 }
+
+function onesInfection(arr) {
+  // https://edabit.com/challenge/wtPATmEY9xQCpzWNT
+  let infectionInfo = {
+    columns: [],
+    rows: []
+  }
+  for (let row = 0; row < arr.length; row++) {
+    for (let col = 0; col < arr[row].length; col++) {
+      if (arr[row][col] === 1) {
+        if (!infectionInfo.columns.includes(col)) {
+          infectionInfo.columns.push(col)
+        }
+        if (!infectionInfo.rows.includes(row)) {
+          infectionInfo.rows.push(row)
+        }
+      }
+    }
+  }
+  for (let row = 0; row < arr.length; row++) {
+    for (let col = 0; col < arr[row].length; col++) {
+      if (infectionInfo.columns.includes(col) || infectionInfo.rows.includes(row)) {
+        arr[row][col] = 1;
+      }
+    }
+  }
+  return arr;
+}
