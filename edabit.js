@@ -3985,3 +3985,16 @@ function onesInfection(arr) {
   }
   return arr;
 }
+
+function simpleNumbers(a, b) {
+  // https://edabit.com/challenge/5zPvYEpfuKig6nirD
+  let result = [];
+  for (let number = a; number <= b; number++) {
+    let stringNumber = number.toString(10);
+    let simpleSum = [...stringNumber].reduce((ac, digit, index) => ac += Number(digit) ** (index + 1), 0);
+    if (simpleSum === number) {
+      result.push(number);
+    }
+  }
+  return result;
+}
