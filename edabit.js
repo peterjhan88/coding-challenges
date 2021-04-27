@@ -3998,3 +3998,29 @@ function simpleNumbers(a, b) {
   }
   return result;
 }
+
+function keywordCipher(key, message) {
+  // https://edabit.com/challenge/3G5P56u9nWW4uf5Cj
+  const referenceAlphabets = 'abcdefghijklmnopqrstuvwxyz';
+  let unusedAlphabets = 'abcdefghijklmnopqrstuvwxyz';
+  let keywordLetters = [];
+  for (let index = 0; index < key.length; index++) {
+    if (!keywordLetters.includes(key[index])) {
+      let target = key[index];
+      keywordLetters.push(target);
+      let re = new RegExp(target);
+      unusedAlphabets = unusedAlphabets.replace(re, '');
+    }
+  }
+  let encodedLetters = keywordLetters.concat(...unusedAlphabets);
+  let encryptedMessage = '';
+  for (let index = 0; index < message.length; index++) {
+    let originalCharacter = message[index];
+    let encryptedCharacter = originalCharacter;
+    if (originalCharacter.match(/[a-z]/i)) {
+      encryptedCharacter = encodedLetters[referenceAlphabets.indexOf(originalCharacter)];
+    }
+    encryptedMessage += encryptedCharacter;
+  }
+  return encryptedMessage;
+}
