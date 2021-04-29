@@ -4051,5 +4051,15 @@ function nameScore(name) {
 
 function lookAndSay(start, n) {
   // https://edabit.com/challenge/j7JBtYKtKWAXpNQDd
-
+  const likeDigits = new RegExp(/(\d)\1*/g);
+  let result = [start];
+  let counter = 1;
+  let currentSequence = start.toString(10);
+  while (counter < n) {
+    let newSequence = currentSequence.match(likeDigits).map(digits => digits.length + digits[0]).join('');
+    result.push(Number(newSequence));
+    currentSequence = newSequence;
+    counter++;
+  }
+  return result;
 }
