@@ -4048,3 +4048,8 @@ function nameScore(name) {
   }
   return result;
 }
+
+function lookAndSay(start, n) {
+  // https://edabit.com/challenge/j7JBtYKtKWAXpNQDd
+
+}
