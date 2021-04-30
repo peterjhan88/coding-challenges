@@ -4063,3 +4063,14 @@ function lookAndSay(start, n) {
   }
   return result;
 }
+
+function funnyNumbers(n, p) {
+	// https://edabit.com/challenge/dwktbd4JZPMEHAj7k
+  let digits = [...n.toString(10)].map(digit => Number(digit));
+  let sum = digits.reduce((ac, digit, index) => ac+=digit**(p+index), 0);
+  let result = null;
+  if(sum%n===0){
+    result = sum/n;
+  }
+  return result;
+}
