@@ -4074,3 +4074,16 @@ function funnyNumbers(n, p) {
   }
   return result;
 }
+
+function sumsPowersTwo(n) {
+  // https://edabit.com/challenge/Cn3Xg9uYFbYj2QHZz
+  let convertedToBase2 = n.toString(2);
+  let reversedDigits = [...convertedToBase2].reverse();
+  let result = [];
+  for (let index = 0; index < reversedDigits.length; index++) {
+    if (reversedDigits[index] === '1') {
+      result.push(2 ** (index));
+    }
+  }
+  return result;
+}
