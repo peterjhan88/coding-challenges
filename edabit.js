@@ -4087,3 +4087,11 @@ function sumsPowersTwo(n) {
   }
   return result;
 }
+
+function calcCharCodeMath(str) {
+	// https://edabit.com/challenge/wA6A7XCN2Nkmrddvq
+  let convertedToAscii = [...str].map(char => char.charCodeAt()).join('');
+  let number1 = [...convertedToAscii].map(digit => Number(digit));
+  let difference = number1.reduce((ac, digit) => digit === 7 ? ac += 6 : ac += 0, 0);
+  return difference;
+}
