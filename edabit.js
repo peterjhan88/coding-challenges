@@ -4095,3 +4095,18 @@ function calcCharCodeMath(str) {
   let difference = number1.reduce((ac, digit) => digit === 7 ? ac += 6 : ac += 0, 0);
   return difference;
 }
+
+function integerToString(number, base) {
+  // https://edabit.com/challenge/RkhnJZcFk9aqHJegN
+  const base16Conversion = {
+    10: 'a', 11: 'b', 12: 'c',
+    13: 'd', 14: 'e', 15: 'f'
+  }
+  let result = [];
+  while (number > 0) {
+    let remainder = number % base;
+    result.push(remainder);
+    number = Math.floor(number / base);
+  }
+  return result.reverse().map(n => n < 10 ? n : base16Converseion[n]).join('');
+}
