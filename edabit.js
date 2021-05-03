@@ -4108,5 +4108,5 @@ function integerToString(number, base) {
     result.push(remainder);
     number = Math.floor(number / base);
   }
-  return result.reverse().map(n => n < 10 ? n : base16Converseion[n]).join('');
+  return result.reverse().map(n => n < 10 ? n : base16Conversion[n]).join('');
 }
