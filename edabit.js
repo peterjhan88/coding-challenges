@@ -4110,3 +4110,23 @@ function integerToString(number, base) {
   }
   return result.reverse().map(n => n < 10 ? n : base16Conversion[n]).join('');
 }
+
+function centroid(x1, y1, x2, y2, x3, y3) {
+  // https://edabit.com/challenge/zjhrGKFnMYSTTXAK7
+  let points = [[x1, y1], [x2, y2], [x3, y3]]
+  const getLength = ([xZero, yZero], [xOne, yOne]) => {
+    let length = Math.sqrt((xZero - xOne) ** 2 + (yZero - yOne) ** 2);
+    return length;
+  }
+  let lengthOfSides = [
+    getLength(points[0], points[1]),
+    getLength(points[1], points[2]),
+    getLength(points[0], points[2])];
+  lengthOfSides.sort((a, b) => b - a);
+  let result = false;
+  if (lengthOfSides[0] < lengthOfSides[1] + lengthOfSides[2]) {
+    result = [Math.round((x1 + x2 + x3) * 100 / 3) / 100,
+    Math.round((y1 + y2 + y3) * 100 / 3) / 100];
+  }
+  return result;
+}
