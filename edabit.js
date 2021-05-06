@@ -4130,3 +4130,13 @@ function centroid(x1, y1, x2, y2, x3, y3) {
   }
   return result;
 }
+
+function plantTrees(w, l, g) {
+  // https://edabit.com/challenge/Sw5Azi53kCjwdKdpG
+  let perimeter = (w + l) * 2 - 4;
+  let possibleTreePlanting = 0;
+  if (perimeter % (g + 1) === 0) {
+    possibleTreePlanting = perimeter / (g + 1);
+  }
+  return possibleTreePlanting;
+}
