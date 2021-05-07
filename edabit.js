@@ -4140,3 +4140,41 @@ function plantTrees(w, l, g) {
   }
   return possibleTreePlanting;
 }
+
+function maxSeparator(str) {
+  // https://edabit.com/challenge/7k59Z9bk46uKH9og3
+  let letterInfo = {};
+  for (let index = 0; index < str.length; index++) {
+    if (letterInfo[str[index]]) {
+      letterInfo[str[index]].push(index);
+    } else {
+      letterInfo[str[index]] = [index];
+    }
+  }
+  const getAdjacentIndexesWithMaximumDifference = indexes => {
+    let currentMax = [];
+    for (let index = 0; index < indexes.length - 1; index++) {
+      let difference = indexes[index + 1] - indexes[index];
+      if (currentMax.length === 0 || difference > currentMax[1] - currentMax[0]) {
+        currentMax = [indexes[index], indexes[index + 1]];
+      }
+    }
+    let maximumDifference = currentMax[1] - currentMax[0];
+    return maximumDifference;
+  }
+
+  let repeatedLetters = [];
+  for (let [letter, indexes] of Object.entries(letterInfo)) {
+    if (indexes.length > 1) {
+      repeatedLetters.push([letter, getAdjacentIndexesWithMaximumDifference(indexes)]);
+    }
+  }
+  let result = [];
+  if (repeatedLetters.length !== 0) {
+    repeatedLetters.sort((a, b) => b[1] - a[1]);
+    let maximumLength = repeatedLetters[0][1];
+    result = repeatedLetters.filter(charInfo => charInfo[1] === maximumLength).map(charInfo => charInfo[0]);
+    result.sort();
+  }
+  return result;
+}
