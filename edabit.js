@@ -4178,3 +4178,32 @@ function maxSeparator(str) {
   }
   return result;
 }
+
+function rotateMatrix(mat, turns) {
+  // https://edabit.com/challenge/teiwZ6f27KebAdeQe
+  let result = [];
+  if (turns > 0) {
+    for (let col = 0; col < mat[0].length; col++) {
+      let newRow = [];
+      for (let row = mat.length - 1; row >= 0; row--) {
+        newRow.push(mat[row][col]);
+      }
+      result.push(newRow);
+    }
+    turns--;
+  } else {
+    for (let col = mat[0].length - 1; col >= 0; col--) {
+      let newRow = [];
+      for (let row = 0; row < mat.length; row++) {
+        newRow.push(mat[row][col]);
+      }
+      result.push(newRow);
+    }
+    turns++;
+  }
+  if (turns === 0) {
+    return result;
+  } else {
+    return rotateMatrix(result, turns);
+  }
+}
