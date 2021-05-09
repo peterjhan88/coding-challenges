@@ -4207,3 +4207,29 @@ function rotateMatrix(mat, turns) {
     return rotateMatrix(result, turns);
   }
 }
+
+function robotPath(commands) {
+  // https://edabit.com/challenge/Ye9ZuahZiQLoP9AYJ
+  const moving = {
+    'e': 1,
+    'w': -1,
+    'n': 1,
+    's': -1
+  }
+  let destination1 = [3, 2];
+  let destination2 = [-4, 3];
+  let robotLocation = [0, 0];
+  for (let index = 0; index < commands.length; index++) {
+    if (commands[index] === 'e' || commands[index] === 'w') {
+      robotLocation[0] = robotLocation[0] + moving[commands[index]]
+    } else {
+      robotLocation[1] = robotLocation[1] + moving[commands[index]]
+    }
+  }
+  for (let index = 0; index < robotLocation.length; index++) {
+    if (robotLocation[index] !== destination1[index] && robotLocation[index] !== destination2[index]) {
+      return false;
+    }
+  }
+  return true;
+}
