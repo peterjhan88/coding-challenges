@@ -4233,3 +4233,25 @@ function robotPath(commands) {
   }
   return true;
 }
+
+function longestNonrepeatingSubstring(str) {
+  // https://edabit.com/challenge/vHJrWvyEiiGp5yZtX
+	let substrings = [];
+	let iToSkip= [];
+	for(let index=0; index<str.length; index++){
+		let character = str[index];
+		for(let i=0; i<=index; i++){
+			if(substrings[i]){
+				if(!iToSkip.includes(i) && !substrings[i].includes(character)){
+					substrings[i].push(character)
+				} else {
+					iToSkip.push(i)
+				}
+			} else {
+				substrings[i] = [character];
+			}
+		}
+	}
+	let result = substrings.sort((a,b)=> b.length-a.length)[0];
+	return result.join('');
+}
