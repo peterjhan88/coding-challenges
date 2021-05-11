@@ -4255,3 +4255,17 @@ function longestNonrepeatingSubstring(str) {
 	let result = substrings.sort((a,b)=> b.length-a.length)[0];
 	return result.join('');
 }
+
+function oppositeHouse(house, n) {
+  // https://edabit.com/challenge/cNhzjwSSSXFEzWRQ4
+  let oppositeNth = null;
+  let oppositeNumber = null;
+  if (house % 2 === 0) {
+    oppositeNth = house / 2;
+    oppositeNumber = 2 * (n - oppositeNth) + 1
+  } else {
+    oppositeNth = (house + 1) / 2;
+    oppositeNumber = 2 * (n - oppositeNth + 1);
+  }
+  return oppositeNumber;
+}
