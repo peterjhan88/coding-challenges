@@ -4269,3 +4269,29 @@ function oppositeHouse(house, n) {
   }
   return oppositeNumber;
 }
+
+function sigFigs(num) {
+  // https://edabit.com/challenge/fbW6Cz4ZrRHdwCFHn
+  if(Number(num)===0){
+    return 0;
+  }
+  let sigFigCounter = 0;
+  let previousSigFigExist = false;
+  let previousDotExist = false;
+  for (let index = 0; index < num.length; index++){
+    if (num[index].match(/[1-9]/)){
+      sigFigCounter++;
+      previousSigFigExist = true;
+    } else if (num[index]==='0'){
+      let nextIndex = index + 1;
+      let numStringAfterIndex = num.slice(nextIndex);
+      if (  (previousSigFigExist && numStringAfterIndex.search(/[1-9\.]/) !== -1)
+          || (previousSigFigExist && previousDotExist)) {
+        sigFigCounter++;
+      }
+    } else if (num[index]==='.'){
+      previousDotExist = true;
+    }
+  }
+  return sigFigCounter;
+}
