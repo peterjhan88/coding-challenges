@@ -4295,3 +4295,38 @@ function sigFigs(num) {
   }
   return sigFigCounter;
 }
+
+function simplifyList(list) {
+  // https://edabit.com/challenge/9ZZ2zGwgPfbAxQa86
+	const checkDuplicate = (objectA, objectB) => {
+		let keys = Object.keys(objectA);
+		for(let index=0; index<keys.length; index++){
+			if(objectA[keys[index]]!==objectB[keys[index]]){
+				return false;
+			}
+		}
+		return true;
+	}
+	let targetItem = null;
+	let targetItemCount = 0;
+	let simplifiedItems = [];
+	for(let index=0; index<list.length; index++){
+		let currentItem = list[index];
+		if(targetItem===null){
+			targetItem = currentItem;
+			targetItemCount = 1;
+		} else if(!checkDuplicate(targetItem, currentItem)){
+			targetItem.count = targetItemCount;
+			simplifiedItems.push(targetItem);
+			targetItem = currentItem;
+			targetItemCount = 1;
+		} else {
+			targetItemCount++;
+		}
+	}
+	if(targetItemCount!==0){
+		targetItem.count = targetItemCount;
+		simplifiedItems.push(targetItem);
+	}
+	return simplifiedItems;
+}
