@@ -4330,3 +4330,12 @@ function simplifyList(list) {
 	}
 	return simplifiedItems;
 }
+
+function collectNLengthLetterGroup(s, n) {
+  // https://edabit.com/challenge/PpqEjypCJ7a4RwxLH
+  if (s.length < n) {
+    return [];
+  } else {
+    return [s.slice(0, n)].concat(collectNLengthLetterGroup(s.slice(n), n)).sort();
+  }
+}
