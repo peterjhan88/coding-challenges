@@ -4339,3 +4339,24 @@ function collectNLengthLetterGroup(s, n) {
     return [s.slice(0, n)].concat(collectNLengthLetterGroup(s.slice(n), n)).sort();
   }
 }
+
+function correctSentences(str) {
+  // https://edabit.com/challenge/H4ZG2vFZLzK4vo8MM
+	let re = new RegExp(/\w+/g);
+	let words = str.match(re);
+	let fixedSentence = '';
+	for(let index=0; index<words.length; index++){
+		let word = words[index];
+		if(index===0){
+			fixedSentence += word[0].toUpperCase()+word.slice(1);
+		} else {
+			if(word.match(/[A-Z]\w*/)){
+				fixedSentence += `. ${word}`
+			} else {
+				fixedSentence += ` ${word}`;
+			}
+		}
+	}
+	fixedSentence+='.';
+	return fixedSentence;
+}
