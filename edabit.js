@@ -4378,3 +4378,46 @@ function doesTriangleFit(brick, hole) {
   }
   return false;
 }
+
+function temperature(sca, val) {
+  // https://edabit.com/challenge/THSeSBBYKcKb6GRQe
+  let degreeInCel = null;
+  switch (sca) {
+    case 'cel':
+      degreeInCel = val;
+      break;
+    case 'fah':
+      degreeInCel = (val - 32) * 5 / 9;
+      break;
+    case 'kel':
+      degreeInCel = val - 273.15;
+      break;
+    case 'ran':
+      degreeInCel = (val - 491.67) * 5 / 9;
+      break;
+    case 'del':
+      degreeInCel = 100 - val * 2 / 3;
+      break;
+    case 'new':
+      degreeInCel = val * 100 / 33;
+      break;
+    case 'rea':
+      degreeInCel = val * 5 / 4;
+      break;
+    case 'rom':
+      degreeInCel = (val - 7.5) * 40 / 21;
+      break;
+    default:
+      return 'invalid scale';
+  }
+  let result = [];
+  result.push(degreeInCel.toFixed(2) + ' degC');
+  result.push((degreeInCel * 9 / 5 + 32).toFixed(2) + ' degF');
+  result.push((degreeInCel + 273.15).toFixed(2) + ' K');
+  result.push(((degreeInCel + 273.15) * 9 / 5).toFixed(2) + ' degR');
+  result.push(((100 - degreeInCel) * 3 / 2).toFixed(2) + ' degDe');
+  result.push((degreeInCel * 33 / 100).toFixed(2) + ' degN');
+  result.push((degreeInCel * 4 / 5).toFixed(2) + ' degRe');
+  result.push((degreeInCel * 21 / 40 + 7.5).toFixed(2) + ' degRo');
+  return result;
+}
