@@ -4360,3 +4360,21 @@ function correctSentences(str) {
 	fixedSentence+='.';
 	return fixedSentence;
 }
+
+function doesTriangleFit(brick, hole) {
+  // https://edabit.com/challenge/7e2Aq87tDpW2CK7XH
+  const isTriangle = threeSidesSorted => {
+    threeSides.sort((a, b) => b - a)
+    return threeSides[0] < threeSides[1] + threeSides[2]
+  }
+  brick.sort((a, b) => a - b);
+  hole.sort((a, b) => a - b);
+  if (isTriangle(brick) && isTriangle(hole)) {
+    if (brick.every((side, index) => side <= hole[index])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  return false;
+}
