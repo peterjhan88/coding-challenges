@@ -4421,3 +4421,45 @@ function temperature(sca, val) {
   result.push((degreeInCel * 21 / 40 + 7.5).toFixed(2) + ' degRo');
   return result;
 }
+
+function getObject(args) {
+  // https://edabit.com/challenge/eARWGdpymGeNQiHBi
+  const areTheyEqual = (object1, object2) => {
+    let keys = Object.keys(object1);
+    for(let index=0; index<keys.length; index++){
+      if (object1[keys[index]] !== object2[keys[index]]){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  let allObjects = Object.values(args);
+  let sortedObjects = [...allObjects].sort((a, b) => {
+    if (a.marks === b.marks) {
+      return b.age - a.age;
+    } else {
+      return b.marks - a.marks;
+    }
+  })
+  let uniqueObjects = [];
+  let uniqueObject = sortedObjects[0];
+  for (let index = 1; index < sortedObjects.length; index++){
+    let currentObject = sortedObjects[index];
+    if (uniqueObject.marks !== currentObject.marks){
+      uniqueObjects.push(uniqueObject);
+      uniqueObject = currentObject;
+    }
+  }
+  uniqueObjects.push(uniqueObject);
+
+  let incrementalKey = 0;
+  let result = {};
+  for(let index=0; index<allObjects.length;index++){
+    if (uniqueObjects.filter(uniqueObject => areTheyEqual(uniqueObject, allObjects[index])).length!==0){
+      result[incrementalKey] = allObjects[index];
+      incrementalKey++;
+    }
+  }
+  return result;
+}
