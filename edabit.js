@@ -4463,3 +4463,20 @@ function getObject(args) {
   }
   return result;
 }
+
+function divingMinigame(arr) {
+  // https://edabit.com/challenge/KxMhoaDkyC2CiNGQx
+  const maxBreathMeter = 10;
+  let currentBreathMeter = maxBreathMeter;
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index] < 0) {
+      currentBreathMeter -= 2;
+      if (currentBreathMeter < 1) {
+        return false;
+      }
+    } else {
+      currentBreathMeter = currentBreathMeter + 4 > maxBreathMeter ? maxBreathMeter : currentBreathMeter + 4;
+    }
+  }
+  return true;
+}
