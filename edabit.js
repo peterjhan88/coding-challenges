@@ -4480,3 +4480,51 @@ function divingMinigame(arr) {
   }
   return true;
 }
+
+function isLadderSafe(ldr) {
+  // https://edabit.com/challenge/uKPNPMQxfnS7o4Xod
+  const isRungBroken = rung => {
+    if (rung.length === rung.match(/#/g).length) {
+      return false;
+    }
+    return true;
+  }
+  const minWidth = 5;
+  const maxGapBetweenRungs = 2;
+  const targetWidth = ldr[0].length;
+
+  if (targetWidth < minWidth) {
+    return false;
+  }
+
+  let targetGapBetweenRungs = null;
+  let gapCounter = null;
+
+  for (let index = 1; index < ldr.length - 1; index++) {
+    let currentComponent = ldr[index];
+    if (currentComponent.match(/#/g).length > 2) {
+      if (gapCounter !== null && targetGapBetweenRungs === null) {
+        targetGapBetweenRungs = gapCounter;
+      } else {
+        if (gapCounter !== targetGapBetweenRungs) {
+          return false;
+        }
+      }
+      if (isRungBroken(currentComponent)) {
+        return false;
+      } else {
+        gapCounter = 0;
+      }
+    } else {
+      if (gapCounter === null) {
+        gapCounter = 1;
+      } else {
+        gapCounter++;
+        if (gapCounter > maxGapBetweenRungs) {
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
