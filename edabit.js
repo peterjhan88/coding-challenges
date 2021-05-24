@@ -4528,3 +4528,38 @@ function isLadderSafe(ldr) {
   }
   return true;
 }
+
+// https://edabit.com/challenge/6YXj5p8MaetehyDMf
+function Stack() {
+  let data = [];
+  this.push = function (item) {
+    data.push(item);
+  };
+  this.isEmpty = function () {
+    return !data.length;
+  };
+  this.pop = function () {
+    return data.pop();
+  };
+  this.peek = function () {
+    return data[data.length - 1];
+  };
+  this.size = function () {
+    return data.length;
+  };
+}
+
+
+function toBinary(num) {
+  let stack = new Stack();
+  while (num >= 2) {
+    stack.push(num % 2);
+    num = Math.floor(num / 2);
+  }
+  stack.push(num);
+  let result = '';
+  while (!stack.isEmpty()) {
+    result += stack.pop();
+  }
+  return Number(result);
+}
