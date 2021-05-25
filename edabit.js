@@ -4563,3 +4563,16 @@ function toBinary(num) {
   }
   return Number(result);
 }
+
+function repeatedString(s) {
+  // https://edabit.com/challenge/FYSu3nEwjA7iN3WmT
+  let limit = 1;
+  while (limit <= s.length / 2) {
+    let potentialPattern = s.slice(0, limit);
+    if (s.split(potentialPattern).every(element => element.length === 0)) {
+      return true;
+    }
+    limit++;
+  }
+  return false;
+}
