@@ -4576,3 +4576,18 @@ function repeatedString(s) {
   }
   return false;
 }
+
+function prefix(exp) {
+  // https://edabit.com/challenge/adxJHueh3if83JTgP
+  const calculatePrefixNotation = prefixNotation => {
+    let [operator, number1, number2] = prefixNotation.split(' ');
+    let result = eval(`${number1} ${operator} ${number2}`);
+    return result;
+  }
+  let re = new RegExp(/[\+\-\/\*]\s-?\d+\s-?\d+/);
+  while (exp.match(re)){
+    exp = exp.replace(re, calculatePrefixNotation);
+  }
+  let result = Number(exp);
+  return result;
+}
