@@ -4591,3 +4591,17 @@ function prefix(exp) {
   let result = Number(exp);
   return result;
 }
+
+function lottery(ticket, win) {
+  // https://edabit.com/challenge/jxxWvhfiv67P2zbTa
+  let miniWinCount = 0;
+  for (let index = 0; index < ticket.length; index++) {
+    let [currentTicket, winNumber] = ticket[index];
+    let letters = [...currentTicket];
+    if (letters.some(letter => letter.charCodeAt() === winNumber)) {
+      miniWinCount++;
+    }
+  }
+  let winStatus = miniWinCount >= win ? 'Winner!' : 'Loser!';
+  return winStatus;
+}
