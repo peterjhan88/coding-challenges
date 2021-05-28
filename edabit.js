@@ -4605,3 +4605,18 @@ function lottery(ticket, win) {
   let winStatus = miniWinCount >= win ? 'Winner!' : 'Loser!';
   return winStatus;
 }
+
+function flashCards([num1, op, num2]) {
+  // https://edabit.com/challenge/ng4KKFW4CBwteJdDH
+  let result = null;
+  if (op === '/' && num2 === 0) {
+    result = undefined;
+  } else {
+    if (op === 'x') {
+      op = '*';
+    }
+    let expression = [num1, op, num2].join(' ');
+    result = Math.round(eval(expression) * 100) / 100;
+  }
+  return result;
+}
