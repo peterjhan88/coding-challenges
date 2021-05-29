@@ -4620,3 +4620,36 @@ function flashCards([num1, op, num2]) {
   }
   return result;
 }
+
+function isEqual(objOne, objTwo) {
+  // https://edabit.com/challenge/zvq3A6AJDWmnnK7Ry
+  let keysOne = Object.keys(objOne);
+  let keysTwo = Object.keys(objTwo);
+  for (let index = 0; index < keysOne.length || index < keysTwo.length; index++) {
+    if (keysOne[index] !== keysTwo[index]) {
+      return false;
+    }
+  }
+
+  for (let index = 0; index < keysOne.length; index++) {
+    let key = keysOne[index];
+    let valueOne = objOne[key];
+    let valueTwo = objTwo[key];
+    if (typeof valueOne === 'object') {
+      if (valueOne === null) {
+        if (valueOne !== valueTwo) {
+          return false;
+        }
+      } else {
+        if (!isEqual(valueOne, valueTwo)) {
+          return false;
+        }
+      }
+    } else {
+      if (valueOne !== valueTwo) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
