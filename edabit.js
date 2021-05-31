@@ -4653,3 +4653,32 @@ function isEqual(objOne, objTwo) {
   }
   return true;
 }
+
+function ticTacToe(board) {
+  // https://edabit.com/challenge/jsukwFKLKJx2qLs5b
+  for (let row = 0; row < board.length; row++) {
+    let currentRow = board[row];
+    if (currentRow.join('').match(/([^E])\1\1/)) {
+      return currentRow[0];
+    } else {
+      let currentCol = [];
+      let diagonalOne = [];
+      let diagonalTwo = [];
+      for (let index = 0; index < board[row].length; index++) {
+        currentCol.push(board[index][row]);
+        diagonalOne.push(board[index][index]);
+        diagonalTwo.push(board[index][2 - index]);
+      }
+      if (currentCol.join('').match(/([^E])\1\1/)) {
+        return currentCol[0];
+      }
+      if (diagonalOne.join('').match(/([^E])\1\1/)) {
+        return diagonalOne[0];
+      }
+      if (diagonalTwo.join('').match(/([^E])\1\1/)) {
+        return diagonalTwo[0];
+      }
+    }
+  }
+  return "Draw";
+}
