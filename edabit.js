@@ -4664,7 +4664,7 @@ function ticTacToe(board) {
       let currentCol = [];
       let diagonalOne = [];
       let diagonalTwo = [];
-      for (let index = 0; index < board[row].length; col++) {
+      for (let index = 0; index < board[row].length; index++) {
         currentCol.push(board[index][row]);
         diagonalOne.push(board[index][index]);
         diagonalTwo.push(board[index][2 - index]);
