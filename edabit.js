@@ -4682,3 +4682,27 @@ function ticTacToe(board) {
   }
   return "Draw";
 }
+
+function getItemsAt(arr, par) {
+  // https://edabit.com/challenge/A9EhAF2RCt7ubxRsK
+  if (arr.length <= 2) {
+    if (par === 'odd') {
+      return arr.pop();
+    } else {
+      return arr.length === 2 ? arr.shift() : [];
+    }
+  } else {
+    let target = null;
+    let temporaryArr = [];
+    if (par === 'odd') {
+      target = arr.pop();
+      arr.pop();
+    } else {
+      arr.pop();
+      target = arr.pop();
+    }
+    temporaryArr.push(target);
+    temporaryArr.unshift(getItemsAt(arr, par));
+    return temporaryArr.flat();
+  }
+}
