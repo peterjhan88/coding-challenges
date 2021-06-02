@@ -4706,3 +4706,17 @@ function getItemsAt(arr, par) {
     return temporaryArr.flat();
   }
 }
+
+function rotatedWords(txt) {
+  // https://edabit.com/challenge/M9NxjPQQynDtqp743
+  let words = txt.match(/\w+/g) || [];
+  let uniqueRotatableWords = [];
+  for (let index = 0; index < words.length; index++) {
+    let word = words[index];
+    let matchedCharacters = word.match(/[HINOSXZMW]/g) ? word.match(/[HINOSXZMW]/g) : [];
+    if (matchedCharacters.length === word.length && !uniqueRotatableWords.includes(word)) {
+      uniqueRotatableWords.push(word);
+    }
+  }
+  return uniqueRotatableWords.length;
+}
