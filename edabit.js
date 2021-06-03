@@ -4720,3 +4720,21 @@ function rotatedWords(txt) {
   }
   return uniqueRotatableWords.length;
 }
+
+function alphanumericRestriction(str) {
+  // https://edabit.com/challenge/DEXocQFvKavLFqCLC
+  if (str) {
+    let digitsCounter = 0;
+    let letterCounter = 0;
+    for (let index = 0; index < str.length; index++) {
+      let currentCharacter = str[index];
+      if (currentCharacter.match(/\d/)) {
+        digitsCounter++;
+      } else if (currentCharacter.match(/\w/)) {
+        letterCounter++;
+      }
+    }
+    return (digitsCounter === str.length || letterCounter === str.length)
+  }
+  return false;
+}
