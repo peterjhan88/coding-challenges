@@ -4738,3 +4738,38 @@ function alphanumericRestriction(str) {
   }
   return false;
 }
+
+function zeroIndices(arr, k) {
+  // https://edabit.com/challenge/2gX93BLEfAQFSCoSy
+  let maxLength = 0;
+  let indices = [];
+  let result = [];
+  let flipCounter = 0;
+  let currentMax = 0;
+  let startingIndex = 0;
+  for (let index = startingIndex; index < arr.length; index++) {
+    if (arr[index] === 0) {
+      if (flipCounter < k) {
+        flipCounter++;
+        currentMax++;
+        indices.push(index);
+      } else {
+        if (currentMax > maxLength) {
+          maxLength = currentMax;
+          result = [...indices];
+        }
+        flipCounter = 0;
+        currentMax = 0;
+        indices = [];
+        index = startingIndex;
+        startingIndex++;
+      }
+    } else {
+      currentMax++;
+    }
+  }
+  if (currentMax > maxLength) {
+    return indices;
+  }
+  return result;
+}
