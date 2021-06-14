@@ -4773,3 +4773,8 @@ function zeroIndices(arr, k) {
   }
   return result;
 }
+
+function consecutiveSum(n) {
+  // https://edabit.com/challenge/KX4eJv6ZSJWsvtijd
+	return !Number.isInteger(Math.log2(n));
+}
