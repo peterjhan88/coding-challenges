@@ -4778,3 +4778,6 @@ function consecutiveSum(n) {
   // https://edabit.com/challenge/KX4eJv6ZSJWsvtijd
 	return !Number.isInteger(Math.log2(n));
 }
+
+// https://edabit.com/challenge/5bETfgL67yy9FKnF4
+const boundaryAssertionREGEXP = /\Bend\B/gi
