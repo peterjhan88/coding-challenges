@@ -4797,3 +4797,25 @@ function happyBirthday(age) {
   let result = `Mubashir is just ${targetAge}, in base ${targetBase}!`
   return result;
 }
+
+function isExactlyThree(n) {
+  // https://edabit.com/challenge/8vJaRDKxoGQ5JnCCz
+  const isPrimeNumber = number => {
+    let factors = [1];
+    for (let num = 2; num <= number / 2; num++) {
+      if (number % num === 0) {
+        factors.push(num);
+        if (factors.length > 1) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  let sqrtNumber = Math.sqrt(n);
+  if (sqrtNumber < 2 || sqrtNumber % 1 !== 0) {
+    return false;
+  } else {
+    return isPrimeNumber(sqrtNumber);
+  }
+}
