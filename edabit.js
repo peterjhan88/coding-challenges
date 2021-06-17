@@ -4781,3 +4781,19 @@ function consecutiveSum(n) {
 
 // https://edabit.com/challenge/5bETfgL67yy9FKnF4
 const boundaryAssertionREGEXP = /\Bend\B/gi
+
+function happyBirthday(age) {
+  // https://edabit.com/challenge/Fo8PEd7eZsWNsMrpH
+  let targetAge = null;
+  let targetBase = null;
+  for (let currentBase = 10; currentBase <= age / 2; currentBase++) {
+    let remainder = age - currentBase * 2;
+    if (remainder === 0 || remainder === 1) {
+      targetAge = '' + 2 + remainder;
+      targetBase = currentBase;
+      break;
+    }
+  }
+  let result = `Mubashir is just ${targetAge}, in base ${targetBase}!`
+  return result;
+}
