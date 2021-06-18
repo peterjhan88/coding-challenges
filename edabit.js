@@ -4819,3 +4819,14 @@ function isExactlyThree(n) {
     return isPrimeNumber(sqrtNumber);
   }
 }
+
+function dist(line, x, y) {
+  // https://edabit.com/challenge/Tt6vQBXgB4GWEQobP
+  const re = new RegExp(/y=(?<constA>.*)x((?<constCSign>(-|\+))(?<constC>.*))?/);
+  let constants = line.match(re).groups;
+  let constA = eval(constants.constA) * (-1);
+  let constCExpression = `${constants.constCSign}(${constants.constC})`;
+  let constC = eval(constCExpression) * (-1);
+  let distance = Math.abs(constA * x + y + constC) / Math.sqrt(constA ** 2 + 1);
+  return Math.round(distance * 100) / 100;
+}
