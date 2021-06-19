@@ -4830,3 +4830,15 @@ function dist(line, x, y) {
   let distance = Math.abs(constA * x + y + constC) / Math.sqrt(constA ** 2 + 1);
   return Math.round(distance * 100) / 100;
 }
+
+function fruitSalad(arr) {
+  // https://edabit.com/challenge/pkSFRoDrPt2PvFsYd
+	let dividedFruits = [];
+	for(let index=0; index<arr.length; index++){
+		let fruit = arr[index];
+		let dividingPoint = Math.floor(fruit.length/2);
+		dividedFruits.push(fruit.slice(0, dividingPoint), fruit.slice(dividingPoint))
+	}
+	dividedFruits.sort();
+	return dividedFruits.join('');
+}
