@@ -4842,3 +4842,18 @@ function fruitSalad(arr) {
 	dividedFruits.sort();
 	return dividedFruits.join('');
 }
+
+function evenOrOdd(str) {
+  // https://edabit.com/challenge/bCif823bBvNFfLK7G
+  let evens = str.match(/[2468]/g);
+  let odds = str.match(/[13579]/g);
+  let evenSum = evens.reduce((ac, digit) => ac += Number(digit), 0);
+  let oddSum = odds.reduce((ac, digit) => ac += Number(digit), 0);
+  let result = "Even and Odd are the same";
+  if (oddSum > evenSum) {
+    result = "Odd is greater than Even"
+  } else if (oddSum < evenSum) {
+    result = "Even is greater than Odd";
+  }
+  return result;
+}
