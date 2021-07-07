@@ -4857,3 +4857,15 @@ function evenOrOdd(str) {
   }
   return result;
 }
+
+function stringBuilder(s) {
+  // https://edabit.com/challenge/vZ5fXMmqfzXQ5dQBv
+	const smallest = new RegExp(/(\d+)\[(\w+)\]/);
+	while(s.match(smallest)){
+		s = s.replace(smallest, (matched, repeatNumber, subString)=>{
+			let result = subString.repeat(Number(repeatNumber));
+			return result;
+		})
+	}
+	return s;
+}
