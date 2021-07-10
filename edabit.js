@@ -4869,3 +4869,16 @@ function stringBuilder(s) {
 	}
 	return s;
 }
+
+function isHarshad(n) {
+  // https://edabit.com/challenge/Rrauvu8afRbjqPM8L
+	let original = n;
+	let digitSum = 0;
+	while(n%10!==n){
+		digitSum += n%10;
+		n = Math.floor(n/10);
+	}
+	digitSum += n;
+	let isHarshad = original%digitSum===0;
+	return isHarshad;
+}
