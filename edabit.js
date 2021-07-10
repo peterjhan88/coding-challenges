@@ -4882,3 +4882,16 @@ function isHarshad(n) {
 	let isHarshad = original%digitSum===0;
 	return isHarshad;
 }
+
+function median(arr) {
+  // https://edabit.com/challenge/36cEmt2BiGTtZ9SDx
+  arr.sort((a, b) => a - b);
+  let middle = arr.length / 2;
+  let median = null;
+  if (middle % 1 === 0) {
+    median = (arr[middle] + arr[middle - 1]) / 2;
+  } else {
+    median = arr[Math.floor(middle)];
+  }
+  return median
+}
