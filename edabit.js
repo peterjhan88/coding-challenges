@@ -4895,3 +4895,37 @@ function median(arr) {
   }
   return median
 }
+
+function bitwiseIndex(arr) {
+  // https://edabit.com/challenge/rwWaie7W2jmHQFfJA
+	const isEven = number => {
+		let lastDigit = Number(number.toString(10).slice(-1));
+		return Number.isInteger(lastDigit/2);
+	}
+
+	let isCurrentIndexEven = true;
+	let currentLargestEvenNumber = null;
+	let targetIndex = null;
+	let isTargetIndexEven = null;
+
+	for(let index=0; index<arr.length; index++){
+		let currentNumber = arr[index];
+		if(isEven(currentNumber)){
+			if(currentLargestEvenNumber===null || currentLargestEvenNumber<currentNumber){
+				currentLargestEvenNumber=currentNumber;
+				targetIndex = index;
+				isTargetIndexEven = isCurrentIndexEven;
+			}
+		}
+		isCurrentIndexEven = !isCurrentIndexEven;
+	}
+  
+	if(currentLargestEvenNumber===null){
+		return 'No even integer found!';
+	} else {
+		let result = {};
+		let objectKey = `@${isTargetIndexEven?'even':'odd'} index ${targetIndex}`;	
+		result[objectKey] = currentLargestEvenNumber;
+		return result;
+	}
+}
