@@ -4902,10 +4902,12 @@ function bitwiseIndex(arr) {
 		let lastDigit = Number(number.toString(10).slice(-1));
 		return Number.isInteger(lastDigit/2);
 	}
+
 	let isCurrentIndexEven = true;
 	let currentLargestEvenNumber = null;
 	let targetIndex = null;
 	let isTargetIndexEven = null;
+
 	for(let index=0; index<arr.length; index++){
 		let currentNumber = arr[index];
 		if(isEven(currentNumber)){
@@ -4917,6 +4919,7 @@ function bitwiseIndex(arr) {
 		}
 		isCurrentIndexEven = !isCurrentIndexEven;
 	}
+  
 	if(currentLargestEvenNumber===null){
 		return 'No even integer found!';
 	} else {
