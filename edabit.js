@@ -4929,3 +4929,42 @@ function bitwiseIndex(arr) {
 		return result;
 	}
 }
+
+function simpleEquation(a, b, c){
+  // https://edabit.com/challenge/sSmDPWAoTZ4CSxCLk
+  let givenNumbers = [a,b,c];
+  let operators = ['+','-','*','/'];
+  let sortedInDesiredWay = givenNumbers.flatMap((firstNumber, numberIndex, originalArr)=>{
+    let baseArr = [firstNumber];
+    let result = [];
+    let withoutFirstNumber = [...originalArr];
+    withoutFirstNumber.splice(numberIndex,1);
+    for(let index=0; index<withoutFirstNumber.length; index++){
+      let withoutSecondNumber = [...withoutFirstNumber];
+      let secondNumber = withoutSecondNumber.splice(index, 1);
+      let [thirdNumber] = withoutSecondNumber;
+      result.push(baseArr.concat(secondNumber, thirdNumber));
+    }
+    return result;
+  });
+  
+  let possibleEquations =[];
+  for(let index=0; index<sortedInDesiredWay.length; index++){
+    for(let operatorIndex=0; operatorIndex<operators.length; operatorIndex++){
+      let [num1, num2, expected] = sortedInDesiredWay[index];
+      let expression = `${num1}${operators[operatorIndex]}${num2}`;
+      let outcome = eval(expression);
+      if(expected===outcome){
+        let goodExpression = `${expression}=${outcome}`;
+        possibleEquations.push(goodExpression);
+      }
+    }
+  }
+
+  if(possibleEquations.length===0){
+    return '';
+  } else {
+    let randomIndex=Math.floor(Math.random()*possibleEquations.length);
+    return possibleEquations[randomIndex];
+  }
+}
