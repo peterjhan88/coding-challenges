@@ -4978,3 +4978,45 @@ function halflifeCalculator(mass, hlife, n) {
 	let result=[Math.round(currentMass*1000)/1000, hlife*n];
 	return result;
 }
+
+function bishop(start, end, n) {
+  // https://edabit.com/challenge/6gkY9f4hNauYgwMpt
+  let re = new RegExp(/(?<col>[a-h])(?<row>[1-8])/);
+  const canBishopReachSpot = (current, target) => {
+    let currentRowCol = current.match(re).groups;
+    let targetRowCol = target.match(re).groups;
+    let colCheckSum = currentRowCol.col.charCodeAt()+targetRowCol.col.charCodeAt();
+    let rowCheckSum = eval(`${currentRowCol.row}+${targetRowCol.row}`);
+    if(colCheckSum%2===0){
+      if(rowCheckSum%2===0){
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if(rowCheckSum%2===1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  let requiredNumberOfMove = 0;
+  if(!canBishopReachSpot(start, end)){
+    return false;
+  } else {
+    let startRowCol = start.match(re).groups;
+    let endRowCol = end.match(re).groups;
+    let colDifference = Math.abs(startRowCol.col.charCodeAt()-endRowCol.col.charCodeAt());
+    let rowDifference = Math.abs(eval(`${startRowCol.row}-${endRowCol.row}`));
+    if(colDifference===rowDifference){
+      if(!(colDifference===0 && rowDifference===0)){
+        requiredNumberOfMove++;
+      }
+    } else {
+      requiredNumberOfMove +=2;
+    }
+    return requiredNumberOfMove<=n;
+  }
+}
