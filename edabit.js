@@ -4968,3 +4968,13 @@ function simpleEquation(a, b, c){
     return possibleEquations[randomIndex];
   }
 }
+
+function halflifeCalculator(mass, hlife, n) {
+  // https://edabit.com/challenge/bQPSi3s2zp6sjrYJL
+	let currentMass = mass;
+	for(let hlifeIndex=0; hlifeIndex<n; hlifeIndex++){
+		currentMass = currentMass/2;
+	}
+	let result=[Math.round(currentMass*1000)/1000, hlife*n];
+	return result;
+}
