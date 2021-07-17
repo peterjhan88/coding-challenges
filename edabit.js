@@ -4979,6 +4979,54 @@ function halflifeCalculator(mass, hlife, n) {
 	return result;
 }
 
+function hexDistance(grid) {
+  // https://edabit.com/challenge/YuWnXNtiRAnETbf3P
+  const getRowOfStartAndEnd = (grid) => {
+    let result = [];
+    let spotCounter=0;
+    for(let row=0; row<grid.length; row++){
+      let currentRow = grid[row];
+      let isXinRow = currentRow.match(/x/g)
+      if(isXinRow){
+        if(isXinRow.length>1){
+          let coordinateA = {
+            row:row,
+            col:currentRow.indexOf('x')
+          };
+          let coordinateB = {
+            row:row,
+            col:currentRow.lastIndexOf('x')
+          }
+          result.push(coordinateA, coordinateB);
+        } else {
+          let coordinate = {
+            row:row,
+            col:currentRow.indexOf('x')
+          }
+          result.push(coordinate);
+        }
+      }
+    }
+    return result;
+  }
+
+  let [start, end] = getRowOfStartAndEnd(grid);
+  let rowDistance = Math.abs(start.row-end.row);
+  let colDistance = null;
+  let colDifference = Math.floor(Math.abs(start.col-end.col)/2);
+  if(rowDistance===0){
+    colDistance = colDifference;
+  } else {
+    if(start.col===end.col||colDifference<rowDistance){
+      colDistance = 0;
+    } else {
+      colDistance = colDifference-Math.floor(rowDistance/2);
+    }
+  }
+  let distance = rowDistance+colDistance;
+  return distance;
+}
+
 function bishop(start, end, n) {
   // https://edabit.com/challenge/6gkY9f4hNauYgwMpt
   let re = new RegExp(/(?<col>[a-h])(?<row>[1-8])/);
