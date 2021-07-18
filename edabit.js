@@ -5085,27 +5085,44 @@ function wordSearch(letters, words) {
 	}
 	
 	const isWordInGrid = (targetWord, grid) => {
+    const bidirectionalCheckArrayToWord = (targetWord, arrayOfLetters) => {
+      if(    arrayOfLetters.join('').toLowerCase()===targetWord
+          || arrayOfLetters.reverse().join('').toLowerCase()===targetWord){
+        return true;
+      }
+      return false;
+    }
 		let wordLength = targetWord.length;
-    // error on limits for row and col
-		for(let row=0; row<=gridSize-wordLength; row++){
-			for(let col=0; col<=gridSize-wordLength; col++){
-				let rowPortion = grid[row].slice(col, col+wordLength);
-				if(rowPortion.join('').toLowerCase()===targetWord){
-					return true;
-				} else {
-					let colPortion = [];
-					let diagonalPortion = [];
-					for(let index=0; index<wordLength; index++){
-						colPortion.push(grid[row+index][col]);
-						diagonalPortion.push(grid[row+index][col+index]);
-					}
-					if(colPortion.join('').toLowerCase()===targetWord || diagonalPortion.join('').toLowerCase()===targetWord){
-						return true;
-				  }
-				}
+		for(let row=0; row<gridSize; row++){
+			for(let col=0; col<gridSize; col++){
+        if(col+wordLength<=gridSize){
+          let rowPortion = grid[row].slice(col, col+wordLength);
+          if(bidirectionalCheckArrayToWord(targetWord, rowPortion)){
+            return true;
+          }
+        }
+        let colPortion = [];
+        let forwardDiagonalPortion = [];
+        let backwardDiagonalPortion = [];
+        for(let index=0; index<wordLength; index++){
+          if(row+index<gridSize){
+            colPortion.push(grid[row+index][col]);
+          }
+          if(row+index<gridSize && col+index<gridSize){
+            forwardDiagonalPortion.push(grid[row+index][col+index]);
+          }
+          if(row+index<gridSize && col-index>=0){
+            backwardDiagonalPortion.push(grid[row+index][col-index]);
+          }
+        }
+        if(bidirectionalCheckArrayToWord(targetWord, colPortion) 
+        || bidirectionalCheckArrayToWord(targetWord, forwardDiagonalPortion)
+        || bidirectionalCheckArrayToWord(targetWord, backwardDiagonalPortion)){
+          return true;
+        }
 			}
-			return false;
 		}
+    return false;
 	}
 	
 	for(let index=0; index<words.length; index++){
