@@ -5068,3 +5068,51 @@ function bishop(start, end, n) {
     return requiredNumberOfMove<=n;
   }
 }
+
+
+function wordSearch(letters, words) {
+  // https://edabit.com/challenge/x3XbfkKTjj4rr45Xi
+	const gridSize = 8;
+	let characters = letters.split('');
+	let letterGrid = [];
+	let singleRow = [];
+	for(let index=0; index<characters.length; index++){
+		singleRow.push(characters[index]);
+		if(singleRow.length===gridSize){
+			letterGrid.push(singleRow);
+			singleRow = [];
+		}
+	}
+	
+	const isWordInGrid = (targetWord, grid) => {
+		let wordLength = targetWord.length;
+    // error on limits for row and col
+		for(let row=0; row<=gridSize-wordLength; row++){
+			for(let col=0; col<=gridSize-wordLength; col++){
+				let rowPortion = grid[row].slice(col, col+wordLength);
+				if(rowPortion.join('').toLowerCase()===targetWord){
+					return true;
+				} else {
+					let colPortion = [];
+					let diagonalPortion = [];
+					for(let index=0; index<wordLength; index++){
+						colPortion.push(grid[row+index][col]);
+						diagonalPortion.push(grid[row+index][col+index]);
+					}
+					if(colPortion.join('').toLowerCase()===targetWord || diagonalPortion.join('').toLowerCase()===targetWord){
+						return true;
+				  }
+				}
+			}
+			return false;
+		}
+	}
+	
+	for(let index=0; index<words.length; index++){
+		let currentWord = words[index];
+		if( !isWordInGrid(currentWord, letterGrid) ){
+			return false;
+		}
+	}
+	return true;
+}
