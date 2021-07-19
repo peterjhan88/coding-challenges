@@ -5133,3 +5133,13 @@ function wordSearch(letters, words) {
 	}
 	return true;
 }
+
+function possiblePath(arr) {
+  // https://edabit.com/challenge/igaRcBWdqjik9oY7K
+	let movement = arr.join('');
+	if(movement.match(/\d{2}/)){
+		return false;
+	} else {
+		return true;
+	}
+}
