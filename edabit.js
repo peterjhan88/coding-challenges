@@ -5143,3 +5143,9 @@ function possiblePath(arr) {
 		return true;
 	}
 }
+
+function salt(t) { 
+  // https://edabit.com/challenge/SCqzoFHxzMM2LFQ2m
+	let saltInWater = 1+9*Math.exp(-t/10);
+	return Math.round(saltInWater*1000)/1000;
+}
