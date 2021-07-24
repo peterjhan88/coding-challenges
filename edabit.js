@@ -5149,3 +5149,20 @@ function salt(t) {
 	let saltInWater = 1+9*Math.exp(-t/10);
 	return Math.round(saltInWater*1000)/1000;
 }
+
+function simplifySqrt(n) {
+  // https://edabit.com/challenge/q3GuyewaMxzJyu95f
+	let potentialA = 1;
+	let potentialB = n;
+	let result = null;
+	for(let number=1; number<=n/2; number++){
+		let sqrtNumber = Math.sqrt(n/number);
+		if(Number.isInteger(sqrtNumber)){
+			potentialA = sqrtNumber;
+			potentialB = number;
+			break;
+		}
+	}
+	result = [potentialA, potentialB]
+	return result;
+}
