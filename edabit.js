@@ -5166,3 +5166,16 @@ function simplifySqrt(n) {
 	result = [potentialA, potentialB]
 	return result;
 }
+
+function mubashirCipher(message) {
+  // https://edabit.com/challenge/J4idWvahCYHPGnsMT
+	var key= [['m', 'c'], ['u', 'e'], ['b', 'g'], ['a', 'k'], ['s', 'v'], ['h', 'x'], 
+	['i', 'z'], ['r', 'y'], ['p', 'w'], ['l', 'n'], ['o', 'j'], ['t', 'f'], ['q', 'd']];
+	const encryptLetter = (letter)=>{
+		let [targetKey] = key.filter(k=>k.includes(letter));
+		let index=targetKey.indexOf(letter);
+		let encrypted = targetKey[(index+1)%2];
+		return encrypted;
+	}
+	return message.replace(/[a-z]/g, matched=>encryptLetter(matched))
+}
